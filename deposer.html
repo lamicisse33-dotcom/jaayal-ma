@@ -2,6 +2,7 @@
 <html lang="fr"><head><meta charset="utf-8"><meta name="robots" content="noindex"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Déposer une annonce — Jaayal ma</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"><style>
+.champ-select,#numero-paiement{font:inherit;font-size:16px;padding:11px 12px;border:1px solid var(--ligne);border-radius:12px;background:var(--bg);color:var(--fg);width:100%;box-sizing:border-box}
 /* Jaayal ma — une place de marché de Dakar : fond clair sable-gris, encre marine KHALAM, or pour le Premium, vert WhatsApp pour le contact.
    Cartes en grille, une colonne au téléphone. */
 :root{--bg:#F4F2EC;--carte:#FFFFFF;--fg:#141B2D;--doux:#5A6275;--ligne:#E3DED3;--marine:#0B1F4D;--or:#C9A227;--or-fond:#FBF3DC;--prio:#1E4FB8;--prio-fond:#E6EEFF;--wa:#1EBE5D;--wa-fg:#FFFFFF;
@@ -143,39 +144,106 @@ footer a{color:var(--doux)}
 .niveau.choisi{border-color:var(--marine);box-shadow:0 0 0 2px var(--prio-fond)}
 </style>
 </head><body>
-<div class="maquette">Site en préparation — QR codes et codes d’annonce d’exemple. Aucun paiement réel pour l’instant.</div>
+<div class="maquette">Site en préparation — le paiement par Wave arrive ; pendant le lancement, demandez votre code à KHALAM.</div>
 <header class="bande"><div class="int"><a class="marque" href="index.html"><b>Jaayal ma</b><span>par KHALAM</span></a><nav><a href="index.html#fenetres">Rubriques</a><a href="index.html#tarifs">Tarifs</a><a href="deposer.html">Déposer</a><a href="https://khalam.app/bia">Bia Xarit</a></nav></div></header>
 <section class="hero"><p class="fil"><a href="index.html">Jaayal ma</a> › Déposer une annonce</p><h1>Déposer une annonce</h1><p>Trois étapes : vous payez, vous recevez votre code, vous écrivez votre annonce. KHALAM la vérifie, puis elle est en ligne pour 7 jours.</p></section>
 <main>
-<div class="etapes"><div class="etape active"><i>1</i><div><b>Payer</b><span>Scannez le QR Wave ou Orange Money : 1 000 F pour 7 jours.</span></div></div><div class="etape"><i>2</i><div><b>Recevoir votre code</b><span>KHALAM vous l’envoie par WhatsApp dès le paiement reçu.</span></div></div><div class="etape"><i>3</i><div><b>Écrire l’annonce</b><span>Le code ouvre le formulaire. Photos depuis votre téléphone.</span></div></div><div class="etape"><i>✓</i><div><b>Vérification KHALAM</b><span>Rien n’est publié avant validation. Vous êtes prévenu par WhatsApp.</span></div></div></div>
+<div class="etapes"><div class="etape active" id="et1"><i>1</i><div><b>Payer</b><span>Wave Business : 1 000 F pour 7 jours. Le code arrive tout seul.</span></div></div><div class="etape" id="et2"><i>2</i><div><b>Votre code</b><span>Il s’affiche après le paiement (ou KHALAM vous l’envoie pendant le lancement).</span></div></div><div class="etape" id="et3"><i>3</i><div><b>Écrire l’annonce</b><span>Le code ouvre le formulaire. Photos depuis votre téléphone.</span></div></div><div class="etape"><i>✓</i><div><b>Vérification KHALAM</b><span>Rien n’est publié avant validation. Vous êtes prévenu par WhatsApp.</span></div></div></div>
 
-<section class="bloc" id="payer"><h2>1 · Payer</h2><p>Choisissez le niveau, scannez avec votre application Wave ou Orange Money, et mettez <b>votre numéro WhatsApp</b> en référence du paiement : c’est à ce numéro que votre code arrive.</p>
-<div class="niveaux">
-<label class="niveau choisi"><input type="radio" name="niv" checked> <b>Normale — 1 000 F</b><span>7 jours, dans sa rubrique, par date</span></label>
-<label class="niveau"><input type="radio" name="niv"> <b>Prioritaire — 2 000 F</b><span>7 jours, au-dessus des Normales</span></label>
-<label class="niveau"><input type="radio" name="niv"> <b>Premium — 3 500 F</b><span>7 jours, tout en haut, et Bia la cite en premier</span></label>
+<section class="bloc" id="payer"><h2>1 · Payer</h2><p>Choisissez le niveau et la durée, donnez votre numéro WhatsApp, puis payez avec Wave. Votre code d’annonce s’affiche ici dès le paiement.</p>
+<div class="niveaux" id="niveaux">
+<label class="niveau choisi"><input type="radio" name="niv" value="normale" checked> <b>Normale</b><span>Dans sa rubrique, par date</span></label>
+<label class="niveau"><input type="radio" name="niv" value="prioritaire"> <b>Prioritaire</b><span>Au-dessus des Normales</span></label>
+<label class="niveau"><input type="radio" name="niv" value="premium"> <b>Premium</b><span>Tout en haut, et Bia la cite en premier</span></label>
 </div>
-<div class="qrs"><div class="qr"><img src="img/qr-wave.png" alt="QR Wave (exemple)"><div class="montant">1 000 F</div><b>Wave</b><span>KHALAM · 77 000 00 00</span></div><div class="qr"><img src="img/qr-orange.png" alt="QR Orange Money (exemple)"><div class="montant">1 000 F</div><b>Orange Money</b><span>KHALAM · 77 000 00 00</span></div></div>
-<p style="margin-top:12px">Pendant le lancement, votre première annonce de 7 jours est offerte : passez directement à l’étape 2, KHALAM vous envoie un code gratuit.</p></section>
+<div class="deux"><label style="display:grid;gap:5px;font-size:13px;font-weight:600">Durée<select id="jours" class="champ-select"><option value="7">7 jours</option><option value="30">30 jours</option></select></label>
+<label style="display:grid;gap:5px;font-size:13px;font-weight:600">Votre numéro WhatsApp<input id="numero-paiement" inputmode="tel" placeholder="+221 77 …"></label></div>
+<div class="montant" id="montant">1 000 F</div>
+<div class="code" style="margin-top:8px"><button class="bouton or" type="button" id="btn-wave" disabled>Payer par Wave</button><span id="wave-etat" style="font-size:13px;color:var(--doux)">Vérification de Wave…</span></div>
+<p style="margin-top:12px">Pendant le lancement, votre première annonce de 7 jours est offerte : demandez votre code gratuit à KHALAM sur WhatsApp, puis passez à l’étape 2.</p></section>
 
-<section class="bloc" id="code"><h2>2 · Entrer votre code d’annonce</h2><p>Vous l’avez reçu par WhatsApp après le paiement (exemple : <b>JM-7K4F</b>). Il ouvre le formulaire pour une annonce.</p>
-<div class="code"><input id="codeann" placeholder="JM-····" aria-label="Code d’annonce" value="JM-7K4F"><button class="bouton" type="button">Ouvrir le formulaire</button></div></section>
+<section class="bloc" id="code"><h2>2 · Entrer votre code d’annonce</h2><p>Exemple : <b>JM-7K4F</b>. Un code vaut pour une annonce.</p>
+<div class="code"><input id="codeann" placeholder="JM-····" aria-label="Code d’annonce" maxlength="7" autocapitalize="characters"><button class="bouton" type="button" id="btn-code">Ouvrir le formulaire</button></div>
+<p id="code-etat" style="margin:10px 0 0;font-size:14px;color:var(--doux)"></p></section>
 
-<section class="bloc" id="formulaire"><h2>3 · Votre annonce</h2><p>Écrivez simplement. KHALAM relit avant publication.</p>
-<form class="form" onsubmit="return false">
-<div class="deux"><label>Page<select><option>Immobilier</option><option>Véhicules</option><option>Électroménager & maison</option><option>Mode & bijoux</option><option>Animaux</option><option>Services & divers</option></select></label>
-<label>Rubrique<select><option>Vente</option><option>Location</option></select></label></div>
-<label>Titre<input value="Appartement 2 chambres meublé — Ouakam"></label>
-<label>Description<textarea>2e étage, 2 chambres climatisées, salon, cuisine équipée, eau et gardiennage inclus. Disponible le 1er décembre. Caution 2 mois.</textarea></label>
-<div class="deux"><label>Prix (F CFA)<input inputmode="numeric" value="300 000"></label><label>Par<select><option>mois</option><option>— (vente)</option><option>jour</option></select></label></div>
-<div class="deux"><label>Quartier<input value="Ouakam"></label><label>Votre numéro WhatsApp<input inputmode="tel" value="+221 77 000 00 21"></label></div>
-<label>Photos (jusqu’à 3, depuis votre téléphone)<div class="photos"><div>+ Photo</div><div>+ Photo</div><div>+ Photo</div></div></label>
-<label style="flex-direction:row;display:flex;gap:8px;align-items:center;font-weight:500"><input type="checkbox" checked style="width:auto"> Je certifie que cette annonce est vraie et que je suis joignable à ce numéro.</label>
-<div><button class="bouton or" type="submit">Envoyer à KHALAM pour vérification</button></div>
+<section class="bloc" id="formulaire" hidden><h2>3 · Votre annonce</h2><p>Écrivez simplement. KHALAM relit avant publication.</p>
+<form class="form" id="form">
+<div class="deux"><label>Page<select id="fenetre" required></select></label><label>Rubrique<select id="sous" required></select></label></div>
+<label>Titre<input id="titre" required minlength="4" maxlength="90" placeholder="Appartement 2 chambres meublé — Ouakam"></label>
+<label>Description<textarea id="desc" required minlength="10" maxlength="1200" placeholder="Étage, pièces, état, ce qui est inclus, disponibilité…"></textarea></label>
+<div class="deux"><label>Prix (F CFA)<input id="prix" inputmode="numeric" required placeholder="300 000"></label><label>Par<select id="unite"><option value="">— (prix total)</option><option value="/ mois">mois</option><option value="/ jour">jour</option></select></label></div>
+<div class="deux"><label>Quartier<input id="quartier" required minlength="2" maxlength="60" placeholder="Ouakam"></label><label>Votre numéro WhatsApp<input id="whatsapp" inputmode="tel" required placeholder="+221 77 …"></label></div>
+<div class="deux"><label>Votre nom ou enseigne (facultatif)<input id="vendeur" maxlength="40" placeholder="Awa D."></label><label>Surface (facultatif)<input id="surface" maxlength="20" placeholder="95 m²"></label></div>
+<label>Photos (1 à 3, depuis votre téléphone)<input type="file" id="photos" accept="image/*" multiple required style="padding:9px"><div class="photos" id="apercus"></div></label>
+<label style="flex-direction:row;display:flex;gap:8px;align-items:center;font-weight:500"><input type="checkbox" id="certifie" required style="width:auto"> Je certifie que cette annonce est vraie et que je suis joignable à ce numéro.</label>
+<div><button class="bouton or" type="submit" id="btn-envoyer">Envoyer à KHALAM pour vérification</button></div>
+<p id="form-etat" style="margin:0;font-size:14px;color:var(--doux)"></p>
 </form>
-<p class="attente" style="margin-top:16px"><b>Après l’envoi :</b> votre annonce est « en attente de vérification ». KHALAM la relit (en général dans la journée), puis vous recevez sur WhatsApp le lien de votre annonce en ligne — ou la raison du refus, et votre paiement reste valable pour une annonce corrigée.</p></section>
+<p class="attente" style="margin-top:16px"><b>Après l’envoi :</b> votre annonce est « en attente de vérification ». KHALAM la relit (en général dans la journée), puis vous recevez sur WhatsApp le lien de votre annonce en ligne — ou la raison du refus, et votre code reste valable pour une annonce corrigée.</p></section>
 
-<section class="bloc"><h2>Ou plus simple : dites-le à Bia</h2><p>Dans Bia Xarit, dites <b>« Bia, jaayal ma »</b> : elle vous pose les questions, prend les photos, vous donne le QR à scanner et envoie l’annonce à KHALAM. Même règles, même vérification.</p><a class="bouton" href="https://khalam.app/bia">Ouvrir Bia Xarit</a></section>
+<section class="bloc" id="merci" hidden><h2>Annonce envoyée</h2><p id="merci-texte"></p><a class="bouton" href="index.html">Retour aux annonces</a></section>
+
+<section class="bloc"><h2>Ou plus simple : dites-le à Bia</h2><p>Dans Bia Xarit, dites <b>« Bia, jaayal ma »</b> : elle vous pose les questions, prend les photos et envoie l’annonce à KHALAM. Mêmes règles, même vérification.</p><a class="bouton" href="https://khalam.app/bia">Ouvrir Bia Xarit</a></section>
 </main>
+<script>
+(function(){
+ var API='https://app.khalam.app/api/jaayalma';
+ var FEN={"immobilier":{"nom":"Immobilier","sous":["Vente","Location"]},"vehicules":{"nom":"Véhicules","sous":["Voitures","Motos & scooters","Location de voitures","Pièces & pneus"]},"electromenager":{"nom":"Électroménager & maison","sous":["Électroménager","Télé, téléphones & ordinateurs","Meubles & décoration","Cuisine & ustensiles"]},"mode":{"nom":"Mode & bijoux","sous":["Vide-dressing","Bijoux & montres","Tissus & bazin","Beauté & mèches"]},"animaux":{"nom":"Animaux","sous":["Moutons","Bœufs & chèvres","Volailles","Chiens & chats"]},"services":{"nom":"Services & divers","sous":["Services","Emplois","Événements (chaises, bâches, sono)","Sport & loisirs","Bébé & enfants","Matériel pro & BTP"]}};
+ var TARIFS={"7":{"normale":1000,"prioritaire":2000,"premium":3500},"30":{"normale":3500,"prioritaire":7000,"premium":12000}};
+ var $=function(id){return document.getElementById(id);};
+ var F=function(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g," ")+" F";};
+ /* niveaux + montant */
+ function niveau(){var r=document.querySelector('input[name=niv]:checked');return r?r.value:'normale';}
+ function majMontant(){$('montant').textContent=F(TARIFS[$('jours').value][niveau()]);}
+ document.querySelectorAll('.niveau').forEach(function(l){l.addEventListener('click',function(){document.querySelectorAll('.niveau').forEach(function(x){x.classList.remove('choisi');});l.classList.add('choisi');setTimeout(majMontant,0);});});
+ $('jours').addEventListener('change',majMontant);
+ /* Wave : actif ? */
+ fetch(API+'/paiement?etat=1').then(function(r){return r.json();}).then(function(d){
+   if(d.wave_actif){$('btn-wave').disabled=false;$('wave-etat').textContent='';}
+   else{$('wave-etat').textContent='Le paiement par Wave arrive bientôt. En attendant, demandez votre code à KHALAM.';}
+ }).catch(function(){$('wave-etat').textContent='Serveur injoignable pour l’instant.';});
+ $('btn-wave').addEventListener('click',function(){
+   var numero=$('numero-paiement').value.trim(); if(!numero){$('wave-etat').textContent='Donnez d’abord votre numéro WhatsApp.';return;}
+   $('btn-wave').disabled=true;$('wave-etat').textContent='Ouverture de Wave…';
+   fetch(API+'/paiement',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({niveau:niveau(),jours:Number($('jours').value),numero:numero})})
+   .then(function(r){return r.json();}).then(function(d){if(d.ok&&d.lien){location.href=d.lien;}else{$('wave-etat').textContent=d.message||'Paiement impossible pour l’instant.';$('btn-wave').disabled=false;}})
+   .catch(function(){$('wave-etat').textContent='Serveur injoignable.';$('btn-wave').disabled=false;});
+ });
+ /* retour de Wave : ?session=jt-… → le code */
+ var session=new URLSearchParams(location.search).get('session');
+ if(session){ $('code-etat').textContent='Paiement en cours de confirmation…'; var essais=0;
+   (function verif(){fetch(API+'/paiement?session='+encodeURIComponent(session)).then(function(r){return r.json();}).then(function(d){
+     if(d.pret){$('codeann').value=d.code;$('code-etat').textContent='Paiement reçu. Votre code : '+d.code+' — gardez-le.';ouvrir();}
+     else if(++essais<20){setTimeout(verif,3000);} else {$('code-etat').textContent='Le paiement n’est pas encore confirmé. Rechargez la page dans une minute.';}
+   }).catch(function(){if(++essais<20)setTimeout(verif,4000);});})();
+ }
+ /* code → formulaire */
+ function ouvrir(){var c=$('codeann').value.toUpperCase().replace(/[^A-Z0-9]/g,'');if(c.length<6){$('code-etat').textContent='Le code a la forme JM-XXXX.';return;}
+   if(!/^JM/.test(c))c='JM'+c; $('codeann').value=c.slice(0,2)+'-'+c.slice(2,6);
+   $('formulaire').hidden=false;$('et2').classList.remove('active');$('et3').classList.add('active');$('code-etat').textContent='';$('formulaire').scrollIntoView({behavior:'smooth'});}
+ $('btn-code').addEventListener('click',ouvrir);
+ $('codeann').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();ouvrir();}});
+ /* pages et rubriques */
+ var fen=$('fenetre'),sous=$('sous');
+ Object.keys(FEN).forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=FEN[k].nom;fen.appendChild(o);});
+ function majSous(){sous.innerHTML='';FEN[fen.value].sous.forEach(function(x){var o=document.createElement('option');o.value=x;o.textContent=x;sous.appendChild(o);});}
+ fen.addEventListener('change',majSous);majSous();
+ /* photos : réduites à 900 px, JPEG */
+ var photosPretes=[];
+ $('photos').addEventListener('change',function(){var fichiers=Array.prototype.slice.call(this.files,0,3);photosPretes=[];$('apercus').innerHTML='';
+   fichiers.forEach(function(f,i){var img=new Image();img.onload=function(){var r=Math.min(1,900/Math.max(img.width,img.height));var c=document.createElement('canvas');c.width=Math.round(img.width*r);c.height=Math.round(img.height*r);c.getContext('2d').drawImage(img,0,0,c.width,c.height);var d=c.toDataURL('image/jpeg',0.82);photosPretes[i]=d;var v=document.createElement('div');v.style.backgroundImage='url('+d+')';v.style.backgroundSize='cover';v.textContent='';$('apercus').appendChild(v);URL.revokeObjectURL(img.src);};img.src=URL.createObjectURL(f);});
+ });
+ /* envoi */
+ $('form').addEventListener('submit',function(e){e.preventDefault();var etat=$('form-etat');
+   var photos=photosPretes.filter(Boolean); if(!photos.length){etat.textContent='Ajoutez au moins une photo.';return;}
+   $('btn-envoyer').disabled=true;etat.textContent='Envoi en cours…';
+   var corps={code:$('codeann').value,fenetre:fen.value,sous:sous.value,titre:$('titre').value,desc:$('desc').value,prix:$('prix').value,unite:$('unite').value,quartier:$('quartier').value,whatsapp:$('whatsapp').value,vendeur:$('vendeur').value,surface:$('surface').value,photos:photos};
+   fetch(API+'/deposer',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(corps)}).then(function(r){return r.json();}).then(function(d){
+     if(d.ok){$('formulaire').hidden=true;$('merci').hidden=false;$('merci-texte').textContent=d.message||'Votre annonce est en attente de vérification par KHALAM.';$('merci').scrollIntoView({behavior:'smooth'});}
+     else{etat.textContent=d.message||'Envoi refusé.';$('btn-envoyer').disabled=false;}
+   }).catch(function(){etat.textContent='Serveur injoignable. Réessayez dans un instant.';$('btn-envoyer').disabled=false;});
+ });
+})();
+</script>
 <footer>Jaayal ma est un service de <a href="https://khalam.app">KHALAM</a>, Dakar. Aucune annonce n’est publiée sans vérification par KHALAM. · <a href="https://khalam.app/bia">Bia Xarit</a></footer>
 </body></html>
