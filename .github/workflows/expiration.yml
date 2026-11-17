@@ -1,0 +1,36 @@
+name: Retirer les annonces expirées
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+jobs:
+  expirer:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retirer les annonces dont la date est passée
+        run: |
+          python3 - <<'PY'
+          import json, datetime, os
+          d = json.load(open('annonces.json', encoding='utf-8'))
+          today = datetime.date.today().isoformat()
+          avant = len(d['annonces'])
+          gardees = [a for a in d['annonces'] if a.get('expire', '9999') >= today]
+          for a in d['annonces']:
+              if a not in gardees:
+                  p = f"a/{a['id']}.html"
+                  if os.path.exists(p): os.remove(p)
+          d['annonces'] = gardees
+          d['genere'] = today
+          json.dump(d, open('annonces.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+          print(f"{avant - len(gardees)} annonce(s) retirée(s)")
+          PY
+      - name: Publier
+        run: |
+          git config user.name "Jaayal ma"
+          git config user.email "noreply@khalam.app"
+          git add -A
+          git diff --cached --quiet || git commit -m "Annonces expirées retirées ($(date -u +%F))"
+          git push
