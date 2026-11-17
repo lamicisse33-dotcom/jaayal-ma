@@ -2,6 +2,7 @@ import json, html, re, datetime, os
 D=json.load(open('annonces.json')); A=D['annonces']
 old=open('index.html',encoding='utf-8').read()
 CSS=old[old.index('<style>'):old.index('</style>')+8]
+TETE=old.split('<style>')[0]; TETE=TETE[TETE.index('<!doctype'):] if '<!doctype' in TETE else ''
 if '.familles' not in CSS: CSS=CSS.replace('</style>','''
 .familles{display:flex;flex-direction:column;gap:26px;margin-top:6px}
 .famille h2{font-family:var(--display);font-size:20px;margin:0 0 10px;letter-spacing:-.01em;display:flex;align-items:baseline;gap:10px}
@@ -41,9 +42,10 @@ FEN={k:(n,d,s) for _,l in FAM for k,n,d,s in l}
 # répartition des annonces fictives dans les fenêtres
 MAP={'villa-almadies-4ch':'immobilier','appart-mermoz-3p':'immobilier','chambre-pikine-rue10':'immobilier','maison-keur-massar':'immobilier','terrain-rufisque-300':'immobilier','boutique-sacre-coeur':'immobilier','restaurant-ngor-cession':'immobilier','tucson-2021-dakar':'vehicules','corolla-2018-pikine':'vehicules','peugeot-308-ouakam':'vehicules','tv-samsung-55':'electromenager','ventilateur-binatone':'electromenager','frigo-hisense-2-portes':'electromenager','grand-boubou-bazin':'mode','montre-homme-cuir':'mode','collier-or-18k':'mode'}
 PARTIE={'villa-almadies-4ch':'Vente','maison-keur-massar':'Vente','terrain-rufisque-300':'Vente','restaurant-ngor-cession':'Vente','appart-mermoz-3p':'Location','chambre-pikine-rue10':'Location','boutique-sacre-coeur':'Location','tucson-2021-dakar':'Voitures','corolla-2018-pikine':'Voitures','peugeot-308-ouakam':'Voitures','tv-samsung-55':'Télé, téléphones & ordinateurs','ventilateur-binatone':'Électroménager','frigo-hisense-2-portes':'Électroménager','grand-boubou-bazin':'Vide-dressing','montre-homme-cuir':'Bijoux & montres','collier-or-18k':'Bijoux & montres'}
-for a in A: a['fenetre']=MAP[a['id']]; a['sous']=PARTIE[a['id']]
+for a in A:
+    a['fenetre']=a.get('fenetre') or MAP.get(a['id'],'services'); a['sous']=a.get('sous') or PARTIE.get(a['id'],'')
 def bande(prefix=''):
-    return f'''<div class="maquette">Maquette — annonces, noms et numéros fictifs, pour voir l’effet. Rien ici n’est réel.</div>
+    return f'''<div class="maquette">Site en préparation — les annonces affichées sont des exemples, avec des noms et des numéros fictifs.</div>
 <header class="bande"><div class="int"><a class="marque" href="{prefix}index.html"><b>Jaayal ma</b><span>par KHALAM</span></a><nav><a href="{prefix}index.html#fenetres">Rubriques</a><a href="{prefix}index.html#tarifs">Tarifs</a><a href="{prefix}index.html#comment">Déposer</a><a href="https://khalam.app/bia">Bia Xarit</a></nav></div></header>'''
 def carte(a,prefix=''):
     niv,cite=NIV[a['niveau']]; badge=f'<span class="badge {a["niveau"]}">{niv}</span>' if niv else ''
@@ -57,33 +59,36 @@ def fenetre_tuile(k):
     apercu=''.join(f'<img src="img/{a["photos"][0]}" alt="">' for a in items[:3])
     compte=f'<i>{len(items)} annonce{"s" if len(items)>1 else ""}</i>' if items else '<em>Bientôt vos annonces</em>'
     return f'<a class="fenetre" href="r/{k}.html"><b>{n}</b><span>{d}</span>{f"<div class=apercu>{apercu}</div>" if apercu else ""}<div class="n">{compte}<i>→</i></div></a>'
-TARIFS='''<section class="tarifs" id="tarifs"><h2>Tarifs</h2><p>Vous payez par jour d’affichage, à partir de 3 jours. Plus le niveau est haut, plus l’annonce est vue.</p>
-<table><thead><tr><th>Niveau</th><th>Par jour</th><th>7 jours</th><th>30 jours</th></tr></thead><tbody>
-<tr class="premium"><td>Premium — tout en haut de sa rubrique, et Bia la cite en premier à la voix</td><td>1 000 F</td><td>7 000 F</td><td>30 000 F</td></tr>
-<tr class="prioritaire"><td>Prioritaire — au-dessus des annonces normales</td><td>500 F</td><td>3 500 F</td><td>15 000 F</td></tr>
-<tr><td>Normale — dans la liste, par date</td><td>300 F</td><td>2 000 F</td><td>9 000 F</td></tr></tbody></table>
-<p class="note">Professionnels (agences, courtiers, boutiques, vendeurs de véhicules) : forfait 15 000 F par mois, annonces normales illimitées, Prioritaire et Premium à moitié prix. Paiement par Wave ou Orange Money. Pendant le lancement, la première annonce de 7 jours est offerte.</p></section>'''
+TARIFS='''<section class="tarifs" id="tarifs"><h2>Tarifs</h2><p>Une annonce = 7 jours, payée d’avance par Wave. Plus le niveau est haut, plus l’annonce est vue.</p>
+<table><thead><tr><th>Niveau</th><th>7 jours</th><th>+7 jours</th><th>30 jours</th></tr></thead><tbody>
+<tr class="premium"><td>Premium — tout en haut de sa rubrique, et Bia la cite en premier à la voix</td><td>3 500 F</td><td>3 500 F</td><td>12 000 F</td></tr>
+<tr class="prioritaire"><td>Prioritaire — au-dessus des annonces normales</td><td>2 000 F</td><td>2 000 F</td><td>7 000 F</td></tr>
+<tr><td>Normale — dans sa rubrique, par date</td><td>1 000 F</td><td>1 000 F</td><td>3 500 F</td></tr></tbody></table>
+<p class="note">Professionnels (agences, courtiers, boutiques, vendeurs de véhicules) : forfait 15 000 F par mois, annonces normales illimitées, Prioritaire et Premium à moitié prix. Pendant le lancement, la première annonce de 7 jours est offerte.</p></section>'''
 COMMENT='''<section class="comment" id="comment"><h2>Comment ça marche</h2>
 <div><b>1. Vous parlez</b><p>Dans Bia Xarit, dites « Bia, jaayal ma ». Elle vous demande quoi, où, combien, et prend les photos avec vous. En wolof ou en français.</p></div>
 <div><b>2. KHALAM valide</b><p>Rien n’est publié sans vérification : votre numéro est connu, votre annonce est relue. C’est ce qui fait la différence avec un groupe WhatsApp.</p></div>
 <div><b>3. Elle est en ligne</b><p>Votre annonce a sa page ici, dans sa rubrique, partageable sur WhatsApp, et Bia la propose à tous ceux qui cherchent dans votre quartier.</p></div>
 <div><b>4. On vous contacte</b><p>Les acheteurs vous écrivent directement sur WhatsApp. Vous prolongez ou retirez l’annonce à la voix, quand vous voulez.</p></div></section>'''
 FOOT='<footer>Jaayal ma est un service de <a href="https://khalam.app">KHALAM</a>, Dakar. Les annonces sont publiées sous la responsabilité de leurs auteurs après validation par KHALAM. · <a href="https://khalam.app/bia">Bia Xarit</a> · <a href="{p}annonces.json">annonces.json</a> (ce que Bia lit)</footer>'
-index=f'''<title>Jaayal ma</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+index=f'''<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<title>Jaayal ma</title>
 <meta name="description" content="Jaayal ma — les annonces de Dakar validées par KHALAM, rubrique par rubrique : maisons, voitures, électroménager, vide-dressing, bijoux, moutons, services… Dites « Bia, jaayal ma ».">
 {HEAD}{CSS}
+</head><body>
 {bande()}
 <section class="hero"><h1>Tout se vend à Dakar. Ici, <em>chaque chose a sa page</em>.</h1><p>Une maison, une voiture, un frigo, un boubou, un collier, un mouton : six pages seulement, chacune avec ses rubriques : tout l’immobilier sur une page, vente et location ; tous les animaux sur une autre. Chaque annonce est relue par KHALAM avant d’être publiée, et Bia Xarit la propose à la voix à ceux qui cherchent.</p>
-<div class="dire"><i>B</i>Pour déposer : dites <b>« Bia, jaayal ma »</b></div></section>
+<div class="dire"><i>B</i>Pour déposer : dites <b>« Bia, jaayal ma »</b>, ou <a href="deposer.html" style="font-weight:600">déposez ici</a></div></section>
 <main id="fenetres"><div class="familles">
 {''.join(f'<section class="famille"><div class="fenetres">{"".join(fenetre_tuile(k) for k,_,_,_ in l)}</div></section>' for fam,l in FAM)}
 </div>
 {TARIFS}{COMMENT}</main>
-{FOOT.format(p='')}'''
+{FOOT.format(p='')}
+</body></html>'''
 open('index.html','w',encoding='utf-8').write(index)
 os.makedirs('r',exist_ok=True)
-def SK(t,d,c): return '<!doctype html>\n<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n<title>'+t+'</title>\n<meta name="description" content="'+d+'">\n'+HEAD+CSS+'\n</head><body>'+c+'\n</body></html>'
+def SK(t,d,c): return '<!doctype html>\n<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">\n<title>'+t+'</title>\n<meta name="description" content="'+d+'">\n'+HEAD+CSS+'\n</head><body>'+c+'\n</body></html>'
 for k,(n,d,s) in FEN.items():
     items=[a for a in A if a['fenetre']==k]; quartiers=sorted(set(a['quartier'] for a in items))
     corps=f'''{bande('../')}

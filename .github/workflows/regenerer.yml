@@ -1,0 +1,22 @@
+name: Régénérer les pages
+on:
+  push:
+    branches: [main]
+    paths: ["annonces.json", "outils-generer.py"]
+  workflow_dispatch:
+jobs:
+  generer:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Régénérer index, rubriques et pages d'annonces depuis annonces.json
+        run: python3 outils-generer.py
+      - name: Publier
+        run: |
+          git config user.name "Jaayal ma"
+          git config user.email "noreply@khalam.app"
+          git add -A
+          git diff --cached --quiet || git commit -m "Pages régénérées depuis annonces.json"
+          git push
