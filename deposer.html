@@ -155,6 +155,7 @@ footer a{color:var(--doux)}
 <label class="niveau choisi"><input type="radio" name="niv" value="normale" checked> <b>Normale</b><span>Dans sa rubrique, par date</span></label>
 <label class="niveau"><input type="radio" name="niv" value="prioritaire"> <b>Prioritaire</b><span>Au-dessus des Normales</span></label>
 <label class="niveau"><input type="radio" name="niv" value="premium"> <b>Premium</b><span>Tout en haut, et Bia la cite en premier</span></label>
+<p style="font-size:12.5px;color:#5A6275;margin:4px 0 0">Vente urgente (48 h en tête, prix ferme, vendeur discret possible) : 2 000 F — se coche dans le formulaire ci-dessous.</p>
 </div>
 <div class="deux"><label style="display:grid;gap:5px;font-size:13px;font-weight:600">Durée<select id="jours" class="champ-select"><option value="7">7 jours</option><option value="30">30 jours</option></select></label>
 <label style="display:grid;gap:5px;font-size:13px;font-weight:600">Votre numéro WhatsApp<input id="numero-paiement" inputmode="tel" placeholder="+221 77 …"></label></div>
@@ -176,6 +177,13 @@ footer a{color:var(--doux)}
 <div class="deux"><label>Votre nom ou enseigne (facultatif)<input id="vendeur" maxlength="40" placeholder="Awa D."></label><label>Surface (facultatif)<input id="surface" maxlength="20" placeholder="95 m²"></label></div>
 <label>Photos (1 à 3, depuis votre téléphone)<input type="file" id="photos" accept="image/*" multiple required style="padding:9px"><div class="photos" id="apercus"></div></label>
 <label style="flex-direction:row;display:flex;gap:8px;align-items:center;font-weight:500"><input type="checkbox" id="certifie" required style="width:auto"> Je certifie que cette annonce est vraie et que je suis joignable à ce numéro.</label>
+<fieldset id="bloc-urgent" style="border:1px solid #E8A59C;border-radius:12px;padding:12px 14px;display:grid;gap:10px;margin:0">
+<label style="flex-direction:row;display:flex;gap:8px;align-items:center;font-weight:600"><input type="checkbox" id="urgent" style="width:auto"> Vente urgente — 48 h en tête de rubrique, prix ferme</label>
+<div id="urgent-options" hidden style="display:grid;gap:10px">
+<label style="flex-direction:row;display:flex;gap:8px;align-items:center;font-weight:500"><input type="checkbox" id="anonyme" checked style="width:auto"> Mon nom et mon numéro restent cachés (KHALAM connaît mon identité et transmet les messages)</label>
+<label id="label-facture">Photo de la facture ou de la boîte (recommandée pour bijoux, montres, téléphones, ordinateurs ; sinon l’annonce porte la mention « sans facture »)<input type="file" id="facture" accept="image/*" style="padding:9px"></label>
+<label style="flex-direction:row;display:flex;gap:8px;align-items:center;font-weight:500"><input type="checkbox" id="proprietaire" style="width:auto"> Je certifie être le propriétaire de ce bien. KHALAM conserve mon identité un an et peut refuser l’annonce.</label>
+</div></fieldset>
 <div><button class="bouton or" type="submit" id="btn-envoyer">Envoyer à KHALAM pour vérification</button></div>
 <p id="form-etat" style="margin:0;font-size:14px;color:var(--doux)"></p>
 </form>
@@ -233,11 +241,15 @@ footer a{color:var(--doux)}
  $('photos').addEventListener('change',function(){var fichiers=Array.prototype.slice.call(this.files,0,3);photosPretes=[];$('apercus').innerHTML='';
    fichiers.forEach(function(f,i){var img=new Image();img.onload=function(){var r=Math.min(1,900/Math.max(img.width,img.height));var c=document.createElement('canvas');c.width=Math.round(img.width*r);c.height=Math.round(img.height*r);c.getContext('2d').drawImage(img,0,0,c.width,c.height);var d=c.toDataURL('image/jpeg',0.82);photosPretes[i]=d;var v=document.createElement('div');v.style.backgroundImage='url('+d+')';v.style.backgroundSize='cover';v.textContent='';$('apercus').appendChild(v);URL.revokeObjectURL(img.src);};img.src=URL.createObjectURL(f);});
  });
+ var facturePrete='';
+ $('urgent').addEventListener('change',function(){$('urgent-options').hidden=!this.checked;});
+ $('facture').addEventListener('change',function(){var f=this.files[0];facturePrete='';if(!f)return;var img=new Image();img.onload=function(){var r=Math.min(1,1200/Math.max(img.width,img.height));var c=document.createElement('canvas');c.width=Math.round(img.width*r);c.height=Math.round(img.height*r);c.getContext('2d').drawImage(img,0,0,c.width,c.height);facturePrete=c.toDataURL('image/jpeg',0.82);URL.revokeObjectURL(img.src);};img.src=URL.createObjectURL(f);});
  /* envoi */
  $('form').addEventListener('submit',function(e){e.preventDefault();var etat=$('form-etat');
    var photos=photosPretes.filter(Boolean); if(!photos.length){etat.textContent='Ajoutez au moins une photo.';return;}
    $('btn-envoyer').disabled=true;etat.textContent='Envoi en cours…';
-   var corps={code:$('codeann').value,fenetre:fen.value,sous:sous.value,titre:$('titre').value,desc:$('desc').value,prix:$('prix').value,unite:$('unite').value,quartier:$('quartier').value,whatsapp:$('whatsapp').value,vendeur:$('vendeur').value,surface:$('surface').value,photos:photos};
+   var corps={code:$('codeann').value,fenetre:fen.value,sous:sous.value,titre:$('titre').value,desc:$('desc').value,prix:$('prix').value,unite:$('unite').value,quartier:$('quartier').value,whatsapp:$('whatsapp').value,vendeur:$('vendeur').value,surface:$('surface').value,photos:photos,urgent:$('urgent').checked,anonyme:$('urgent').checked&&$('anonyme').checked,certifie_proprietaire:$('urgent').checked&&$('proprietaire').checked,facture_photo:facturePrete||''};
+   if($('urgent').checked&&!$('proprietaire').checked){etat.textContent='Pour une vente urgente, cochez « Je certifie être le propriétaire ».';return;}
    fetch(API+'/deposer',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(corps)}).then(function(r){return r.json();}).then(function(d){
      if(d.ok){$('formulaire').hidden=true;$('merci').hidden=false;$('merci-texte').textContent=d.message||'Votre annonce est en attente de vérification par KHALAM.';$('merci').scrollIntoView({behavior:'smooth'});}
      else{etat.textContent=d.message||'Envoi refusé.';$('btn-envoyer').disabled=false;}
