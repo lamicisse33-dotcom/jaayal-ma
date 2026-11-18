@@ -4,7 +4,8 @@
 # Tout le style est ici : les six rubriques et toutes les annonces partagent exactement le même squelette.
 import json, html, re, datetime, os
 
-PREPARATION = True   # True = noindex + bandeau « Site en préparation ». Passer à False quand les vraies annonces remplacent les exemples.
+PREPARATION = True   # bandeau « exemples » tant qu'il reste des annonces d'exemple
+INDEXABLE = True     # décision du 18 nov. : le site est sur Google dès maintenant ; seules les annonces d'exemple restent en noindex   # True = noindex + bandeau « Site en préparation ». Passer à False quand les vraies annonces remplacent les exemples.
 SITE = "https://jaayalma.khalam.app"
 
 D = json.load(open('annonces.json', encoding='utf-8')); A = D['annonces']
@@ -297,8 +298,8 @@ h2.sec{flex-wrap:wrap}
 HEAD = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap">'
 WA_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.1c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>'
 
-def squelette(titre, desc, corps, prefix, canon):
-    robots = '<meta name="robots" content="noindex">' if PREPARATION else ''
+def squelette(titre, desc, corps, prefix, canon, noindex=False):
+    robots = '<meta name="robots" content="noindex,follow">' if (noindex or not INDEXABLE) else '<meta name="robots" content="index,follow,max-image-preview:large">'
     return f'''<!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">{robots}
 <title>{E(titre)}</title>
@@ -489,7 +490,7 @@ for a in A:
 var c=document.getElementById('copier');if(c)c.addEventListener('click',function(){{var u=c.dataset.url;function ok(){{c.textContent='Lien copié ✓';setTimeout(function(){{c.textContent='Copier le lien'}},1800)}}
 if(navigator.clipboard&&navigator.clipboard.writeText){{navigator.clipboard.writeText(u).then(ok,function(){{prompt('Copiez le lien :',u)}})}}else{{prompt('Copiez le lien :',u)}}}});}})();</script>'''
     desc = f"{a['titre']} — {F(a['prix'])}{a['unite']}, {a['quartier']}. {a['desc'][:120]}"
-    open(f"a/{a['id']}.html", 'w', encoding='utf-8').write(squelette(f"{a['titre']} — {F(a['prix'])}{a['unite']} à {a['quartier']} | Jaayal ma", desc, corps, '../', f"a/{a['id']}.html"))
+    open(f"a/{a['id']}.html", 'w', encoding='utf-8').write(squelette(f"{a['titre']} — {F(a['prix'])}{a['unite']} à {a['quartier']} | Jaayal ma", desc, corps, '../', f"a/{a['id']}.html", noindex=a['id'] in MAP))
 
 # Retirer les anciennes pages d'annonces qui ne figurent plus dans la source.
 pages_attendues = {f"{a['id']}.html" for a in A}
@@ -508,3 +509,10 @@ D['fenetres'] = {k: {'nom': n, 'description': d, 'sous_rubriques': s} for k, n, 
 D['genere'] = datetime.date.today().isoformat()
 json.dump(D, open('annonces.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 print(len(FEN), 'rubriques,', len(A), 'annonces')
+
+
+# ── robots.txt et sitemap.xml (pages indexables seulement : jamais les annonces d'exemple) ──
+open('robots.txt', 'w', encoding='utf-8').write(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
+urls = [('', '1.0'), ('recherche.html', '0.6'), ('deposer.html', '0.8')] + [(f'r/{k}.html', '0.8') for k, _, _, _ in FENETRES] + [(f"a/{a['id']}.html", '0.6') for a in A if a['id'] not in MAP]
+auj = datetime.date.today().isoformat()
+open('sitemap.xml', 'w', encoding='utf-8').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'<url><loc>{SITE}/{u}</loc><lastmod>{auj}</lastmod><priority>{pr}</priority></url>\n' for u, pr in urls) + '</urlset>\n')
