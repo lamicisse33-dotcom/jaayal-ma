@@ -145,6 +145,7 @@ footer a{color:var(--doux)}
 /* Le formulaire garde la même échelle que le catalogue sur tous les écrans. */
 html{font-size:clamp(16px,calc(12px + .4vw),28px);scroll-behavior:smooth;scroll-padding-top:1rem}
 [hidden]{display:none!important}
+.apercu-annonce{display:grid;grid-template-columns:7rem minmax(0,1fr);gap:0.875rem;align-items:center;border:0.0625rem solid var(--ligne);border-radius:0.875rem;padding:0.75rem;margin:0 0 0.875rem;background:var(--carte)}.apercu-annonce:empty{display:none}.apercu-annonce .ph{aspect-ratio:4/3;border-radius:0.625rem;background:#E9E6DD center/cover}.apercu-annonce b{display:block;font-size:1.05rem}.apercu-annonce .px{font-weight:700;font-size:1.15rem}.apercu-annonce small{color:var(--doux)}
 body{overflow-wrap:break-word}
 img{max-width:100%}
 :focus-visible{outline:.1875rem solid var(--or);outline-offset:.1875rem}
@@ -185,30 +186,13 @@ main{max-width:78rem}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head><body>
-<div class="maquette">Site en préparation — le paiement par Wave arrive ; pendant le lancement, demandez votre code à KHALAM.</div>
+<div class="maquette">Lancement — le paiement par Wave arrive ; en attendant, KHALAM vous donne votre code sur WhatsApp. Écrivez d’abord votre annonce.</div>
 <header class="bande"><div class="int"><a class="marque" href="index.html"><b>Jaayal ma</b><span>par KHALAM</span></a><nav><a href="index.html#fenetres">Rubriques</a><a href="index.html#tarifs">Tarifs</a><a href="deposer.html">Déposer</a><a href="https://khalam.app/bia">Bia Xarit</a></nav></div></header>
-<section class="hero"><p class="fil"><a href="index.html">Jaayal ma</a> › Déposer une annonce</p><h1>Déposer une annonce</h1><p>Trois étapes : vous payez, vous recevez votre code, vous écrivez votre annonce. KHALAM la vérifie, puis elle est en ligne pour 7 jours.</p></section>
+<section class="hero"><p class="fil"><a href="index.html">Jaayal ma</a> › Déposer une annonce</p><h1>Déposer une annonce</h1><p>Écrivez votre annonce et ajoutez vos photos. Quand elle vous plaît, vous payez et vous l’envoyez. KHALAM la vérifie, puis elle est en ligne pour 7 jours.</p></section>
 <main>
-<div class="etapes"><div class="etape active" id="et1"><i>1</i><div><b>Payer</b><span>Wave Business : 1 000 F pour 7 jours. Le code arrive tout seul.</span></div></div><div class="etape" id="et2"><i>2</i><div><b>Votre code</b><span>Il s’affiche après le paiement (ou KHALAM vous l’envoie pendant le lancement).</span></div></div><div class="etape" id="et3"><i>3</i><div><b>Écrire l’annonce</b><span>Le code ouvre le formulaire. Photos depuis votre téléphone.</span></div></div><div class="etape"><i>✓</i><div><b>Vérification KHALAM</b><span>Rien n’est publié avant validation. Vous êtes prévenu par WhatsApp.</span></div></div></div>
+<div class="etapes"><div class="etape active" id="et1"><i>1</i><div><b>Écrire l’annonce</b><span>Titre, prix, quartier, photos. Gratuit, sans code.</span></div></div><div class="etape" id="et2"><i>2</i><div><b>Payer</b><span>Wave : 1 000 F pour 7 jours. Pendant le lancement, KHALAM vous donne un code offert.</span></div></div><div class="etape" id="et3"><i>3</i><div><b>Code et envoi</b><span>Le code s’affiche après le paiement. Vous envoyez à KHALAM.</span></div></div><div class="etape"><i>✓</i><div><b>Vérification KHALAM</b><span>Rien n’est publié avant validation. Vous êtes prévenu par WhatsApp.</span></div></div></div>
 
-<section class="bloc" id="payer"><h2>1 · Payer</h2><p>Choisissez le niveau et la durée, donnez votre numéro WhatsApp, puis payez avec Wave. Votre code d’annonce s’affiche ici dès le paiement.</p>
-<div class="niveaux" id="niveaux">
-<label class="niveau choisi"><input type="radio" name="niv" value="normale" checked> <b>Normale</b><span>Dans sa rubrique, par date</span></label>
-<label class="niveau"><input type="radio" name="niv" value="prioritaire"> <b>Prioritaire</b><span>Au-dessus des Normales</span></label>
-<label class="niveau"><input type="radio" name="niv" value="premium"> <b>Premium</b><span>Tout en haut, et Bia la cite en premier</span></label>
-<p style="font-size:0.78125rem;color:#5A6275;margin:0.25rem 0 0">Vente urgente (48 h en tête, prix ferme, vendeur discret possible) : 2 000 F — se coche dans le formulaire ci-dessous.</p>
-</div>
-<div class="deux"><label style="display:grid;gap:0.3125rem;font-size:0.8125rem;font-weight:600">Durée<select id="jours" class="champ-select"><option value="7">7 jours</option><option value="30">30 jours</option></select></label>
-<label style="display:grid;gap:0.3125rem;font-size:0.8125rem;font-weight:600">Votre numéro WhatsApp<input id="numero-paiement" inputmode="tel" placeholder="+221 77 …"></label></div>
-<div class="montant" id="montant">1 000 F</div>
-<div class="code" style="margin-top:0.5rem"><button class="bouton or" type="button" id="btn-wave" disabled>Payer par Wave</button><span id="wave-etat" style="font-size:0.8125rem;color:var(--doux)">Vérification de Wave…</span></div>
-<p style="margin-top:0.75rem">Pendant le lancement, votre première annonce de 7 jours est offerte : demandez votre code gratuit à KHALAM sur WhatsApp, puis passez à l’étape 2.</p></section>
-
-<section class="bloc" id="code"><h2>2 · Entrer votre code d’annonce</h2><p>Exemple : <b>JM-7K4F</b>. Un code vaut pour une annonce.</p>
-<div class="code"><input id="codeann" placeholder="JM-····" aria-label="Code d’annonce" maxlength="7" autocapitalize="characters"><button class="bouton" type="button" id="btn-code">Ouvrir le formulaire</button></div>
-<p id="code-etat" style="margin:0.625rem 0 0;font-size:0.875rem;color:var(--doux)"></p></section>
-
-<section class="bloc" id="formulaire" hidden><h2>3 · Votre annonce</h2><p>Écrivez simplement. KHALAM relit avant publication.</p>
+<section class="bloc" id="formulaire"><h2>1 · Votre annonce</h2><p>Écrivez simplement et ajoutez vos photos. Rien à payer pour l’instant : vous verrez votre annonce avant de payer.</p>
 <form class="form" id="form">
 <div class="deux"><label>Page<select id="fenetre" required></select></label><label>Rubrique<select id="sous" required></select></label></div>
 <label>Titre<input id="titre" required minlength="4" maxlength="90" placeholder="Appartement 2 chambres meublé — Ouakam"></label>
@@ -225,9 +209,28 @@ main{max-width:78rem}
 <label id="label-facture">Photo de la facture ou de la boîte (recommandée pour bijoux, montres, téléphones, ordinateurs ; sinon l’annonce porte la mention « sans facture »)<input type="file" id="facture" accept="image/*" style="padding:0.5625rem"></label>
 <label style="flex-direction:row;display:flex;gap:0.5rem;align-items:center;font-weight:500"><input type="checkbox" id="proprietaire" style="width:auto"> Je certifie être le propriétaire de ce bien. KHALAM conserve mon identité un an et peut refuser l’annonce.</label>
 </div></fieldset>
-<div><button class="bouton or" type="submit" id="btn-envoyer">Envoyer à KHALAM pour vérification</button></div>
+<div><button class="bouton or" type="submit" id="btn-continuer">Continuer : payer et envoyer</button></div>
 <p id="form-etat" style="margin:0;font-size:0.875rem;color:var(--doux)"></p>
 </form>
+</section>
+
+<section class="bloc" id="payer" hidden><h2>2 · Payer</h2><div id="apercu" class="apercu-annonce"></div><p>Voici votre annonce telle qu’elle sera publiée. Choisissez le niveau et la durée, puis payez avec Wave. Votre code d’annonce s’affiche ici dès le paiement, et votre annonce reste enregistrée sur ce téléphone pendant que vous payez.</p>
+<div class="niveaux" id="niveaux">
+<label class="niveau choisi"><input type="radio" name="niv" value="normale" checked> <b>Normale</b><span>Dans sa rubrique, par date</span></label>
+<label class="niveau"><input type="radio" name="niv" value="prioritaire"> <b>Prioritaire</b><span>Au-dessus des Normales</span></label>
+<label class="niveau"><input type="radio" name="niv" value="premium"> <b>Premium</b><span>Tout en haut, et Bia la cite en premier</span></label>
+<p style="font-size:0.78125rem;color:#5A6275;margin:0.25rem 0 0">Vente urgente (48 h en tête, prix ferme, vendeur discret possible) : 2 000 F — se coche dans votre annonce.</p>
+</div>
+<div class="deux"><label style="display:grid;gap:0.3125rem;font-size:0.8125rem;font-weight:600">Durée<select id="jours" class="champ-select"><option value="7">7 jours</option><option value="30">30 jours</option></select></label>
+<label style="display:grid;gap:0.3125rem;font-size:0.8125rem;font-weight:600">Numéro qui paie (Wave)<input id="numero-paiement" inputmode="tel" placeholder="+221 77 …"></label></div>
+<div class="montant" id="montant">1 000 F</div>
+<div class="code" style="margin-top:0.5rem"><button class="bouton or" type="button" id="btn-wave" disabled>Payer par Wave</button><span id="wave-etat" style="font-size:0.8125rem;color:var(--doux)">Vérification de Wave…</span></div>
+<p style="margin-top:0.75rem">Pendant le lancement, votre première annonce de 7 jours est offerte : demandez votre code gratuit à KHALAM sur WhatsApp, puis entrez-le à l’étape 3.</p></section>
+
+<section class="bloc" id="code" hidden><h2>3 · Votre code et l’envoi</h2><p>Entrez le code reçu après le paiement (exemple : <b>JM-7K4F</b>). Un code vaut pour une annonce.</p>
+<div class="code"><input id="codeann" placeholder="JM-····" aria-label="Code d’annonce" maxlength="7" autocapitalize="characters"><button class="bouton or" type="button" id="btn-envoyer">Envoyer à KHALAM pour vérification</button></div>
+<p id="code-etat" style="margin:0.625rem 0 0;font-size:0.875rem;color:var(--doux)"></p>
+<p style="margin:0.75rem 0 0;font-size:0.875rem"><a href="#formulaire" id="modifier">← Modifier mon annonce</a></p>
 <p class="attente" style="margin-top:1rem"><b>Après l’envoi :</b> votre annonce est « en attente de vérification ». KHALAM la relit (en général dans la journée), puis vous recevez sur WhatsApp le lien de votre annonce en ligne — ou la raison du refus, et votre code reste valable pour une annonce corrigée.</p></section>
 
 <section class="bloc" id="merci" hidden><h2>Annonce envoyée</h2><p id="merci-texte"></p><a class="bouton" href="index.html">Retour aux annonces</a></section>
@@ -260,18 +263,15 @@ main{max-width:78rem}
  });
  /* retour de Wave : ?session=jt-… → le code */
  var session=new URLSearchParams(location.search).get('session');
- if(session){ $('code-etat').textContent='Paiement en cours de confirmation…'; var essais=0;
+ if(session){ setTimeout(function(){restaurer();montrerPaiement(false);},0); $('code-etat').textContent='Paiement en cours de confirmation…'; var essais=0;
    (function verif(){fetch(API+'/paiement?session='+encodeURIComponent(session)).then(function(r){return r.json();}).then(function(d){
-     if(d.pret){$('codeann').value=d.code;$('code-etat').textContent='Paiement reçu. Votre code : '+d.code+' — gardez-le.';ouvrir();}
+     if(d.pret){$('codeann').value=d.code;normaliser();$('code-etat').textContent='Paiement reçu. Votre code : '+d.code+'. Vérifiez votre annonce, puis touchez Envoyer.';$('code').scrollIntoView({behavior:'smooth'});}
      else if(++essais<20){setTimeout(verif,3000);} else {$('code-etat').textContent='Le paiement n’est pas encore confirmé. Rechargez la page dans une minute.';}
    }).catch(function(){if(++essais<20)setTimeout(verif,4000);});})();
  }
- /* code → formulaire */
- function ouvrir(){var c=$('codeann').value.toUpperCase().replace(/[^A-Z0-9]/g,'');if(c.length<6){$('code-etat').textContent='Le code a la forme JM-XXXX.';return;}
-   if(!/^JM/.test(c))c='JM'+c; $('codeann').value=c.slice(0,2)+'-'+c.slice(2,6);
-   $('formulaire').hidden=false;$('et2').classList.remove('active');$('et3').classList.add('active');$('code-etat').textContent='';$('formulaire').scrollIntoView({behavior:'smooth'});}
- $('btn-code').addEventListener('click',ouvrir);
- $('codeann').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();ouvrir();}});
+ /* code : JM-XXXX */
+ function normaliser(){var c=$('codeann').value.toUpperCase().replace(/[^A-Z0-9]/g,'');if(!c)return '';if(!/^JM/.test(c))c='JM'+c;c=c.slice(0,6);$('codeann').value=c.slice(0,2)+'-'+c.slice(2);return c.length===6?$('codeann').value:'';}
+ $('codeann').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();envoyer();}});
  /* pages et rubriques */
  var fen=$('fenetre'),sous=$('sous');
  Object.keys(FEN).forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=FEN[k].nom;fen.appendChild(o);});
@@ -285,17 +285,47 @@ main{max-width:78rem}
  var facturePrete='';
  $('urgent').addEventListener('change',function(){$('urgent-options').hidden=!this.checked;});
  $('facture').addEventListener('change',function(){var f=this.files[0];facturePrete='';if(!f)return;var img=new Image();img.onload=function(){var r=Math.min(1,1200/Math.max(img.width,img.height));var c=document.createElement('canvas');c.width=Math.round(img.width*r);c.height=Math.round(img.height*r);c.getContext('2d').drawImage(img,0,0,c.width,c.height);facturePrete=c.toDataURL('image/jpeg',0.82);URL.revokeObjectURL(img.src);};img.src=URL.createObjectURL(f);});
- /* envoi */
+ /* brouillon sur le téléphone : l'annonce survit au passage par Wave */
+ var CLE='jaayalma_depot_brouillon', CHAMPS=['fenetre','sous','titre','desc','prix','unite','quartier','whatsapp','vendeur','surface','numero-paiement','jours'], CASES=['certifie','urgent','anonyme','proprietaire'];
+ function sauver(){try{var b={t:Date.now(),photos:photosPretes.filter(Boolean),facture:facturePrete,niv:niveau()};CHAMPS.forEach(function(k){b[k]=$(k).value;});CASES.forEach(function(k){b[k]=$(k).checked;});
+   try{localStorage.setItem(CLE,JSON.stringify(b));}catch(e){b.photos=[];b.facture='';localStorage.setItem(CLE,JSON.stringify(b));}}catch(e){}}
+ function restaurer(){try{var b=JSON.parse(localStorage.getItem(CLE)||'null');if(!b||Date.now()-b.t>7*864e5)return false;
+   if(b.fenetre){fen.value=b.fenetre;majSous();}CHAMPS.forEach(function(k){if(k!=='fenetre'&&b[k]!=null)$(k).value=b[k];});CASES.forEach(function(k){$(k).checked=!!b[k];});
+   $('urgent-options').hidden=!$('urgent').checked;
+   var r=document.querySelector('input[name=niv][value="'+(b.niv||'normale')+'"]');if(r){r.checked=true;document.querySelectorAll('.niveau').forEach(function(x){x.classList.toggle('choisi',x.contains(r));});}majMontant();
+   photosPretes=b.photos||[];facturePrete=b.facture||'';$('apercus').innerHTML='';photosPretes.forEach(function(d){var v=document.createElement('div');v.style.backgroundImage='url('+d+')';v.style.backgroundSize='cover';$('apercus').appendChild(v);});
+   if(photosPretes.length)$('photos').required=false;return true;}catch(e){return false;}}
+ function effacer(){try{localStorage.removeItem(CLE);}catch(e){}}
+ var minuterie;document.addEventListener('input',function(){clearTimeout(minuterie);minuterie=setTimeout(sauver,600);});document.addEventListener('change',function(){setTimeout(sauver,800);});
+ if(!session&&restaurer()){$('form-etat').textContent='Votre annonce en cours a été retrouvée sur ce téléphone.';}
+
+ /* étape 1 → 2 : aperçu puis paiement */
+ function apercu(){var ph=photosPretes.filter(Boolean)[0];var u=$('unite').value;
+   $('apercu').innerHTML='';var d=document.createElement('div');d.className='ph';if(ph)d.style.backgroundImage='url('+ph+')';var t=document.createElement('div');
+   var px=document.createElement('div');px.className='px';px.textContent=F(String($('prix').value).replace(/\D/g,'')||0)+(u?' '+u:'');var b=document.createElement('b');b.textContent=$('titre').value;
+   var sm=document.createElement('small');sm.textContent=$('quartier').value+' · '+FEN[fen.value].nom+' › '+sous.value+($('urgent').checked?' · Vente urgente':'');
+   t.appendChild(px);t.appendChild(b);t.appendChild(sm);$('apercu').appendChild(d);$('apercu').appendChild(t);}
+ function montrerPaiement(defiler){apercu();if(!$('numero-paiement').value)$('numero-paiement').value=$('whatsapp').value;
+   $('payer').hidden=false;$('code').hidden=false;$('et1').classList.remove('active');$('et2').classList.add('active');$('et3').classList.add('active');if(defiler)$('payer').scrollIntoView({behavior:'smooth'});}
  $('form').addEventListener('submit',function(e){e.preventDefault();var etat=$('form-etat');
-   var photos=photosPretes.filter(Boolean); if(!photos.length){etat.textContent='Ajoutez au moins une photo.';return;}
-   $('btn-envoyer').disabled=true;etat.textContent='Envoi en cours…';
-   var corps={code:$('codeann').value,fenetre:fen.value,sous:sous.value,titre:$('titre').value,desc:$('desc').value,prix:$('prix').value,unite:$('unite').value,quartier:$('quartier').value,whatsapp:$('whatsapp').value,vendeur:$('vendeur').value,surface:$('surface').value,photos:photos,urgent:$('urgent').checked,anonyme:$('urgent').checked&&$('anonyme').checked,certifie_proprietaire:$('urgent').checked&&$('proprietaire').checked,facture_photo:facturePrete||''};
+   if(!photosPretes.filter(Boolean).length){etat.textContent='Ajoutez au moins une photo.';return;}
    if($('urgent').checked&&!$('proprietaire').checked){etat.textContent='Pour une vente urgente, cochez « Je certifie être le propriétaire ».';return;}
+   etat.textContent='';sauver();montrerPaiement(true);});
+ $('modifier').addEventListener('click',function(e){e.preventDefault();$('formulaire').scrollIntoView({behavior:'smooth'});});
+ $('btn-wave').addEventListener('click',sauver,true);
+
+ /* étape 3 : code puis envoi */
+ function envoyer(){var etat=$('code-etat');var code=normaliser();
+   if(!code){etat.textContent='Entrez votre code d’annonce (forme JM-XXXX), reçu après le paiement ou donné par KHALAM.';$('codeann').focus();return;}
+   if(!$('form').checkValidity()){$('form').reportValidity();return;}
+   var photos=photosPretes.filter(Boolean);if(!photos.length){etat.textContent='Ajoutez au moins une photo dans votre annonce.';return;}
+   $('btn-envoyer').disabled=true;etat.textContent='Envoi en cours…';
+   var corps={code:code,fenetre:fen.value,sous:sous.value,titre:$('titre').value,desc:$('desc').value,prix:$('prix').value,unite:$('unite').value,quartier:$('quartier').value,whatsapp:$('whatsapp').value,vendeur:$('vendeur').value,surface:$('surface').value,photos:photos,urgent:$('urgent').checked,anonyme:$('urgent').checked&&$('anonyme').checked,certifie_proprietaire:$('urgent').checked&&$('proprietaire').checked,facture_photo:facturePrete||''};
    fetch(API+'/deposer',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(corps)}).then(function(r){return r.json();}).then(function(d){
-     if(d.ok){$('formulaire').hidden=true;$('merci').hidden=false;$('merci-texte').textContent=d.message||'Votre annonce est en attente de vérification par KHALAM.';$('merci').scrollIntoView({behavior:'smooth'});}
+     if(d.ok){effacer();['formulaire','payer','code'].forEach(function(k){$(k).hidden=true;});document.querySelector('.etapes').hidden=true;$('merci').hidden=false;$('merci-texte').textContent=d.message||'Votre annonce est en attente de vérification par KHALAM.';$('merci').scrollIntoView({behavior:'smooth'});}
      else{etat.textContent=d.message||'Envoi refusé.';$('btn-envoyer').disabled=false;}
-   }).catch(function(){etat.textContent='Serveur injoignable. Réessayez dans un instant.';$('btn-envoyer').disabled=false;});
- });
+   }).catch(function(){etat.textContent='Serveur injoignable. Votre annonce reste enregistrée sur ce téléphone ; réessayez dans un instant.';$('btn-envoyer').disabled=false;});}
+ $('btn-envoyer').addEventListener('click',envoyer);
 })();
 </script>
 <footer>Jaayal ma est un service de <a href="https://khalam.app">KHALAM</a>, Dakar. Aucune annonce n’est publiée sans vérification par KHALAM. · <a href="https://khalam.app/bia">Bia Xarit</a></footer>
