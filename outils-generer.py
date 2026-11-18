@@ -31,9 +31,16 @@ MAP={'villa-almadies-4ch':'immobilier','appart-mermoz-3p':'immobilier','chambre-
 PARTIE={'villa-almadies-4ch':'Vente','maison-keur-massar':'Vente','terrain-rufisque-300':'Vente','restaurant-ngor-cession':'Vente','appart-mermoz-3p':'Location','chambre-pikine-rue10':'Location','boutique-sacre-coeur':'Location','tucson-2021-dakar':'Voitures','corolla-2018-pikine':'Voitures','peugeot-308-ouakam':'Voitures','tv-samsung-55':'Télé, téléphones & ordinateurs','ventilateur-binatone':'Électroménager','frigo-hisense-2-portes':'Électroménager','grand-boubou-bazin':'Vide-dressing','montre-homme-cuir':'Bijoux & montres','collier-or-18k':'Bijoux & montres'}
 for a in A:
     a['fenetre'] = a.get('fenetre') or MAP.get(a['id'], 'services'); a['sous'] = a.get('sous') or PARTIE.get(a['id'], '')
-    a.setdefault('photos', []); a.setdefault('surface', ''); a.setdefault('titre_wo', ''); a.setdefault('pro', False); a.setdefault('unite', ''); a.setdefault('etat', ''); a.setdefault('details', {}); a.setdefault('vendeur', '')
+    a.setdefault('photos', []); a.setdefault('surface', ''); a.setdefault('titre_wo', ''); a.setdefault('pro', False); a.setdefault('unite', ''); a.setdefault('etat', ''); a.setdefault('details', {}); a.setdefault('urgent', False); a.setdefault('anonyme', False); a.setdefault('facture', ''); a.setdefault('urgent_jusqu', ''); a.setdefault('vendeur', '')
     a['page'] = f"{SITE}/a/{a['id']}.html"; a['image'] = f"{SITE}/img/{a['photos'][0]}" if a['photos'] else ''
 def classer(liste): return sorted(liste, key=lambda a: (RANG.get(a['niveau'], 2), a.get('depuis', '')), reverse=False) and sorted(liste, key=lambda a: (RANG.get(a['niveau'], 2), -int(a.get('depuis', '2000-01-01').replace('-', ''))))
+RELAIS = D.get('relais_whatsapp', '')   # numéro WhatsApp Jaayal ma de KHALAM (chiffres, ex. 2217XXXXXXX), posé par le serveur
+AUJ = datetime.date.today().isoformat()
+for a in A:
+    a['urgent_actif'] = bool(a['urgent']) and (not a['urgent_jusqu'] or a['urgent_jusqu'] >= AUJ)
+RANG_URGENT = -1
+def rang(a): return RANG_URGENT if a['urgent_actif'] else RANG.get(a['niveau'], 2)
+def classer(liste): return sorted(liste, key=lambda a: (rang(a), -int(a.get('depuis', '2000-01-01').replace('-', ''))))
 A = classer(A)
 
 # ── Style commun ──────────────────────────────────────────────────────────────────────────────
@@ -99,7 +106,8 @@ main{padding-block:0 40px}
 .carte .visuel img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
 .carte .visuel .nophoto{aspect-ratio:4/3;display:grid;place-items:center;color:var(--doux);font-size:13px}
 .badge{position:absolute;top:8px;left:8px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:999px}
-.badge.premium{background:var(--or);color:#141B2D}.badge.prioritaire{background:var(--prio);color:#fff}
+.badge.premium{background:var(--or);color:#141B2D}.badge.urgent{background:#C0392B;color:#fff}.carte.urgent{border-color:#E8A59C}.etiq.urgent{background:#FBE3DF;color:#A93226}.etiq.ferme{background:var(--bg);color:var(--doux);border:1px solid var(--ligne)}
+.discret{font-size:12.5px;color:var(--doux);margin:10px 0 0;line-height:1.45}.urgences .sec{color:#A93226}.badge.prioritaire{background:var(--prio);color:#fff}
 .type{position:absolute;top:8px;right:8px;font-size:11px;background:rgba(11,31,77,.85);color:#fff;padding:4px 8px;border-radius:999px}
 .nbph{position:absolute;bottom:8px;right:8px;font-size:11.5px;background:rgba(0,0,0,.55);color:#fff;padding:3px 7px;border-radius:999px}
 .corps{padding:10px 12px 12px;display:flex;flex-direction:column;gap:4px;flex:1}
@@ -236,11 +244,11 @@ def attrs(a):
     if not items and a['sous']: items = [E(a['sous'])]
     return f'<div class="attrs">{"".join(f"<span>{x}</span>" for x in items)}</div>' if items else ''
 def carte(a, prefix):
-    niv = NIV.get(a['niveau'], ''); badge = f'<span class="badge {a["niveau"]}">{niv}</span>' if niv else ''
+    niv = NIV.get(a['niveau'], ''); badge = '<span class="badge urgent">Urgent · 48 h</span>' if a['urgent_actif'] else (f'<span class="badge {a["niveau"]}">{niv}</span>' if niv else '')
     visuel = f'<img src="{prefix}img/{a["photos"][0]}" alt="{E(a["titre"])}" loading="lazy">' if a['photos'] else '<div class="nophoto">Pas de photo</div>'
     nb = f'<span class="nbph">📷 {len(a["photos"])}</span>' if len(a['photos']) > 1 else ''
-    data = f'data-q="{E(a["quartier"])}" data-s="{E(a["sous"])}" data-f="{a["fenetre"]}" data-p="{a["prix"]}" data-d="{a.get("depuis","")}" data-r="{RANG.get(a["niveau"],2)}" data-t="{E((a["titre"]+" "+a["titre_wo"]+" "+a["desc"]+" "+a["quartier"]+" "+a["sous"]).lower())}"'
-    return f'''<a class="carte {a['niveau']}" href="{prefix}a/{a['id']}.html" {data}>
+    data = f'data-q="{E(a["quartier"])}" data-s="{E(a["sous"])}" data-f="{a["fenetre"]}" data-p="{a["prix"]}" data-d="{a.get("depuis","")}" data-r="{rang(a)}" data-t="{E((a["titre"]+" "+a["titre_wo"]+" "+a["desc"]+" "+a["quartier"]+" "+a["sous"]).lower())}"'
+    return f'''<a class="carte {a['niveau']}{' urgent' if a['urgent_actif'] else ''}" href="{prefix}a/{a['id']}.html" {data}>
 <div class="visuel">{visuel}{badge}<span class="type">{TYPE.get(a['type'],'')}</span>{nb}</div>
 <div class="corps"><div class="prix">{F(a['prix'])}<small> {E(a['unite'])}</small></div><div class="titre">{E(a['titre'])}</div>{f'<div class="wo">{E(a["titre_wo"])}</div>' if a['titre_wo'] and a['titre_wo']!=a['titre'] else ''}
 {attrs(a)}
@@ -293,6 +301,7 @@ TARIFS = '''<section class="tarifs" id="tarifs"><h2>Tarifs</h2><p>Une annonce = 
 <table><thead><tr><th>Niveau</th><th>7 jours</th><th>+7 jours</th><th>30 jours</th></tr></thead><tbody>
 <tr class="premium"><td>Premium — tout en haut de sa rubrique, et Bia la cite en premier à la voix</td><td>3 500 F</td><td>3 500 F</td><td>12 000 F</td></tr>
 <tr class="prioritaire"><td>Prioritaire — au-dessus des annonces normales</td><td>2 000 F</td><td>2 000 F</td><td>7 000 F</td></tr>
+<tr class="prioritaire"><td>Vente urgente — 48 h en tête de rubrique, prix ferme, vendeur discret si demandé (identité connue de KHALAM), puis Normale jusqu'au 7ᵉ jour</td><td>2 000 F</td><td>—</td><td>—</td></tr>
 <tr><td>Normale — dans sa rubrique, par date</td><td>1 000 F</td><td>1 000 F</td><td>3 500 F</td></tr></tbody></table>
 <p class="note">Professionnels (agences, courtiers, boutiques, vendeurs de véhicules) : forfait 15 000 F par mois, annonces normales illimitées, Prioritaire et Premium à moitié prix. Pendant le lancement, la première annonce de 7 jours est offerte.</p></section>'''
 COMMENT = '''<section class="comment" id="comment"><h2>Comment ça marche</h2>
@@ -301,12 +310,14 @@ COMMENT = '''<section class="comment" id="comment"><h2>Comment ça marche</h2>
 <div><b>3. KHALAM valide</b><p>Rien n’est publié sans relecture : numéro connu, annonce vérifiée. C’est ce qui fait la différence avec un groupe WhatsApp.</p></div>
 <div><b>4. On vous contacte</b><p>Votre annonce a sa page, dans sa rubrique, partageable sur WhatsApp. Bia la propose à la voix à ceux qui cherchent dans votre quartier.</p></div></section>'''
 recentes = sorted(A, key=lambda a: a.get('depuis', ''), reverse=True)[:8]
+urgentes = [a for a in A if a['urgent_actif']][:4]
 index = f'''{entete('', 'accueil')}
 <section class="hero int"><h1>Tout se vend à Dakar. Ici, <em>chaque chose a sa page</em>.</h1>
 <p>Six rubriques, des annonces relues par KHALAM avant publication, le vendeur joignable sur WhatsApp. Et Bia Xarit les propose à la voix à ceux qui cherchent.</p>
 <div class="dire"><i>B</i>Pour déposer : dites <b>« Bia, jaayal ma »</b>, ou <a href="deposer.html" style="font-weight:600">déposez ici</a></div></section>
 <main class="int" id="fenetres">
 <h2 class="sec">Rubriques</h2><div class="fenetres">{''.join(tuile(k) for k,_,_,_ in FENETRES)}</div>
+{f'<section class="urgences"><h2 class="sec">Ventes urgentes <span style="font:500 13px var(--texte);color:var(--doux)">prix ferme, 48 h en tête</span></h2><div class="grille">{"".join(carte(a, "") for a in urgentes)}</div></section>' if urgentes else ''}
 <h2 class="sec">Dernières annonces <a href="recherche.html">Tout voir →</a></h2>
 <div class="grille">{''.join(carte(a, '') for a in recentes) if recentes else '<div class="vide"><b>Pas encore d’annonce</b>Soyez le premier : la première annonce est offerte.</div>'}</div>
 {TARIFS}{COMMENT}
@@ -339,13 +350,26 @@ for k, (n, d, s) in FEN.items():
     open(f'r/{k}.html', 'w', encoding='utf-8').write(squelette(f'{n} — Jaayal ma', f'{n} à Dakar : {d} Annonces validées par KHALAM.', corps, '../', f'r/{k}.html'))
 
 # ── Pages annonces ────────────────────────────────────────────────────────────────────────────
-SECURITE = '''<div class="securite"><b>Conseils de sécurité</b><ul><li>Rencontrez le vendeur en personne, dans un lieu public, avant tout paiement.</li><li>Vérifiez le bien (papiers, état, fonctionnement) avant de payer.</li><li>Ne versez jamais d’acompte à distance ; un paiement Wave se vérifie dans l’application, pas par SMS.</li><li>Un doute ? Écrivez à KHALAM depuis Bia Xarit.</li></ul></div>'''
+SECURITE = '''<div class="securite"><b>Conseils de sécurité</b><ul><li>Rencontrez le vendeur en personne, dans un lieu public, avant tout paiement.</li><li>Vérifiez le bien (papiers, état, fonctionnement) avant de payer.</li><li>Ne versez jamais d’acompte à distance ; un paiement Wave se vérifie dans l’application, pas par SMS.</li><li>Bijoux, montres, téléphones : demandez la facture ou la boîte ; une « vente urgente » sans facture se paie en main propre, après vérification.</li><li>Un doute ? Écrivez à KHALAM depuis Bia Xarit.</li></ul></div>'''
+def bloc_vendeur(a):
+    if a['anonyme']:
+        msg = f"Bonjour KHALAM, je suis intéressé par l'annonce {a['id']} ({a['titre']}) sur Jaayal ma."
+        lien = f"https://wa.me/{RELAIS}?text={html.escape(msg).replace(' ', '%20')}" if RELAIS else "https://khalam.app/bia"
+        return f'''<div class="vendeur"><div class="qui"><div class="av">K</div><div><b>Vendeur discret</b><span>Identité connue de KHALAM · {E(a['quartier'])}</span></div></div>
+<a class="bwa" href="{lien}">{WA_SVG} Contacter via KHALAM</a>
+<p class="discret">Le vendeur a demandé la discrétion : son nom et son numéro ne sont pas publiés. KHALAM connaît son identité, a vérifié l'annonce et transmet votre message. {"Facture ou boîte d'origine présentée à KHALAM." if a['facture'] else "Objet déclaré sans facture."}</p>
+<p class="verif"><i>✓</i> Vendeur identifié par KHALAM · annonce relue et validée le {dmy(a['depuis'])}</p></div>'''
+    initiale = E((a.get('vendeur') or 'K')[0].upper())
+    return f'''<div class="vendeur"><div class="qui"><div class="av">{initiale}</div><div><b>{E(a.get('vendeur') or 'Vendeur')}</b><span>{'Professionnel' if a['pro'] else 'Particulier'} · {E(a['quartier'])}</span></div></div>
+<a class="bwa" href="{a['whatsapp']}">{WA_SVG} Écrire sur WhatsApp</a>
+<a class="btel" href="tel:{a['tel'].replace(' ','')}">📞 {E(a['tel'])}</a>
+<p class="verif"><i>✓</i> Numéro vérifié · annonce relue et validée par KHALAM le {dmy(a['depuis'])}</p></div>'''
 for a in A:
     fn, _, _ = FEN[a['fenetre']]; niv = NIV.get(a['niveau'], '')
     photos = a['photos']
     galerie = (f'<img class="grande" id="grande" src="../img/{photos[0]}" alt="{E(a["titre"])}">' if photos else '<div class="nophoto">Pas de photo</div>')
     vign = ('<div class="vignettes">' + ''.join(f'<img src="../img/{p_}" alt="photo {i_+1}" data-i="{i_}"{" aria-current=true" if i_==0 else ""}>' for i_, p_ in enumerate(photos)) + '</div>') if len(photos) > 1 else ''
-    etiq = (f'<span class="etiq {a["niveau"]}">{niv}</span>' if niv else '') + f'<span class="etiq offre">{TYPE.get(a["type"],"")}</span>'
+    etiq = ('<span class="etiq urgent">Urgent · vente rapide</span><span class="etiq ferme">Prix ferme</span>' if a['urgent_actif'] else '') + (f'<span class="etiq {a["niveau"]}">{niv}</span>' if niv else '') + f'<span class="etiq offre">{TYPE.get(a["type"],"")}</span>'
     lignes = [("Type", TYPE.get(a['type'], ''))] + ([("État", E(a['etat']))] if a['etat'] else []) + [(E(k_), E(str(v_))) for k_, v_ in a['details'].items() if v_] + [ ("Rubrique", f'<a href="../r/{a["fenetre"]}.html">{E(fn)}</a>'), ("Sous-rubrique", E(a['sous'])), ("Quartier", E(a['quartier']))]
     if a['surface']: lignes.append(("Surface", E(str(a['surface']))))
     lignes += [("Vendeur", 'Professionnel' if a['pro'] else 'Particulier'), ("Publiée le", dmy(a['depuis'])), ("En ligne jusqu’au", dmy(a['expire'])), ("Référence", a['id'])]
@@ -361,16 +385,13 @@ for a in A:
 <div class="galerie">{galerie}</div>{vign}
 <h1>{E(a['titre'])}</h1>{f'<div class="wo">{E(a["titre_wo"])}</div>' if a['titre_wo'] and a['titre_wo']!=a['titre'] else ''}
 <div class="ligne-prix"><div class="prix">{F(a['prix'])}<small> {E(a['unite'])}</small></div>{etiq}</div>
-<div class="repere"><span>📍 <b>{E(a['quartier'])}</b>, Dakar</span><span>Publiée le {dmy(a['depuis'])}</span><span>par <b>{E(a['vendeur'] or 'Vendeur')}</b></span><span>Réf. {a['id']}</span></div>
+<div class="repere"><span>📍 <b>{E(a['quartier'])}</b>, Dakar</span><span>Publiée le {dmy(a['depuis'])}</span><span>par <b>{'vendeur discret' if a['anonyme'] else E(a['vendeur'] or 'Vendeur')}</b></span><span>Réf. {a['id']}</span></div>
 <h2 class="bloc">Description</h2><p class="desc">{E(a['desc'])}</p>
 <h2 class="bloc">Caractéristiques</h2><table class="caract">{caract}</table>
 {f'<p class="cite">★ Annonce Premium : Bia la cite en premier à ceux qui cherchent dans {E(fn)} à {E(a["quartier"])}.</p>' if a['niveau']=='premium' else ''}
 </article>
 <aside class="lateral">
-<div class="vendeur"><div class="qui"><div class="av">{initiale}</div><div><b>{E(a.get('vendeur') or 'Vendeur')}</b><span>{'Professionnel' if a['pro'] else 'Particulier'} · {E(a['quartier'])}</span></div></div>
-<a class="bwa" href="{a['whatsapp']}">{WA_SVG} Écrire sur WhatsApp</a>
-<a class="btel" href="tel:{a['tel'].replace(' ','')}">📞 {E(a['tel'])}</a>
-<p class="verif"><i>✓</i> Numéro vérifié · annonce relue et validée par KHALAM le {dmy(a['depuis'])}</p></div>
+{bloc_vendeur(a)}
 <div class="partage"><a href="{partage}">Partager sur WhatsApp</a><button type="button" id="copier" data-url="{a['page']}">Copier le lien</button></div>
 <a class="signaler" href="https://khalam.app/bia">⚑ Signaler cette annonce à KHALAM</a>
 {SECURITE}
@@ -392,6 +413,10 @@ for nom in os.listdir('a'):
         os.remove(chemin)
 
 # ── annonces.json : ce que Bia lit (fenêtres documentées) ─────────────────────────────────────
+for a in A:
+    a.pop('urgent_actif', None)
+    if a['anonyme']:
+        a['whatsapp'] = f"https://wa.me/{RELAIS}" if RELAIS else ''; a['tel'] = ''; a['vendeur'] = ''
 D['annonces'] = A
 D['fenetres'] = {k: {'nom': n, 'description': d, 'sous_rubriques': s} for k, n, d, s in FENETRES}
 D['genere'] = datetime.date.today().isoformat()

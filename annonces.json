@@ -5,6 +5,41 @@
  "classement": "premium, prioritaire, normale, puis la plus récente",
  "annonces": [
   {
+   "id": "montre-homme-cuir",
+   "niveau": "normale",
+   "type": "vente",
+   "cat": "dressing",
+   "sous": "Bijoux & montres",
+   "titre": "Montre homme bracelet cuir, cadran doré",
+   "titre_wo": "Montar góor, bracelet cuir, kadran or",
+   "quartier": "Plateau",
+   "prix": 25000,
+   "unite": "",
+   "surface": "",
+   "desc": "Montre à quartz, bracelet cuir marron, cadran doré, pile neuve. Boîte d'origine.",
+   "photos": [
+    "montre.jpg"
+   ],
+   "tel": "",
+   "vendeur": "",
+   "pro": false,
+   "jours": 7,
+   "depuis": "2026-11-15",
+   "expire": "2026-11-22",
+   "page": "https://jaayalma.khalam.app/a/montre-homme-cuir.html",
+   "image": "https://jaayalma.khalam.app/img/montre.jpg",
+   "whatsapp": "",
+   "fenetre": "mode",
+   "etat": "Neuf",
+   "details": {
+    "Bracelet": "Cuir"
+   },
+   "urgent": true,
+   "anonyme": true,
+   "facture": "oui",
+   "urgent_jusqu": "2026-11-20"
+  },
+  {
    "id": "tucson-2021-dakar",
    "niveau": "premium",
    "type": "vente",
@@ -37,7 +72,11 @@
     "Boîte": "Automatique",
     "Carburant": "Essence",
     "Kilométrage": "48 000 km"
-   }
+   },
+   "urgent": false,
+   "anonyme": false,
+   "facture": "",
+   "urgent_jusqu": ""
   },
   {
    "id": "villa-almadies-4ch",
@@ -70,7 +109,11 @@
     "Chambres": "4",
     "Salles de bain": "3",
     "Titre foncier": "Oui"
-   }
+   },
+   "urgent": false,
+   "anonyme": false,
+   "facture": "",
+   "urgent_jusqu": ""
   },
   {
    "id": "tv-samsung-55",
@@ -102,7 +145,11 @@
    "details": {
     "Marque": "Samsung",
     "Taille": "55 pouces"
-   }
+   },
+   "urgent": false,
+   "anonyme": false,
+   "facture": "",
+   "urgent_jusqu": ""
   },
   {
    "id": "grand-boubou-bazin",
@@ -134,7 +181,11 @@
    "details": {
     "Taille": "XL",
     "Matière": "Bazin riche"
-   }
+   },
+   "urgent": false,
+   "anonyme": false,
+   "facture": "",
+   "urgent_jusqu": ""
   },
   {
    "id": "corolla-2018-pikine",
@@ -168,7 +219,11 @@
     "Année": "2018",
     "Boîte": "Automatique",
     "Carburant": "Essence"
-   }
+   },
+   "urgent": false,
+   "anonyme": false,
+   "facture": "",
+   "urgent_jusqu": ""
   },
   {
    "id": "appart-mermoz-3p",
@@ -201,7 +256,11 @@
     "Pièces": "3",
     "Étage": "2e",
     "Meublé": "Non"
-   }
+   },
+   "urgent": false,
+   "anonyme": false,
+   "facture": "",
+   "urgent_jusqu": ""
   },
   {
    "id": "boutique-sacre-coeur",
@@ -230,7 +289,11 @@
    "sous": "Location",
    "fenetre": "immobilier",
    "etat": "",
-   "details": {}
+   "details": {},
+   "urgent": false,
+   "anonyme": false,
+   "facture": "",
+   "urgent_jusqu": ""
   },
   {
    "id": "macbook-pro-joffre",
@@ -260,7 +323,11 @@
    "sous": "Électroménager",
    "fenetre": "electromenager",
    "etat": "",
-   "details": {}
+   "details": {},
+   "urgent": false,
+   "anonyme": false,
+   "facture": "",
+   "urgent_jusqu": ""
   },
   {
    "id": "chambre-pikine-rue10",
@@ -292,7 +359,11 @@
    "details": {
     "Pièces": "1",
     "Meublé": "Non"
-   }
+   },
+   "urgent": false,
+   "anonyme": false,
+   "facture": "",
+   "urgent_jusqu": ""
   },
   {
    "id": "ventilateur-binatone",
@@ -323,7 +394,11 @@
    "etat": "D'occasion",
    "details": {
     "Marque": "Binatone"
-   }
+   },
+   "urgent": false,
+   "anonyme": false,
+   "facture": "",
+   "urgent_jusqu": ""
   },
   {
    "id": "frigo-hisense-2-portes",
@@ -355,7 +430,11 @@
    "details": {
     "Marque": "Hisense",
     "Capacité": "2 portes"
-   }
+   },
+   "urgent": false,
+   "anonyme": false,
+   "facture": "",
+   "urgent_jusqu": ""
   },
   {
    "id": "collier-or-18k",
@@ -387,7 +466,11 @@
    "details": {
     "Or": "18 carats",
     "Poids": "12 g"
-   }
+   },
+   "urgent": false,
+   "anonyme": false,
+   "facture": "",
+   "urgent_jusqu": ""
   },
   {
    "id": "peugeot-308-ouakam",
@@ -421,38 +504,11 @@
     "Année": "2016",
     "Boîte": "Manuelle",
     "Carburant": "Diesel"
-   }
-  },
-  {
-   "id": "montre-homme-cuir",
-   "niveau": "normale",
-   "type": "vente",
-   "cat": "dressing",
-   "sous": "Bijoux & montres",
-   "titre": "Montre homme bracelet cuir, cadran doré",
-   "titre_wo": "Montar góor, bracelet cuir, kadran or",
-   "quartier": "Plateau",
-   "prix": 25000,
-   "unite": "",
-   "surface": "",
-   "desc": "Montre à quartz, bracelet cuir marron, cadran doré, pile neuve. Boîte d'origine.",
-   "photos": [
-    "montre.jpg"
-   ],
-   "tel": "+221 77 000 00 15",
-   "vendeur": "Samba T.",
-   "pro": false,
-   "jours": 7,
-   "depuis": "2026-11-15",
-   "expire": "2026-11-22",
-   "page": "https://jaayalma.khalam.app/a/montre-homme-cuir.html",
-   "image": "https://jaayalma.khalam.app/img/montre.jpg",
-   "whatsapp": "https://wa.me/221770000015?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20ma%20:%20Montre%20homme%20bracelet%20cuir,%20cadran%20doré",
-   "fenetre": "mode",
-   "etat": "Neuf",
-   "details": {
-    "Bracelet": "Cuir"
-   }
+   },
+   "urgent": false,
+   "anonyme": false,
+   "facture": "",
+   "urgent_jusqu": ""
   },
   {
    "id": "maison-keur-massar",
@@ -484,7 +540,11 @@
    "details": {
     "Chambres": "3",
     "Titre foncier": "Bail"
-   }
+   },
+   "urgent": false,
+   "anonyme": false,
+   "facture": "",
+   "urgent_jusqu": ""
   },
   {
    "id": "restaurant-ngor-cession",
@@ -513,7 +573,11 @@
    "sous": "Vente",
    "fenetre": "immobilier",
    "etat": "",
-   "details": {}
+   "details": {},
+   "urgent": false,
+   "anonyme": false,
+   "facture": "",
+   "urgent_jusqu": ""
   },
   {
    "id": "terrain-rufisque-300",
@@ -544,7 +608,11 @@
    "etat": "",
    "details": {
     "Papiers": "Délibération"
-   }
+   },
+   "urgent": false,
+   "anonyme": false,
+   "facture": "",
+   "urgent_jusqu": ""
   }
  ],
  "rubriques": {
@@ -615,5 +683,6 @@
     "Matériel pro & BTP"
    ]
   }
- }
+ },
+ "relais_whatsapp": ""
 }
