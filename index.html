@@ -1,54 +1,106 @@
 <!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
-<title>Jaayal ma</title>
-<meta name="description" content="Jaayal ma — les annonces de Dakar validées par KHALAM, rubrique par rubrique : maisons, voitures, électroménager, vide-dressing, bijoux, moutons, services… Dites « Bia, jaayal ma ».">
+<title>Jaayal ma — les annonces de Dakar validées par KHALAM</title>
+<meta name="description" content="Jaayal ma — les annonces de Dakar validées par KHALAM, rubrique par rubrique : immobilier, véhicules, électroménager, mode et bijoux, animaux, services. Dites « Bia, jaayal ma ».">
+<link rel="canonical" href="https://jaayalma.khalam.app/">
+<meta property="og:title" content="Jaayal ma — les annonces de Dakar validées par KHALAM"><meta property="og:description" content="Jaayal ma — les annonces de Dakar validées par KHALAM, rubrique par rubrique : immobilier, véhicules, électroménager, mode et bijoux, animaux, services. Dites « Bia, jaayal ma »."><meta property="og:site_name" content="Jaayal ma">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"><style>
-/* Jaayal ma — une place de marché de Dakar : fond clair sable-gris, encre marine KHALAM, or pour le Premium, vert WhatsApp pour le contact.
-   Cartes en grille, une colonne au téléphone. */
-:root{--bg:#F4F2EC;--carte:#FFFFFF;--fg:#141B2D;--doux:#5A6275;--ligne:#E3DED3;--marine:#0B1F4D;--or:#C9A227;--or-fond:#FBF3DC;--prio:#1E4FB8;--prio-fond:#E6EEFF;--wa:#1EBE5D;--wa-fg:#FFFFFF;
+:root{--bg:#F4F2EC;--carte:#FFFFFF;--fg:#141B2D;--doux:#5A6275;--ligne:#E3DED3;--marine:#0B1F4D;--marine2:#163070;--or:#C9A227;--or-fond:#FBF3DC;--prio:#1E4FB8;--prio-fond:#E6EEFF;--wa:#1EBE5D;--vert-fond:#E8F8EE;--ombre:0 1px 2px rgba(20,27,45,.06),0 6px 20px -12px rgba(20,27,45,.25);
  --display:"Space Grotesk","Inter",system-ui,sans-serif;--texte:"Inter",system-ui,-apple-system,sans-serif}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1322;--carte:#171E33;--fg:#EEF0F6;--doux:#A3AAC0;--ligne:#2A3350;--marine:#0B1F4D;--or:#E2BC45;--or-fond:#3A2F10;--prio:#7FA4FF;--prio-fond:#1B2A52;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0E1322;--carte:#171E33;--fg:#EEF0F6;--doux:#A3AAC0;--ligne:#2A3350;--marine:#0B1F4D;--or:#E2BC45;--or-fond:#3A2F10;--prio:#7FA4FF;--prio-fond:#1B2A52;color-scheme:dark}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--texte);font-size:15px;line-height:1.55}
-a{color:inherit}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1322;--carte:#171E33;--fg:#EEF0F6;--doux:#A3AAC0;--ligne:#2A3350;--or:#E2BC45;--or-fond:#3A2F10;--prio:#7FA4FF;--prio-fond:#1B2A52;--vert-fond:#13311F;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0E1322;--carte:#171E33;--fg:#EEF0F6;--doux:#A3AAC0;--ligne:#2A3350;--or:#E2BC45;--or-fond:#3A2F10;--prio:#7FA4FF;--prio-fond:#1B2A52;--vert-fond:#13311F;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--texte);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}img{max-width:100%}
+.int{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));max-width:1120px;margin:0 auto}
+/* bandeau préparation */
+.maquette{background:var(--or-fond);color:var(--fg);font-size:13px;text-align:center;padding:7px 16px}
+/* entête */
 .bande{background:var(--marine);color:#fff}
-.bande .int{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:14px;max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.marque{display:flex;align-items:baseline;gap:10px;text-decoration:none}
+.bande .int{padding-block:12px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.marque{display:flex;align-items:baseline;gap:9px;text-decoration:none;white-space:nowrap}
 .marque b{font-family:var(--display);font-size:24px;letter-spacing:-.01em}
-.marque span{font-size:12px;color:#C9A227;letter-spacing:.08em;text-transform:uppercase}
-.bande nav{display:flex;gap:16px;font-size:13.5px}
-.bande nav a{color:#DCE3F5;text-decoration:none}
-.hero{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:30px 18px;max-width:1100px;margin:0 auto}
-.hero h1{font-family:var(--display);font-size:clamp(26px,4.5vw,40px);line-height:1.1;margin:0 0 8px;text-wrap:balance;letter-spacing:-.015em}
+.marque span{font-size:11.5px;color:var(--or);letter-spacing:.08em;text-transform:uppercase}
+.cherche{flex:1 1 240px;display:flex;background:#fff;border-radius:12px;overflow:hidden;min-width:0}
+.cherche input{flex:1;border:0;padding:11px 14px;font:inherit;font-size:15px;min-width:0;color:#141B2D;background:#fff}
+.cherche input:focus{outline:none}
+.cherche button{border:0;background:var(--or);color:#141B2D;font:inherit;font-weight:700;padding:0 16px;cursor:pointer}
+.bdeposer{background:var(--or);color:#141B2D;text-decoration:none;font-weight:700;padding:11px 16px;border-radius:12px;white-space:nowrap;font-size:14.5px}
+.bdeposer:hover{filter:brightness(1.05)}
+/* ruban des rubriques, identique sur toutes les pages */
+.ruban{background:var(--carte);border-bottom:1px solid var(--ligne)}
+.ruban .int{display:flex;gap:6px;overflow-x:auto;padding-block:8px;scrollbar-width:none}
+.ruban .int::-webkit-scrollbar{display:none}
+.ruban a{flex:0 0 auto;text-decoration:none;font-size:13.5px;font-weight:500;padding:7px 13px;border-radius:999px;border:1px solid transparent;color:var(--doux)}
+.ruban a:hover{border-color:var(--ligne);color:var(--fg)}
+.ruban a[aria-current]{background:var(--marine);color:#fff}
+/* fil + titres */
+.fil{font-size:13px;color:var(--doux);margin:16px 0 4px;display:flex;gap:6px;flex-wrap:wrap}
+.fil a{text-decoration:none}.fil a:hover{text-decoration:underline}
+.tete{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 6px}
+h1{font-family:var(--display);font-size:clamp(24px,4vw,34px);line-height:1.12;margin:0;letter-spacing:-.015em;text-wrap:balance}
+.tete .n{color:var(--doux);font-size:14px;font-variant-numeric:tabular-nums}
+.sous-titre{color:var(--doux);margin:0 0 14px;max-width:70ch}
+/* filtres */
+.filtres{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--ligne);margin-bottom:16px}
+.filtres .int{padding-block:10px;display:flex;flex-direction:column;gap:8px}
+.puces{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.puces::-webkit-scrollbar{display:none}
+.puces button{flex:0 0 auto;border:1px solid var(--ligne);background:var(--carte);color:var(--fg);border-radius:999px;padding:6px 13px;font:inherit;font-size:13.5px;cursor:pointer}
+.puces button[aria-pressed="true"]{background:var(--marine);color:#fff;border-color:var(--marine)}
+.puces button i{font-style:normal;color:var(--doux);font-size:12px;margin-left:5px}
+.puces button[aria-pressed="true"] i{color:#C9D3F0}
+.outils{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.outils select,.outils input{border:1px solid var(--ligne);background:var(--carte);color:var(--fg);border-radius:10px;padding:7px 10px;font:inherit;font-size:13.5px;min-width:0}
+.outils input{width:110px}
+.outils .prixg{display:flex;align-items:center;gap:6px;color:var(--doux);font-size:13px}
+.outils .compte{margin-left:auto;color:var(--doux);font-size:13px;font-variant-numeric:tabular-nums}
+.outils .raz{border:0;background:none;color:var(--prio);font:inherit;font-size:13px;cursor:pointer;text-decoration:underline;padding:0}
+/* grille et cartes — la même partout */
+main{padding-block:0 40px}
+.grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+@media (max-width:560px){.grille{grid-template-columns:repeat(2,1fr);gap:10px}}
+.carte{background:var(--carte);border:1px solid var(--ligne);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;min-width:0;text-decoration:none;position:relative;box-shadow:var(--ombre)}
+.carte.premium{border-color:var(--or);box-shadow:0 0 0 2px var(--or-fond),var(--ombre)}
+.carte .visuel{position:relative;background:#E9E6DD}
+.carte .visuel img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.carte .visuel .nophoto{aspect-ratio:4/3;display:grid;place-items:center;color:var(--doux);font-size:13px}
+.badge{position:absolute;top:8px;left:8px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:999px}
+.badge.premium{background:var(--or);color:#141B2D}.badge.prioritaire{background:var(--prio);color:#fff}
+.type{position:absolute;top:8px;right:8px;font-size:11px;background:rgba(11,31,77,.85);color:#fff;padding:4px 8px;border-radius:999px}
+.nbph{position:absolute;bottom:8px;right:8px;font-size:11.5px;background:rgba(0,0,0,.55);color:#fff;padding:3px 7px;border-radius:999px}
+.corps{padding:10px 12px 12px;display:flex;flex-direction:column;gap:4px;flex:1}
+.prix{font-family:var(--display);font-size:18px;font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.prix small{font-family:var(--texte);font-weight:500;font-size:12.5px;color:var(--doux)}
+.titre{font-weight:600;line-height:1.3;font-size:14.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.wo{color:var(--doux);font-size:12.5px}
+.attrs{display:flex;flex-wrap:wrap;gap:4px;margin-top:2px}.attrs span b{font-weight:600;color:var(--fg)}.attrs span{font-size:11.5px;color:var(--doux);background:var(--bg);border:1px solid var(--ligne);border-radius:6px;padding:2px 7px}
+.carte .par{font-size:12px;color:var(--doux)}
+.meta{display:flex;justify-content:space-between;gap:8px;color:var(--doux);font-size:12px;margin-top:auto;padding-top:6px;border-top:1px solid var(--ligne)}
+.meta b{color:var(--fg);font-weight:600}
+.meta .pro{color:var(--prio);font-weight:600}
+.vide{background:var(--carte);border:1px dashed var(--ligne);border-radius:14px;padding:28px 18px;text-align:center;color:var(--doux);grid-column:1/-1}
+.vide b{display:block;color:var(--fg);font-family:var(--display);font-size:17px;margin-bottom:4px}
+.vide a{color:var(--prio)}
+/* sections de l'accueil */
+.hero{padding-block:28px 10px}
+.hero h1{font-size:clamp(26px,4.6vw,42px)}
 .hero h1 em{font-style:normal;color:var(--or)}
-.hero p{margin:0;color:var(--doux);max-width:60ch}
+.hero p{margin:8px 0 0;color:var(--doux);max-width:62ch}
 .dire{margin-top:14px;display:inline-flex;align-items:center;gap:10px;background:var(--carte);border:1px solid var(--ligne);border-radius:999px;padding:8px 14px 8px 10px;font-size:14px}
 .dire i{width:30px;height:30px;border-radius:50%;background:var(--or);display:inline-grid;place-items:center;color:#141B2D;font-style:normal;font-weight:700;font-family:var(--display)}
-.filtres{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--ligne)}
-.filtres .int{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:10px;max-width:1100px;margin:0 auto;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.filtres button{border:1px solid var(--ligne);background:var(--carte);color:var(--fg);border-radius:999px;padding:6px 14px;font:inherit;font-size:13.5px;cursor:pointer}
-.filtres button[aria-pressed="true"]{background:var(--marine);color:#fff;border-color:var(--marine)}
-.filtres select{margin-left:auto;border:1px solid var(--ligne);background:var(--carte);color:var(--fg);border-radius:10px;padding:6px 10px;font:inherit;font-size:13.5px}
-main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:18px 40px;max-width:1100px;margin:0 auto}
-.compte{color:var(--doux);font-size:13px;margin:0 0 12px}
-.grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
-.carte{background:var(--carte);border:1px solid var(--ligne);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;min-width:0;text-decoration:none;position:relative}
-.carte.premium{border-color:var(--or);box-shadow:0 0 0 2px var(--or-fond)}
-.carte img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;max-width:100%}
-.badge{position:absolute;top:10px;left:10px;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:999px}
-.badge.premium{background:var(--or);color:#141B2D}
-.badge.prioritaire{background:var(--prio);color:#fff}
-.type{position:absolute;top:10px;right:10px;font-size:11.5px;background:rgba(11,31,77,.85);color:#fff;padding:4px 9px;border-radius:999px}
-.corps{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
-.prix{font-family:var(--display);font-size:20px;font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
-.prix small{font-family:var(--texte);font-weight:500;font-size:13px;color:var(--doux)}
-.titre{font-weight:600;line-height:1.3}
-.wo{color:var(--doux);font-size:13px}
-.meta{display:flex;justify-content:space-between;gap:8px;color:var(--doux);font-size:12.5px;margin-top:auto;padding-top:6px;border-top:1px solid var(--ligne)}
-.meta b{color:var(--fg);font-weight:600}
-.cite{font-size:12px;color:var(--or);font-weight:600}
-.tarifs{margin-top:40px;background:var(--carte);border:1px solid var(--ligne);border-radius:16px;padding:22px}
+h2.sec{font-family:var(--display);font-size:21px;margin:26px 0 12px;letter-spacing:-.01em;display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+h2.sec a{font:500 13.5px var(--texte);color:var(--prio);text-decoration:none}
+.fenetres{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+@media (max-width:560px){.fenetres{grid-template-columns:repeat(2,1fr);gap:10px}}
+.fenetre{background:var(--carte);border:1px solid var(--ligne);border-radius:14px;padding:14px 14px 12px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:6px;min-width:0;box-shadow:var(--ombre)}
+.fenetre b{font-family:var(--display);font-size:16px;line-height:1.2}
+.fenetre span{font-size:12.5px;color:var(--doux);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fenetre .n{margin-top:auto;padding-top:8px;font-size:12.5px;color:var(--prio);font-weight:600;display:flex;justify-content:space-between}
+.fenetre .n em{font-style:normal;color:var(--doux);font-weight:500}
+.fenetre .apercu{display:flex;gap:5px;margin-top:2px}
+.fenetre .apercu img{width:48px;height:36px;object-fit:cover;border-radius:6px;border:1px solid var(--ligne)}
+.tarifs{margin-top:34px;background:var(--carte);border:1px solid var(--ligne);border-radius:16px;padding:22px}
 .tarifs h2,.comment h2{font-family:var(--display);margin:0 0 6px;font-size:22px;letter-spacing:-.01em}
 .tarifs p{color:var(--doux);margin:0 0 14px}
 .tarifs table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
@@ -58,78 +110,121 @@ main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px
 .tarifs tr.premium td:first-child{color:var(--or);font-weight:700}
 .tarifs tr.prioritaire td:first-child{color:var(--prio);font-weight:700}
 .tarifs .note{font-size:13px;color:var(--doux);margin:12px 0 0}
-.comment{margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.comment{margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .comment>div{background:var(--carte);border:1px solid var(--ligne);border-radius:14px;padding:16px}
 .comment h2{grid-column:1/-1;margin-bottom:0}
-.comment b{display:block;font-family:var(--display);font-size:17px;margin-bottom:4px}
+.comment b{display:block;font-family:var(--display);font-size:16.5px;margin-bottom:4px}
 .comment p{margin:0;color:var(--doux);font-size:14px}
-footer{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:22px 30px;max-width:1100px;margin:0 auto;color:var(--doux);font-size:13px;border-top:1px solid var(--ligne)}
+.appel{margin-top:26px;background:var(--marine);color:#fff;border-radius:16px;padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.appel b{font-family:var(--display);font-size:19px;display:block}
+.appel span{color:#C9D3F0;font-size:14px}
+footer{padding-block:22px 30px;color:var(--doux);font-size:13px;border-top:1px solid var(--ligne);margin-top:30px}
+footer .int{display:flex;gap:10px 22px;flex-wrap:wrap;justify-content:space-between}
 footer a{color:var(--doux)}
-.maquette{background:var(--or-fond);color:var(--fg);font-size:13px;text-align:center;padding:8px 16px}
 /* page annonce */
-.fiche{max-width:900px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:18px 40px}
-.fiche .retour{font-size:14px;color:var(--doux);text-decoration:none}
-.fiche .photo{margin:14px 0;border-radius:16px;overflow:hidden;border:1px solid var(--ligne);position:relative}
-.fiche .photo img{width:100%;display:block;aspect-ratio:3/2;object-fit:cover;max-width:100%}
-.fiche h1{font-family:var(--display);font-size:clamp(22px,4vw,32px);line-height:1.15;margin:8px 0 4px;letter-spacing:-.015em;text-wrap:balance}
+.fiche{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px;align-items:start;padding-block:0 40px}
+@media (max-width:860px){.fiche{grid-template-columns:1fr}}
+.galerie{border-radius:16px;overflow:hidden;border:1px solid var(--ligne);background:#E9E6DD;position:relative}
+.galerie .grande{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.galerie .nophoto{aspect-ratio:4/3;display:grid;place-items:center;color:var(--doux)}
+.vignettes{display:flex;gap:8px;margin-top:8px}
+.vignettes img{width:84px;height:63px;object-fit:cover;border-radius:8px;border:2px solid transparent;cursor:pointer}
+.vignettes img[aria-current]{border-color:var(--or)}
+.fiche h1{margin:14px 0 2px;font-size:clamp(22px,3.6vw,30px)}
 .fiche .wo{font-size:15px}
-.fiche .prix{font-size:28px;margin:10px 0}
-.fiche .infos{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
-.fiche .infos div{background:var(--carte);border:1px solid var(--ligne);border-radius:12px;padding:10px 12px}
-.fiche .infos span{display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--doux)}
-.fiche .infos b{font-weight:600}
-.fiche .desc{max-width:65ch}
-.contact{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:18px 0}
-.bwa{display:inline-flex;align-items:center;gap:8px;background:var(--wa);color:var(--wa-fg);text-decoration:none;font-weight:600;padding:12px 18px;border-radius:12px}
-.tel{font-variant-numeric:tabular-nums;user-select:all;background:var(--carte);border:1px solid var(--ligne);padding:11px 14px;border-radius:12px}
-.verif{font-size:13px;color:var(--doux);display:flex;align-items:center;gap:6px}
-.verif i{width:16px;height:16px;border-radius:50%;background:var(--or);display:inline-grid;place-items:center;color:#141B2D;font-style:normal;font-size:11px;font-weight:700}
-@media (prefers-reduced-motion:no-preference){.carte{transition:transform .15s}.carte:hover{transform:translateY(-2px)}}
-.carte:focus-visible,.bwa:focus-visible,.filtres button:focus-visible{outline:3px solid var(--prio);outline-offset:2px}
-
-.rubriques{margin-top:36px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.rubriques h2{grid-column:1/-1;font-family:var(--display);margin:0 0 2px;font-size:22px;letter-spacing:-.01em}
-.rub{background:var(--carte);border:1px solid var(--ligne);border-radius:14px;padding:14px 16px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:4px}
-.rub b{font-family:var(--display);font-size:16px}
-.rub span{font-size:13px;color:var(--doux);line-height:1.45}
-.sous{font-size:11.5px;color:var(--doux);text-transform:uppercase;letter-spacing:.06em}
-
-.familles{display:flex;flex-direction:column;gap:26px;margin-top:6px}
-.famille h2{font-family:var(--display);font-size:20px;margin:0 0 10px;letter-spacing:-.01em;display:flex;align-items:baseline;gap:10px}
-.famille h2 small{font:500 12.5px var(--texte);color:var(--doux);letter-spacing:.04em;text-transform:uppercase}
-.fenetres{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
-.fenetre{background:var(--carte);border:1px solid var(--ligne);border-radius:16px;padding:14px 16px 12px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:6px;min-width:0;position:relative}
-.fenetre b{font-family:var(--display);font-size:16.5px;line-height:1.2}
-.fenetre span{font-size:13px;color:var(--doux);line-height:1.45}
-.fenetre .n{margin-top:auto;padding-top:8px;font-size:12.5px;color:var(--marine);font-weight:600;display:flex;justify-content:space-between;align-items:center}
-.fenetre .n em{font-style:normal;color:var(--doux);font-weight:500}
-.fenetre .n i{font-style:normal}
-.fenetre .apercu{display:flex;gap:6px;margin-top:4px}
-.fenetre .apercu img{width:52px;height:40px;object-fit:cover;border-radius:7px;border:1px solid var(--ligne)}
-@media (prefers-reduced-motion:no-preference){.fenetre{transition:transform .15s}.fenetre:hover{transform:translateY(-2px)}}
-.fil{font-size:13px;color:var(--doux);margin:0 0 6px}.fil a{text-decoration:none}
-.vide{background:var(--carte);border:1px dashed var(--ligne);border-radius:14px;padding:26px 18px;text-align:center;color:var(--doux)}
-.vide b{display:block;color:var(--fg);font-family:var(--display);font-size:17px;margin-bottom:4px}
-.sousliste{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
-.sousliste span{font-size:12.5px;border:1px solid var(--ligne);background:var(--carte);border-radius:999px;padding:4px 10px;color:var(--doux)}
+.fiche .ligne-prix{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:8px 0 6px}
+.fiche .prix{font-size:28px}
+.etiq{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:var(--prio-fond);color:var(--prio)}
+.etiq.premium{background:var(--or-fond);color:#8A6A0A}.etiq.offre{background:var(--marine);color:#fff}
+.repere{color:var(--doux);font-size:13.5px;display:flex;gap:6px 14px;flex-wrap:wrap;margin:0 0 16px}
+.repere b{color:var(--fg);font-weight:600}
+h2.bloc{font-family:var(--display);font-size:18px;margin:22px 0 8px;letter-spacing:-.01em}
+.caract{width:100%;border-collapse:collapse;font-size:14.5px;background:var(--carte);border:1px solid var(--ligne);border-radius:12px;overflow:hidden}
+.caract th,.caract td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--ligne)}
+.caract tr:last-child th,.caract tr:last-child td{border-bottom:0}
+.caract th{font-weight:500;color:var(--doux);width:42%}
+.desc{max-width:68ch;white-space:pre-line;margin:0}
+.lateral{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);display:flex;flex-direction:column;gap:12px}
+.vendeur{background:var(--carte);border:1px solid var(--ligne);border-radius:16px;padding:16px;box-shadow:var(--ombre)}
+.vendeur .qui{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.vendeur .av{width:42px;height:42px;border-radius:50%;background:var(--marine);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:17px}
+.vendeur .qui b{display:block;font-size:15px}
+.vendeur .qui span{font-size:12.5px;color:var(--doux)}
+.bwa{display:flex;justify-content:center;align-items:center;gap:8px;background:var(--wa);color:#fff;text-decoration:none;font-weight:700;padding:13px 16px;border-radius:12px;font-size:15px}
+.bwa svg{width:20px;height:20px;fill:currentColor}
+.btel{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:8px;border:1px solid var(--ligne);background:var(--bg);color:var(--fg);text-decoration:none;font-weight:600;padding:12px 16px;border-radius:12px;font-variant-numeric:tabular-nums}
+.verif{font-size:12.5px;color:var(--doux);display:flex;align-items:flex-start;gap:6px;margin:12px 0 0}
+.verif i{flex:0 0 16px;width:16px;height:16px;border-radius:50%;background:var(--or);display:inline-grid;place-items:center;color:#141B2D;font-style:normal;font-size:11px;font-weight:700;margin-top:2px}
+.partage{display:flex;gap:8px}
+.partage a,.partage button{flex:1;border:1px solid var(--ligne);background:var(--carte);color:var(--fg);border-radius:10px;padding:9px;font:inherit;font-size:13px;text-decoration:none;text-align:center;cursor:pointer}
+.securite{background:var(--vert-fond);border-radius:14px;padding:14px 16px;font-size:13.5px}
+.securite b{display:block;margin-bottom:4px}
+.securite ul{margin:0;padding-left:18px;color:var(--doux)}
+.securite li{margin:2px 0}
+.signaler{font-size:12.5px;color:var(--doux);text-align:center;display:block}
+.cite{font-size:13px;color:#8A6A0A;background:var(--or-fond);border-radius:10px;padding:8px 12px;margin:10px 0 0}
+.similaires{grid-column:1/-1}
+.carte:focus-visible,.bwa:focus-visible,.puces button:focus-visible,.bdeposer:focus-visible{outline:3px solid var(--prio);outline-offset:2px}
+@media (prefers-reduced-motion:no-preference){.carte,.fenetre{transition:transform .15s}.carte:hover,.fenetre:hover{transform:translateY(-2px)}}
 </style>
 </head><body>
 <div class="maquette">Site en préparation — les annonces affichées sont des exemples, avec des noms et des numéros fictifs.</div>
-<header class="bande"><div class="int"><a class="marque" href="index.html"><b>Jaayal ma</b><span>par KHALAM</span></a><nav><a href="index.html#fenetres">Rubriques</a><a href="index.html#tarifs">Tarifs</a><a href="index.html#comment">Déposer</a><a href="https://khalam.app/bia">Bia Xarit</a></nav></div></header>
-<section class="hero"><h1>Tout se vend à Dakar. Ici, <em>chaque chose a sa page</em>.</h1><p>Une maison, une voiture, un frigo, un boubou, un collier, un mouton : six pages seulement, chacune avec ses rubriques : tout l’immobilier sur une page, vente et location ; tous les animaux sur une autre. Chaque annonce est relue par KHALAM avant d’être publiée, et Bia Xarit la propose à la voix à ceux qui cherchent.</p>
+<header class="bande"><div class="int">
+<a class="marque" href="index.html"><b>Jaayal ma</b><span>par KHALAM</span></a>
+<form class="cherche" action="recherche.html" method="get" role="search"><input type="search" name="q" value="" placeholder="Que cherchez-vous ? (ex. frigo, Pikine, Corolla)" aria-label="Rechercher une annonce"><button type="submit">Chercher</button></form>
+<a class="bdeposer" href="deposer.html">+ Déposer une annonce</a>
+</div></header>
+<nav class="ruban" aria-label="Rubriques"><div class="int"><a href="index.html" aria-current=page>Accueil</a><a href="r/immobilier.html">Immobilier</a><a href="r/vehicules.html">Véhicules</a><a href="r/electromenager.html">Électroménager &amp; maison</a><a href="r/mode.html">Mode &amp; bijoux</a><a href="r/animaux.html">Animaux</a><a href="r/services.html">Services &amp; divers</a></div></nav>
+<section class="hero int"><h1>Tout se vend à Dakar. Ici, <em>chaque chose a sa page</em>.</h1>
+<p>Six rubriques, des annonces relues par KHALAM avant publication, le vendeur joignable sur WhatsApp. Et Bia Xarit les propose à la voix à ceux qui cherchent.</p>
 <div class="dire"><i>B</i>Pour déposer : dites <b>« Bia, jaayal ma »</b>, ou <a href="deposer.html" style="font-weight:600">déposez ici</a></div></section>
-<main id="fenetres"><div class="familles">
-<section class="famille"><div class="fenetres"><a class="fenetre" href="r/immobilier.html"><b>Immobilier</b><span>Vente et location : maisons, appartements, chambres, terrains, commerces et locaux.</span><div class=apercu><img src="img/villa-almadies.jpg" alt=""><img src="img/appart-mermoz.jpg" alt=""><img src="img/boutique-sacre-coeur.jpg" alt=""></div><div class="n"><i>7 annonces</i><i>→</i></div></a><a class="fenetre" href="r/vehicules.html"><b>Véhicules</b><span>Voitures, motos et scooters, location de voitures, pièces et pneus.</span><div class=apercu><img src="img/hyundai-tucson.jpg" alt=""><img src="img/toyota-corolla.jpg" alt=""><img src="img/peugeot-308.jpg" alt=""></div><div class="n"><i>3 annonces</i><i>→</i></div></a><a class="fenetre" href="r/electromenager.html"><b>Électroménager & maison</b><span>Frigos, machines, ventilateurs, télés, téléphones, ordinateurs, meubles, cuisine.</span><div class=apercu><img src="img/tv-samsung.jpg" alt=""><img src="img/ventilateur.jpg" alt=""><img src="img/frigo.jpg" alt=""></div><div class="n"><i>3 annonces</i><i>→</i></div></a><a class="fenetre" href="r/mode.html"><b>Mode & bijoux</b><span>Vide-dressing (habits), bijoux et montres, tissus et bazin, beauté.</span><div class=apercu><img src="img/grand-boubou.jpg" alt=""><img src="img/collier-or.jpg" alt=""><img src="img/montre.jpg" alt=""></div><div class="n"><i>3 annonces</i><i>→</i></div></a><a class="fenetre" href="r/animaux.html"><b>Animaux</b><span>Moutons de Tabaski, bœufs et chèvres, volailles, chiens et chats.</span><div class="n"><em>Bientôt vos annonces</em><i>→</i></div></a><a class="fenetre" href="r/services.html"><b>Services & divers</b><span>Services, emplois, événements, sport et loisirs, bébé et enfants, matériel pro.</span><div class="n"><em>Bientôt vos annonces</em><i>→</i></div></a></div></section>
-</div>
+<main class="int" id="fenetres">
+<h2 class="sec">Rubriques</h2><div class="fenetres"><a class="fenetre" href="r/immobilier.html"><b>Immobilier</b><span>Vente et location : maisons, appartements, chambres, terrains, commerces et locaux.</span><div class=apercu><img src="img/villa-almadies.jpg" alt="" loading="lazy"><img src="img/appart-mermoz.jpg" alt="" loading="lazy"><img src="img/boutique-sacre-coeur.jpg" alt="" loading="lazy"><img src="img/chambre-pikine.jpg" alt="" loading="lazy"></div><div class="n"><span>7 annonces</span><span>→</span></div></a><a class="fenetre" href="r/vehicules.html"><b>Véhicules</b><span>Voitures, motos et scooters, location de voitures, pièces et pneus.</span><div class=apercu><img src="img/hyundai-tucson.jpg" alt="" loading="lazy"><img src="img/toyota-corolla.jpg" alt="" loading="lazy"><img src="img/peugeot-308.jpg" alt="" loading="lazy"></div><div class="n"><span>3 annonces</span><span>→</span></div></a><a class="fenetre" href="r/electromenager.html"><b>Électroménager &amp; maison</b><span>Frigos, machines, ventilateurs, télés, téléphones, ordinateurs, meubles, cuisine.</span><div class=apercu><img src="img/tv-samsung.jpg" alt="" loading="lazy"><img src="img/ventilateur.jpg" alt="" loading="lazy"><img src="img/frigo.jpg" alt="" loading="lazy"></div><div class="n"><span>3 annonces</span><span>→</span></div></a><a class="fenetre" href="r/mode.html"><b>Mode &amp; bijoux</b><span>Vide-dressing (habits), bijoux et montres, tissus et bazin, beauté.</span><div class=apercu><img src="img/grand-boubou.jpg" alt="" loading="lazy"><img src="img/collier-or.jpg" alt="" loading="lazy"><img src="img/montre.jpg" alt="" loading="lazy"></div><div class="n"><span>3 annonces</span><span>→</span></div></a><a class="fenetre" href="r/animaux.html"><b>Animaux</b><span>Moutons de Tabaski, bœufs et chèvres, volailles, chiens et chats.</span><div class="n"><span><em>Bientôt vos annonces</em></span><span>→</span></div></a><a class="fenetre" href="r/services.html"><b>Services &amp; divers</b><span>Services, emplois, événements, sport et loisirs, bébé et enfants, matériel pro.</span><div class="n"><span><em>Bientôt vos annonces</em></span><span>→</span></div></a></div>
+<h2 class="sec">Dernières annonces <a href="recherche.html">Tout voir →</a></h2>
+<div class="grille"><a class="carte prioritaire" href="a/tv-samsung-55.html" data-q="Liberté 6" data-s="Télé, téléphones &amp; ordinateurs" data-f="electromenager" data-p="185000" data-d="2026-11-17" data-r="1" data-t="télé samsung 55 pouces, 4k, très bon état tele samsung 55 pouces, 4k, baax na lool smart tv samsung 55&quot; 4k achetée en 2024, jamais réparée, télécommande et support d&#x27;origine. vendue parce que je déménage. essai sur place. liberté 6 télé, téléphones &amp; ordinateurs">
+<div class="visuel"><img src="img/tv-samsung.jpg" alt="Télé Samsung 55 pouces, 4K, très bon état" loading="lazy"><span class="badge prioritaire">Prioritaire</span><span class="type">À vendre</span></div>
+<div class="corps"><div class="prix">185 000 F<small> </small></div><div class="titre">Télé Samsung 55 pouces, 4K, très bon état</div><div class="wo">Tele Samsung 55 pouces, 4K, baax na lool</div>
+<div class="attrs"><span>Neuf</span><span>Samsung</span><span>55 pouces</span></div>
+<div class="meta"><span><b>Liberté 6</b>, Dakar</span><span>17/11</span></div></div></a><a class="carte prioritaire" href="a/grand-boubou-bazin.html" data-q="Médina" data-s="Vide-dressing" data-f="mode" data-p="45000" data-d="2026-11-17" data-r="1" data-t="grand boubou bazin riche brodé, taille l, porté une fois mbubb bazin bu rafet, taille l, sol ko benn yoon bazin riche bleu nuit, broderie dorée, trois pièces, porté une seule fois pour une korité. nettoyé, comme neuf. médina vide-dressing">
+<div class="visuel"><img src="img/grand-boubou.jpg" alt="Grand boubou bazin riche brodé, taille L, porté une fois" loading="lazy"><span class="badge prioritaire">Prioritaire</span><span class="type">À vendre</span></div>
+<div class="corps"><div class="prix">45 000 F<small> </small></div><div class="titre">Grand boubou bazin riche brodé, taille L, porté une fois</div><div class="wo">Mbubb bazin bu rafet, taille L, sol ko benn yoon</div>
+<div class="attrs"><span>Neuf</span><span>XL</span><span>Bazin riche</span></div>
+<div class="meta"><span><b>Médina</b>, Dakar</span><span>17/11</span></div></div></a><a class="carte normale" href="a/chambre-pikine-rue10.html" data-q="Pikine" data-s="Location" data-f="immobilier" data-p="60000" data-d="2026-11-17" data-r="2" data-t="chambre avec douche — pikine rue 10 néeg ak duus — pikine rue 10 chambre indépendante avec douche intérieure, eau et électricité comprises, dans une maison calme. pour une personne seule ou un couple. disponible tout de suite. pikine location">
+<div class="visuel"><img src="img/chambre-pikine.jpg" alt="Chambre avec douche — Pikine Rue 10" loading="lazy"><span class="type">À louer</span></div>
+<div class="corps"><div class="prix">60 000 F<small> / mois</small></div><div class="titre">Chambre avec douche — Pikine Rue 10</div><div class="wo">Néeg ak duus — Pikine Rue 10</div>
+<div class="attrs"><span>Pièces <b>1</b></span><span>Meublé <b>Non</b></span></div>
+<div class="meta"><span><b>Pikine</b>, Dakar</span><span>17/11</span></div></div></a><a class="carte normale" href="a/ventilateur-binatone.html" data-q="Parcelles Assainies" data-s="Électroménager" data-f="electromenager" data-p="18000" data-d="2026-11-17" data-r="2" data-t="ventilateur sur pied binatone, 3 vitesses ventilateur bu taxaw binatone, 3 vitesses ventilateur sur pied, 3 vitesses, oscillant, marche parfaitement. prix ferme. parcelles assainies électroménager">
+<div class="visuel"><img src="img/ventilateur.jpg" alt="Ventilateur sur pied Binatone, 3 vitesses" loading="lazy"><span class="type">À vendre</span></div>
+<div class="corps"><div class="prix">18 000 F<small> </small></div><div class="titre">Ventilateur sur pied Binatone, 3 vitesses</div><div class="wo">Ventilateur bu taxaw Binatone, 3 vitesses</div>
+<div class="attrs"><span>D&#x27;occasion</span><span>Binatone</span></div>
+<div class="meta"><span><b>Parcelles Assainies</b>, Dakar</span><span>17/11</span></div></div></a><a class="carte premium" href="a/tucson-2021-dakar.html" data-q="Sacré-Cœur" data-s="Voitures" data-f="vehicules" data-p="14500000" data-d="2026-11-16" data-r="0" data-t="hyundai tucson 2021, 48 000 km hyundai tucson 2021, 48 000 km tucson essence 2021, première main, 48 000 km, carnet d&#x27;entretien complet, caméra de recul, 4 pneus neufs. carte grise à jour, dédouanée. visible à sacré-cœur 3. sacré-cœur voitures">
+<div class="visuel"><img src="img/hyundai-tucson.jpg" alt="Hyundai Tucson 2021, 48 000 km" loading="lazy"><span class="badge premium">Premium</span><span class="type">À vendre</span></div>
+<div class="corps"><div class="prix">14 500 000 F<small> </small></div><div class="titre">Hyundai Tucson 2021, 48 000 km</div>
+<div class="attrs"><span>Venant</span><span>Hyundai</span><span>2021</span><span>Automatique</span></div>
+<div class="meta"><span><b>Sacré-Cœur</b>, Dakar</span><span>16/11</span></div></div></a><a class="carte prioritaire" href="a/corolla-2018-pikine.html" data-q="Pikine" data-s="Voitures" data-f="vehicules" data-p="6800000" data-d="2026-11-16" data-r="1" data-t="toyota corolla 2018, boîte automatique toyota corolla 2018, boîte automatique corolla 2018 automatique, 112 000 km, climatisation froide, intérieur propre, moteur révisé en octobre. prix légèrement négociable. pikine voitures">
+<div class="visuel"><img src="img/toyota-corolla.jpg" alt="Toyota Corolla 2018, boîte automatique" loading="lazy"><span class="badge prioritaire">Prioritaire</span><span class="type">À vendre</span></div>
+<div class="corps"><div class="prix">6 800 000 F<small> </small></div><div class="titre">Toyota Corolla 2018, boîte automatique</div>
+<div class="attrs"><span>D&#x27;occasion</span><span>Toyota</span><span>2018</span><span>Automatique</span></div>
+<div class="meta"><span><b>Pikine</b>, Dakar</span><span>16/11</span></div></div></a><a class="carte normale" href="a/frigo-hisense-2-portes.html" data-q="Guédiawaye" data-s="Électroménager" data-f="electromenager" data-p="95000" data-d="2026-11-16" data-r="2" data-t="réfrigérateur hisense 2 portes, 260 l frigo hisense 2 bunt, 260 l frigo 2 portes 260 litres, congélateur en haut, bon état, fait bien le froid. à venir chercher à guédiawaye. guédiawaye électroménager">
+<div class="visuel"><img src="img/frigo.jpg" alt="Réfrigérateur Hisense 2 portes, 260 L" loading="lazy"><span class="type">À vendre</span></div>
+<div class="corps"><div class="prix">95 000 F<small> </small></div><div class="titre">Réfrigérateur Hisense 2 portes, 260 L</div><div class="wo">Frigo Hisense 2 bunt, 260 L</div>
+<div class="attrs"><span>Neuf</span><span>Hisense</span><span>Capacité <b>2 portes</b></span></div>
+<div class="meta"><span><b>Guédiawaye</b>, Dakar</span><span>16/11</span></div></div></a><a class="carte normale" href="a/collier-or-18k.html" data-q="Sacré-Cœur" data-s="Bijoux &amp; montres" data-f="mode" data-p="420000" data-d="2026-11-16" data-r="2" data-t="collier en or 18 carats avec pendentif, 12 g caaya wurus 18 carats ak pendentif, 12 g collier or 18 carats, 12 grammes, pendentif pierre bleue. facture du bijoutier disponible. remise en main propre uniquement. sacré-cœur bijoux &amp; montres">
+<div class="visuel"><img src="img/collier-or.jpg" alt="Collier en or 18 carats avec pendentif, 12 g" loading="lazy"><span class="type">À vendre</span></div>
+<div class="corps"><div class="prix">420 000 F<small> </small></div><div class="titre">Collier en or 18 carats avec pendentif, 12 g</div><div class="wo">Caaya wurus 18 carats ak pendentif, 12 g</div>
+<div class="attrs"><span>Neuf</span><span>Or <b>18 carats</b></span><span>Poids <b>12 g</b></span></div>
+<div class="meta"><span><b>Sacré-Cœur</b>, Dakar</span><span>16/11</span></div></div></a></div>
 <section class="tarifs" id="tarifs"><h2>Tarifs</h2><p>Une annonce = 7 jours, payée d’avance par Wave. Plus le niveau est haut, plus l’annonce est vue.</p>
 <table><thead><tr><th>Niveau</th><th>7 jours</th><th>+7 jours</th><th>30 jours</th></tr></thead><tbody>
 <tr class="premium"><td>Premium — tout en haut de sa rubrique, et Bia la cite en premier à la voix</td><td>3 500 F</td><td>3 500 F</td><td>12 000 F</td></tr>
 <tr class="prioritaire"><td>Prioritaire — au-dessus des annonces normales</td><td>2 000 F</td><td>2 000 F</td><td>7 000 F</td></tr>
 <tr><td>Normale — dans sa rubrique, par date</td><td>1 000 F</td><td>1 000 F</td><td>3 500 F</td></tr></tbody></table>
 <p class="note">Professionnels (agences, courtiers, boutiques, vendeurs de véhicules) : forfait 15 000 F par mois, annonces normales illimitées, Prioritaire et Premium à moitié prix. Pendant le lancement, la première annonce de 7 jours est offerte.</p></section><section class="comment" id="comment"><h2>Comment ça marche</h2>
-<div><b>1. Vous parlez</b><p>Dans Bia Xarit, dites « Bia, jaayal ma ». Elle vous demande quoi, où, combien, et prend les photos avec vous. En wolof ou en français.</p></div>
-<div><b>2. KHALAM valide</b><p>Rien n’est publié sans vérification : votre numéro est connu, votre annonce est relue. C’est ce qui fait la différence avec un groupe WhatsApp.</p></div>
-<div><b>3. Elle est en ligne</b><p>Votre annonce a sa page ici, dans sa rubrique, partageable sur WhatsApp, et Bia la propose à tous ceux qui cherchent dans votre quartier.</p></div>
-<div><b>4. On vous contacte</b><p>Les acheteurs vous écrivent directement sur WhatsApp. Vous prolongez ou retirez l’annonce à la voix, quand vous voulez.</p></div></section></main>
-<footer>Jaayal ma est un service de <a href="https://khalam.app">KHALAM</a>, Dakar. Les annonces sont publiées sous la responsabilité de leurs auteurs après validation par KHALAM. · <a href="https://khalam.app/bia">Bia Xarit</a> · <a href="annonces.json">annonces.json</a> (ce que Bia lit)</footer>
+<div><b>1. Vous payez et recevez un code</b><p>1 000 F par Wave pour 7 jours. Le code JM-XXXX arrive aussitôt et ouvre le formulaire. Pendant le lancement, la première annonce est offerte.</p></div>
+<div><b>2. Vous décrivez</b><p>Rubrique, titre, prix, quartier, WhatsApp, 1 à 3 photos. Ou dites simplement « Bia, jaayal ma » : elle remplit tout avec vous, en wolof ou en français.</p></div>
+<div><b>3. KHALAM valide</b><p>Rien n’est publié sans relecture : numéro connu, annonce vérifiée. C’est ce qui fait la différence avec un groupe WhatsApp.</p></div>
+<div><b>4. On vous contacte</b><p>Votre annonce a sa page, dans sa rubrique, partageable sur WhatsApp. Bia la propose à la voix à ceux qui cherchent dans votre quartier.</p></div></section>
+<div class="appel"><div><b>Quelque chose à vendre ?</b><span>7 jours en ligne pour 1 000 F, validée par KHALAM, lue par Bia.</span></div><a class="bdeposer" href="deposer.html">+ Déposer une annonce</a></div>
+</main>
+<footer><div class="int"><span>Jaayal ma est un service de <a href="https://khalam.app">KHALAM</a>, Dakar. Annonces publiées sous la responsabilité de leurs auteurs, après validation par KHALAM.</span><span><a href="deposer.html">Déposer</a> · <a href="index.html#tarifs">Tarifs</a> · <a href="https://khalam.app/bia">Bia Xarit</a> · <a href="annonces.json">annonces.json</a></span></div></footer>
 </body></html>

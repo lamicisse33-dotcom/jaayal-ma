@@ -1,7 +1,7 @@
 {
  "site": "Jaayal ma",
  "source": "https://jaayalma.khalam.app/annonces.json",
- "genere": "2026-11-17",
+ "genere": "2026-11-18",
  "classement": "premium, prioritaire, normale, puis la plus récente",
  "annonces": [
   {
@@ -29,7 +29,15 @@
    "image": "https://jaayalma.khalam.app/img/hyundai-tucson.jpg",
    "whatsapp": "https://wa.me/221770000002?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20ma%20:%20Hyundai%20Tucson%202021,%2048%20000%20km",
    "sous": "Voitures",
-   "fenetre": "vehicules"
+   "fenetre": "vehicules",
+   "etat": "Venant",
+   "details": {
+    "Marque": "Hyundai",
+    "Année": "2021",
+    "Boîte": "Automatique",
+    "Carburant": "Essence",
+    "Kilométrage": "48 000 km"
+   }
   },
   {
    "id": "villa-almadies-4ch",
@@ -56,7 +64,13 @@
    "image": "https://jaayalma.khalam.app/img/villa-almadies.jpg",
    "whatsapp": "https://wa.me/221770000001?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20ma%20:%20Villa%204%20chambres%20avec%20piscine%20—%20Almadies",
    "sous": "Vente",
-   "fenetre": "immobilier"
+   "fenetre": "immobilier",
+   "etat": "",
+   "details": {
+    "Chambres": "4",
+    "Salles de bain": "3",
+    "Titre foncier": "Oui"
+   }
   },
   {
    "id": "tv-samsung-55",
@@ -83,7 +97,12 @@
    "page": "https://jaayalma.khalam.app/a/tv-samsung-55.html",
    "image": "https://jaayalma.khalam.app/img/tv-samsung.jpg",
    "whatsapp": "https://wa.me/221770000011?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20ma%20:%20Télé%20Samsung%2055%20pouces,%204K,%20très%20bon%20état",
-   "fenetre": "electromenager"
+   "fenetre": "electromenager",
+   "etat": "Neuf",
+   "details": {
+    "Marque": "Samsung",
+    "Taille": "55 pouces"
+   }
   },
   {
    "id": "grand-boubou-bazin",
@@ -110,7 +129,12 @@
    "page": "https://jaayalma.khalam.app/a/grand-boubou-bazin.html",
    "image": "https://jaayalma.khalam.app/img/grand-boubou.jpg",
    "whatsapp": "https://wa.me/221770000014?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20ma%20:%20Grand%20boubou%20bazin%20riche%20brodé,%20taille%20L,%20porté%20une%20fois",
-   "fenetre": "mode"
+   "fenetre": "mode",
+   "etat": "Neuf",
+   "details": {
+    "Taille": "XL",
+    "Matière": "Bazin riche"
+   }
   },
   {
    "id": "corolla-2018-pikine",
@@ -137,7 +161,14 @@
    "image": "https://jaayalma.khalam.app/img/toyota-corolla.jpg",
    "whatsapp": "https://wa.me/221770000004?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20ma%20:%20Toyota%20Corolla%202018,%20boîte%20automatique",
    "sous": "Voitures",
-   "fenetre": "vehicules"
+   "fenetre": "vehicules",
+   "etat": "D'occasion",
+   "details": {
+    "Marque": "Toyota",
+    "Année": "2018",
+    "Boîte": "Automatique",
+    "Carburant": "Essence"
+   }
   },
   {
    "id": "appart-mermoz-3p",
@@ -164,7 +195,13 @@
    "image": "https://jaayalma.khalam.app/img/appart-mermoz.jpg",
    "whatsapp": "https://wa.me/221770000003?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20ma%20:%20Appartement%203%20pièces%20meublé%20—%20Mermoz",
    "sous": "Location",
-   "fenetre": "immobilier"
+   "fenetre": "immobilier",
+   "etat": "",
+   "details": {
+    "Pièces": "3",
+    "Étage": "2e",
+    "Meublé": "Non"
+   }
   },
   {
    "id": "boutique-sacre-coeur",
@@ -191,7 +228,9 @@
    "image": "https://jaayalma.khalam.app/img/boutique-sacre-coeur.jpg",
    "whatsapp": "https://wa.me/221770000005?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20ma%20:%20Local%20commercial%2040%20m²%20sur%20grande%20route%20—%20Sacré-Cœur",
    "sous": "Location",
-   "fenetre": "immobilier"
+   "fenetre": "immobilier",
+   "etat": "",
+   "details": {}
   },
   {
    "id": "chambre-pikine-rue10",
@@ -218,7 +257,12 @@
    "image": "https://jaayalma.khalam.app/img/chambre-pikine.jpg",
    "whatsapp": "https://wa.me/221770000006?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20ma%20:%20Chambre%20avec%20douche%20—%20Pikine%20Rue%2010",
    "sous": "Location",
-   "fenetre": "immobilier"
+   "fenetre": "immobilier",
+   "etat": "",
+   "details": {
+    "Pièces": "1",
+    "Meublé": "Non"
+   }
   },
   {
    "id": "ventilateur-binatone",
@@ -245,7 +289,11 @@
    "page": "https://jaayalma.khalam.app/a/ventilateur-binatone.html",
    "image": "https://jaayalma.khalam.app/img/ventilateur.jpg",
    "whatsapp": "https://wa.me/221770000012?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20ma%20:%20Ventilateur%20sur%20pied%20Binatone,%203%20vitesses",
-   "fenetre": "electromenager"
+   "fenetre": "electromenager",
+   "etat": "D'occasion",
+   "details": {
+    "Marque": "Binatone"
+   }
   },
   {
    "id": "frigo-hisense-2-portes",
@@ -272,7 +320,12 @@
    "page": "https://jaayalma.khalam.app/a/frigo-hisense-2-portes.html",
    "image": "https://jaayalma.khalam.app/img/frigo.jpg",
    "whatsapp": "https://wa.me/221770000013?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20ma%20:%20Réfrigérateur%20Hisense%202%20portes,%20260%20L",
-   "fenetre": "electromenager"
+   "fenetre": "electromenager",
+   "etat": "Neuf",
+   "details": {
+    "Marque": "Hisense",
+    "Capacité": "2 portes"
+   }
   },
   {
    "id": "collier-or-18k",
@@ -299,7 +352,12 @@
    "page": "https://jaayalma.khalam.app/a/collier-or-18k.html",
    "image": "https://jaayalma.khalam.app/img/collier-or.jpg",
    "whatsapp": "https://wa.me/221770000016?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20ma%20:%20Collier%20en%20or%2018%20carats%20avec%20pendentif,%2012%20g",
-   "fenetre": "mode"
+   "fenetre": "mode",
+   "etat": "Neuf",
+   "details": {
+    "Or": "18 carats",
+    "Poids": "12 g"
+   }
   },
   {
    "id": "peugeot-308-ouakam",
@@ -326,7 +384,14 @@
    "image": "https://jaayalma.khalam.app/img/peugeot-308.jpg",
    "whatsapp": "https://wa.me/221770000009?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20ma%20:%20Peugeot%20308%202016%20diesel",
    "sous": "Voitures",
-   "fenetre": "vehicules"
+   "fenetre": "vehicules",
+   "etat": "D'occasion",
+   "details": {
+    "Marque": "Peugeot",
+    "Année": "2016",
+    "Boîte": "Manuelle",
+    "Carburant": "Diesel"
+   }
   },
   {
    "id": "montre-homme-cuir",
@@ -353,7 +418,11 @@
    "page": "https://jaayalma.khalam.app/a/montre-homme-cuir.html",
    "image": "https://jaayalma.khalam.app/img/montre.jpg",
    "whatsapp": "https://wa.me/221770000015?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20ma%20:%20Montre%20homme%20bracelet%20cuir,%20cadran%20doré",
-   "fenetre": "mode"
+   "fenetre": "mode",
+   "etat": "Neuf",
+   "details": {
+    "Bracelet": "Cuir"
+   }
   },
   {
    "id": "maison-keur-massar",
@@ -380,7 +449,12 @@
    "image": "https://jaayalma.khalam.app/img/maison-keur-massar.jpg",
    "whatsapp": "https://wa.me/221770000007?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20ma%20:%20Maison%203%20chambres%20sur%20150%20m²%20—%20Keur%20Massar",
    "sous": "Vente",
-   "fenetre": "immobilier"
+   "fenetre": "immobilier",
+   "etat": "",
+   "details": {
+    "Chambres": "3",
+    "Titre foncier": "Bail"
+   }
   },
   {
    "id": "restaurant-ngor-cession",
@@ -407,7 +481,9 @@
    "image": "https://jaayalma.khalam.app/img/restaurant-ngor.jpg",
    "whatsapp": "https://wa.me/221770000010?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20ma%20:%20Cession%20de%20restaurant%20équipé%20—%20Ngor",
    "sous": "Vente",
-   "fenetre": "immobilier"
+   "fenetre": "immobilier",
+   "etat": "",
+   "details": {}
   },
   {
    "id": "terrain-rufisque-300",
@@ -434,7 +510,11 @@
    "image": "https://jaayalma.khalam.app/img/terrain-rufisque.jpg",
    "whatsapp": "https://wa.me/221770000008?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20ma%20:%20Terrain%20300%20m²%20viabilisé%20—%20Rufisque",
    "sous": "Vente",
-   "fenetre": "immobilier"
+   "fenetre": "immobilier",
+   "etat": "",
+   "details": {
+    "Papiers": "Délibération"
+   }
   }
  ],
  "rubriques": {
@@ -451,8 +531,7 @@
    "sous_rubriques": [
     "Vente",
     "Location"
-   ],
-   "famille": "Six pages"
+   ]
   },
   "vehicules": {
    "nom": "Véhicules",
@@ -462,8 +541,7 @@
     "Motos & scooters",
     "Location de voitures",
     "Pièces & pneus"
-   ],
-   "famille": "Six pages"
+   ]
   },
   "electromenager": {
    "nom": "Électroménager & maison",
@@ -473,8 +551,7 @@
     "Télé, téléphones & ordinateurs",
     "Meubles & décoration",
     "Cuisine & ustensiles"
-   ],
-   "famille": "Six pages"
+   ]
   },
   "mode": {
    "nom": "Mode & bijoux",
@@ -484,8 +561,7 @@
     "Bijoux & montres",
     "Tissus & bazin",
     "Beauté & mèches"
-   ],
-   "famille": "Six pages"
+   ]
   },
   "animaux": {
    "nom": "Animaux",
@@ -495,8 +571,7 @@
     "Bœufs & chèvres",
     "Volailles",
     "Chiens & chats"
-   ],
-   "famille": "Six pages"
+   ]
   },
   "services": {
    "nom": "Services & divers",
@@ -508,8 +583,7 @@
     "Sport & loisirs",
     "Bébé & enfants",
     "Matériel pro & BTP"
-   ],
-   "famille": "Six pages"
+   ]
   }
  }
 }
