@@ -2,15 +2,22 @@ name: Régénérer les pages
 on:
   push:
     branches: [main]
-    paths: ["annonces.json", "outils-generer.py"]
+    paths: ["annonces.json", "outils-generer.py", ".github/workflows/*.yml"]
   workflow_dispatch:
+concurrency:
+  group: jaayalma-publication
+  cancel-in-progress: false
 jobs:
   generer:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       contents: write
+      pages: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - name: Régénérer index, rubriques et pages d'annonces depuis annonces.json
         run: python3 outils-generer.py
       - name: Publier
@@ -20,3 +27,7 @@ jobs:
           git add -A
           git diff --cached --quiet || git commit -m "Pages régénérées depuis annonces.json"
           git push
+      - name: Mettre les pages régénérées en ligne
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds" --silent

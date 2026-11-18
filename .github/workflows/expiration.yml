@@ -3,13 +3,20 @@ on:
   schedule:
     - cron: "17 3 * * *"
   workflow_dispatch:
+concurrency:
+  group: jaayalma-publication
+  cancel-in-progress: false
 jobs:
   expirer:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       contents: write
+      pages: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - name: Retirer les annonces dont la date est passée
         run: |
           python3 - <<'PY'
@@ -27,6 +34,8 @@ jobs:
           json.dump(d, open('annonces.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
           print(f"{avant - len(gardees)} annonce(s) retirée(s)")
           PY
+      - name: Régénérer toutes les pages après expiration
+        run: python3 outils-generer.py
       - name: Publier
         run: |
           git config user.name "Jaayal ma"
@@ -34,3 +43,7 @@ jobs:
           git add -A
           git diff --cached --quiet || git commit -m "Annonces expirées retirées ($(date -u +%F))"
           git push
+      - name: Mettre le retrait des annonces expirées en ligne
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds" --silent

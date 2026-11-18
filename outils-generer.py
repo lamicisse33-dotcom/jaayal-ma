@@ -384,6 +384,13 @@ if(navigator.clipboard&&navigator.clipboard.writeText){{navigator.clipboard.writ
     desc = f"{a['titre']} — {F(a['prix'])}{a['unite']}, {a['quartier']}. {a['desc'][:120]}"
     open(f"a/{a['id']}.html", 'w', encoding='utf-8').write(squelette(f"{a['titre']} — {F(a['prix'])}{a['unite']} à {a['quartier']} | Jaayal ma", desc, corps, '../', f"a/{a['id']}.html"))
 
+# Retirer les anciennes pages d'annonces qui ne figurent plus dans la source.
+pages_attendues = {f"{a['id']}.html" for a in A}
+for nom in os.listdir('a'):
+    chemin = os.path.join('a', nom)
+    if nom.endswith('.html') and nom not in pages_attendues and os.path.isfile(chemin):
+        os.remove(chemin)
+
 # ── annonces.json : ce que Bia lit (fenêtres documentées) ─────────────────────────────────────
 D['annonces'] = A
 D['fenetres'] = {k: {'nom': n, 'description': d, 'sous_rubriques': s} for k, n, d, s in FENETRES}
