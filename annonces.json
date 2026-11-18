@@ -5,6 +5,39 @@
  "classement": "premium, prioritaire, normale, puis la plus récente",
  "annonces": [
   {
+   "id": "ecran-120-pouces-parcelle",
+   "niveau": "normale",
+   "type": "vente",
+   "cat": "bazar",
+   "titre": "Écran 120 pouces",
+   "titre_wo": "Écran 120 pouces",
+   "quartier": "parcelle",
+   "prix": 300000,
+   "unite": "",
+   "surface": "",
+   "desc": "écran 120 pouces",
+   "photos": [
+    "ecran-120-pouces-parcelle-1.jpg"
+   ],
+   "tel": "",
+   "vendeur": "",
+   "pro": false,
+   "jours": 7,
+   "depuis": "2026-11-18",
+   "expire": "2026-11-25",
+   "page": "https://jaayalma.khalam.app/a/ecran-120-pouces-parcelle.html",
+   "image": "https://jaayalma.khalam.app/img/ecran-120-pouces-parcelle-1.jpg",
+   "whatsapp": "",
+   "sous": "Électroménager",
+   "fenetre": "electromenager",
+   "etat": "",
+   "details": {},
+   "urgent": true,
+   "anonyme": true,
+   "facture": "",
+   "urgent_jusqu": "2026-11-20"
+  },
+  {
    "id": "montre-homme-cuir",
    "niveau": "normale",
    "type": "vente",
@@ -684,5 +717,5 @@
    ]
   }
  },
- "relais_whatsapp": ""
+ "relais_whatsapp": "221773728383"
 }
