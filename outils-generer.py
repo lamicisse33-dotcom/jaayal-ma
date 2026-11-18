@@ -331,7 +331,7 @@ def attrs(a):
     if not items and a['sous']: items = [E(a['sous'])]
     return f'<div class="attrs">{"".join(f"<span>{x}</span>" for x in items)}</div>' if items else ''
 def carte(a, prefix):
-    niv = NIV.get(a['niveau'], ''); badge = '<span class="badge urgent">Urgent · 48 h</span>' if a['urgent_actif'] else (f'<span class="badge {a["niveau"]}">{niv}</span>' if niv else '')
+    niv = NIV.get(a['niveau'], ''); badge = '<span class="badge urgent">Vente rapide</span>' if a['urgent_actif'] else (f'<span class="badge {a["niveau"]}">{niv}</span>' if niv else '')
     visuel = f'<img src="{prefix}img/{a["photos"][0]}" alt="{E(a["titre"])}" loading="lazy">' if a['photos'] else '<div class="nophoto">Pas de photo</div>'
     nb = f'<span class="nbph">📷 {len(a["photos"])}</span>' if len(a['photos']) > 1 else ''
     data = f'data-q="{E(a["quartier"])}" data-s="{E(a["sous"])}" data-f="{a["fenetre"]}" data-p="{a["prix"]}" data-d="{a.get("depuis","")}" data-r="{rang(a)}" data-t="{E((a["titre"]+" "+a["titre_wo"]+" "+a["desc"]+" "+a["quartier"]+" "+a["sous"]).lower())}"'
@@ -382,18 +382,17 @@ def grille(items, prefix, vide_txt):
 def tuile(k):
     n, d, s = FEN[k]; items = [a for a in A if a['fenetre'] == k]
     apercu = ''.join(f'<img src="img/{a["photos"][0]}" alt="" loading="lazy">' for a in items[:4] if a['photos'])
-    compte = f'{len(items)} annonce{"s" if len(items)>1 else ""}' if items else '<em>Bientôt vos annonces</em>'
+    compte = f'{len(items)} annonce{"s" if len(items)>1 else ""}' if items else '<em>Déposez gratuitement</em>'
     return f'<a class="fenetre" href="r/{k}.html"><b>{E(n)}</b><span>{E(d)}</span>{f"<div class=apercu>{apercu}</div>" if apercu else ""}<div class="n"><span>{compte}</span><span>→</span></div></a>'
-TARIFS = '''<section class="tarifs" id="tarifs"><h2>Tarifs</h2><p>Une annonce = 7 jours, payée d’avance par Wave. Plus le niveau est haut, plus l’annonce est vue.</p>
-<table><thead><tr><th>Niveau</th><th>7 jours</th><th>+7 jours</th><th>30 jours</th></tr></thead><tbody>
-<tr class="premium"><td>Premium — tout en haut de sa rubrique, et Bia la cite en premier à la voix</td><td>3 500 F</td><td>3 500 F</td><td>12 000 F</td></tr>
-<tr class="prioritaire"><td>Prioritaire — au-dessus des annonces normales</td><td>2 000 F</td><td>2 000 F</td><td>7 000 F</td></tr>
-<tr class="prioritaire"><td>Vente urgente — 48 h en tête de rubrique, prix ferme, vendeur discret si demandé (identité connue de KHALAM), puis Normale jusqu'au 7ᵉ jour</td><td>2 000 F</td><td>—</td><td>—</td></tr>
-<tr><td>Normale — dans sa rubrique, par date</td><td>1 000 F</td><td>1 000 F</td><td>3 500 F</td></tr></tbody></table>
-<p class="note">Professionnels (agences, courtiers, boutiques, vendeurs de véhicules) : forfait 15 000 F par mois, annonces normales illimitées, Prioritaire et Premium à moitié prix. Pendant le lancement, la première annonce de 7 jours est offerte.</p></section>'''
+TARIFS = '''<section class="tarifs" id="tarifs"><h2>Tarifs</h2><p>Toutes les annonces restent en ligne 30 jours, après vérification par KHALAM. L’annonce simple est gratuite, sans code.</p>
+<table><thead><tr><th>Formule</th><th>30 jours</th></tr></thead><tbody>
+<tr><td><b>Annonce simple</b> — dans sa rubrique, par date</td><td>Gratuit</td></tr>
+<tr class="prioritaire"><td><b>Vente rapide</b> — en tête de sa rubrique pendant 30 jours</td><td>2 000 F</td></tr>
+<tr class="premium"><td><b>Vente rapide + discrétion</b> — en tête 30 jours, votre nom et votre numéro restent cachés : les acheteurs écrivent à KHALAM, qui vous transmet</td><td>3 000 F</td></tr></tbody></table>
+<p class="note">Vente rapide : payée par Wave (ou code donné par KHALAM). Pour les bijoux, montres, téléphones et ordinateurs, une photo de la facture ou de la boîte est demandée ; sinon l’annonce porte la mention « sans facture ».</p></section>'''
 COMMENT = '''<section class="comment" id="comment"><h2>Comment ça marche</h2>
-<div><b>1. Vous payez et recevez un code</b><p>1 000 F par Wave pour 7 jours. Le code JM-XXXX arrive aussitôt et ouvre le formulaire. Pendant le lancement, la première annonce est offerte.</p></div>
-<div><b>2. Vous décrivez</b><p>Rubrique, titre, prix, quartier, WhatsApp, 1 à 3 photos. Ou dites simplement « Bia, jaayal ma » : elle remplit tout avec vous, en wolof ou en français.</p></div>
+<div><b>1. Vous décrivez</b><p>Rubrique, titre, prix, quartier, WhatsApp, 1 à 3 photos. Ou dites simplement « Bia, jaayal ma » : elle remplit tout avec vous, en wolof ou en français.</p></div>
+<div><b>2. Gratuit, ou plus vite</b><p>L’annonce simple est gratuite, sans code. Pour vendre plus vite, la Vente rapide (2 000 F) la garde en tête 30 jours ; avec la discrétion (3 000 F), personne ne sait que c’est vous.</p></div>
 <div><b>3. KHALAM valide</b><p>Rien n’est publié sans relecture : numéro connu, annonce vérifiée. C’est ce qui fait la différence avec un groupe WhatsApp.</p></div>
 <div><b>4. On vous contacte</b><p>Votre annonce a sa page, dans sa rubrique, partageable sur WhatsApp. Bia la propose à la voix à ceux qui cherchent dans votre quartier.</p></div></section>'''
 recentes = sorted(A, key=lambda a: a.get('depuis', ''), reverse=True)[:8]
@@ -401,14 +400,14 @@ urgentes = [a for a in A if a['urgent_actif']][:4]
 index = f'''{entete('', 'accueil')}
 <section class="hero int"><h1>Tout se vend à Dakar. Ici, <em>chaque chose a sa page</em>.</h1>
 <p>Six rubriques, des annonces relues par KHALAM avant publication, le vendeur joignable sur WhatsApp. Et Bia Xarit les propose à la voix à ceux qui cherchent.</p>
-<div class="dire"><i>B</i><span>Pour déposer : dites <b>« Bia, jaayal ma »</b>, ou <a href="deposer.html" style="font-weight:600">déposez ici</a></span></div></section>
+<div class="dire"><i>B</i><span><b>Déposer est gratuit.</b> Dites <b>« Bia, jaayal ma »</b>, ou <a href="deposer.html" style="font-weight:600">déposez ici</a></span></div></section>
 <main class="int" id="fenetres">
 <h2 class="sec">Rubriques</h2><div class="fenetres">{''.join(tuile(k) for k,_,_,_ in FENETRES)}</div>
-{f'<section class="urgences"><h2 class="sec">Ventes urgentes <span style="font:500 0.8125rem var(--texte);color:var(--doux)">prix ferme, 48 h en tête</span></h2><div class="grille">{"".join(carte(a, "") for a in urgentes)}</div></section>' if urgentes else ''}
+{f'<section class="urgences"><h2 class="sec">Ventes rapides <span style="font:500 0.8125rem var(--texte);color:var(--doux)">en tête pendant 30 jours</span></h2><div class="grille">{"".join(carte(a, "") for a in urgentes)}</div></section>' if urgentes else ''}
 <h2 class="sec">Dernières annonces <a href="recherche.html">Tout voir →</a></h2>
-<div class="grille">{''.join(carte(a, '') for a in recentes) if recentes else '<div class="vide"><b>Pas encore d’annonce</b>Soyez le premier : la première annonce est offerte.</div>'}</div>
+<div class="grille">{''.join(carte(a, '') for a in recentes) if recentes else '<div class="vide"><b>Pas encore d’annonce</b>Soyez le premier : déposer est gratuit.</div>'}</div>
 {TARIFS}{COMMENT}
-<div class="appel"><div><b>Quelque chose à vendre ?</b><span>7 jours en ligne pour 1 000 F, validée par KHALAM, lue par Bia.</span></div><a class="bdeposer" href="deposer.html">+ Déposer une annonce</a></div>
+<div class="appel"><div><b>Quelque chose à vendre ?</b><span>Gratuit, 30 jours en ligne, vérifiée par KHALAM, lue par Bia.</span></div><a class="bdeposer" href="deposer.html">+ Déposer une annonce</a></div>
 </main>
 {pied('')}'''
 open('index.html', 'w', encoding='utf-8').write(squelette('Jaayal ma — les annonces de Dakar validées par KHALAM', 'Jaayal ma — les annonces de Dakar validées par KHALAM, rubrique par rubrique : immobilier, véhicules, électroménager, mode et bijoux, animaux, services. Dites « Bia, jaayal ma ».', index, '', ''))
@@ -417,7 +416,7 @@ open('index.html', 'w', encoding='utf-8').write(squelette('Jaayal ma — les ann
 rech = f'''{entete('', None)}
 <div class="int"><p class="fil"><a href="index.html">Jaayal ma</a> › Recherche</p><div class="tete"><h1>Toutes les annonces</h1></div><p class="sous-titre">Les mots cherchés s’appliquent au titre, à la description, au quartier et à la rubrique.</p></div>
 {filtres(A, [], avec_rubrique=True)}
-<main class="int">{grille(A, '', '<div class="vide"><b>Pas encore d’annonce</b>Soyez le premier : la première annonce est offerte.</div>')}</main>
+<main class="int">{grille(A, '', '<div class="vide"><b>Pas encore d’annonce</b>Soyez le premier : déposer est gratuit.</div>')}</main>
 {pied('')}{SCRIPT_FILTRES}
 <script>(function(){{var q=new URLSearchParams(location.search).get('q');var i=document.querySelector('.cherche input');if(q&&i)i.value=q;}})();</script>'''
 open('recherche.html', 'w', encoding='utf-8').write(squelette('Recherche — Jaayal ma', 'Recherchez parmi toutes les annonces Jaayal ma.', rech, '', 'recherche.html'))
@@ -426,18 +425,18 @@ open('recherche.html', 'w', encoding='utf-8').write(squelette('Recherche — Jaa
 os.makedirs('r', exist_ok=True); os.makedirs('a', exist_ok=True)
 for k, (n, d, s) in FEN.items():
     items = [a for a in A if a['fenetre'] == k]
-    vide = f'<div class="vide"><b>Pas encore d’annonce dans {E(n)}</b>Soyez le premier : <a href="../deposer.html">déposez ici</a> ou dites « Bia, jaayal ma ». Pendant le lancement, la première annonce de 7 jours est offerte.</div>'
+    vide = f'<div class="vide"><b>Pas encore d’annonce dans {E(n)}</b>Soyez le premier : <a href="../deposer.html">déposez ici</a> ou dites « Bia, jaayal ma ». C’est gratuit.</div>'
     corps = f'''{entete('../', k)}
 <div class="int"><p class="fil"><a href="../index.html">Jaayal ma</a> › <span>{E(n)}</span></p>
-<div class="tete"><h1>{E(n)}</h1></div><p class="sous-titre">{E(d)} Classement : Premium, Prioritaire, puis par date.</p></div>
+<div class="tete"><h1>{E(n)}</h1></div><p class="sous-titre">{E(d)} Classement : Ventes rapides en tête, puis par date.</p></div>
 {filtres(items, s)}
 <main class="int">{grille(items, '../', vide)}
-<div class="appel"><div><b>Vous vendez dans {E(n)} ?</b><span>7 jours en ligne pour 1 000 F, validée par KHALAM, lue par Bia.</span></div><a class="bdeposer" href="../deposer.html">+ Déposer une annonce</a></div></main>
+<div class="appel"><div><b>Vous vendez dans {E(n)} ?</b><span>Gratuit, 30 jours en ligne, vérifiée par KHALAM, lue par Bia.</span></div><a class="bdeposer" href="../deposer.html">+ Déposer une annonce</a></div></main>
 {pied('../')}{SCRIPT_FILTRES}'''
     open(f'r/{k}.html', 'w', encoding='utf-8').write(squelette(f'{n} — Jaayal ma', f'{n} à Dakar : {d} Annonces validées par KHALAM.', corps, '../', f'r/{k}.html'))
 
 # ── Pages annonces ────────────────────────────────────────────────────────────────────────────
-SECURITE = '''<div class="securite"><b>Conseils de sécurité</b><ul><li>Rencontrez le vendeur en personne, dans un lieu public, avant tout paiement.</li><li>Vérifiez le bien (papiers, état, fonctionnement) avant de payer.</li><li>Ne versez jamais d’acompte à distance ; un paiement Wave se vérifie dans l’application, pas par SMS.</li><li>Bijoux, montres, téléphones : demandez la facture ou la boîte ; une « vente urgente » sans facture se paie en main propre, après vérification.</li><li>Un doute ? Écrivez à KHALAM depuis Bia Xarit.</li></ul></div>'''
+SECURITE = '''<div class="securite"><b>Conseils de sécurité</b><ul><li>Rencontrez le vendeur en personne, dans un lieu public, avant tout paiement.</li><li>Vérifiez le bien (papiers, état, fonctionnement) avant de payer.</li><li>Ne versez jamais d’acompte à distance ; un paiement Wave se vérifie dans l’application, pas par SMS.</li><li>Bijoux, montres, téléphones : demandez la facture ou la boîte ; une vente sans facture se paie en main propre, après vérification.</li><li>Un doute ? Écrivez à KHALAM depuis Bia Xarit.</li></ul></div>'''
 def bloc_vendeur(a):
     if a['anonyme']:
         msg = f"Bonjour KHALAM, je suis intéressé par l'annonce {a['id']} ({a['titre']}) sur Jaayal ma."
@@ -456,7 +455,7 @@ for a in A:
     photos = a['photos']
     galerie = (f'<img class="grande" id="grande" src="../img/{photos[0]}" alt="{E(a["titre"])}">' if photos else '<div class="nophoto">Pas de photo</div>')
     vign = ('<div class="vignettes">' + ''.join(f'<img src="../img/{p_}" alt="photo {i_+1}" data-i="{i_}"{" aria-current=true" if i_==0 else ""}>' for i_, p_ in enumerate(photos)) + '</div>') if len(photos) > 1 else ''
-    etiq = ('<span class="etiq urgent">Urgent · vente rapide</span><span class="etiq ferme">Prix ferme</span>' if a['urgent_actif'] else '') + (f'<span class="etiq {a["niveau"]}">{niv}</span>' if niv else '') + f'<span class="etiq offre">{TYPE.get(a["type"],"")}</span>'
+    etiq = ('<span class="etiq urgent">Vente rapide</span>' if a['urgent_actif'] else '') + (f'<span class="etiq {a["niveau"]}">{niv}</span>' if niv else '') + f'<span class="etiq offre">{TYPE.get(a["type"],"")}</span>'
     lignes = [("Type", TYPE.get(a['type'], ''))] + ([("État", E(a['etat']))] if a['etat'] else []) + [(E(k_), E(str(v_))) for k_, v_ in a['details'].items() if v_] + [ ("Rubrique", f'<a href="../r/{a["fenetre"]}.html">{E(fn)}</a>'), ("Sous-rubrique", E(a['sous'])), ("Quartier", E(a['quartier']))]
     if a['surface']: lignes.append(("Surface", E(str(a['surface']))))
     lignes += [("Vendeur", 'Professionnel' if a['pro'] else 'Particulier'), ("Publiée le", dmy(a['depuis'])), ("En ligne jusqu’au", dmy(a['expire'])), ("Référence", a['id'])]
