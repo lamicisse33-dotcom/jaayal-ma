@@ -1,6 +1,6 @@
 # Jaayal Ma Lii — les annonces de Dakar validées par KHALAM
 
-Site statique (GitHub Pages) servi sur **jaayalmalii.khalam.app**. Le site EST la base des annonces :
+Site statique (GitHub Pages) servi sur **jaayalma.khalam.app**. Le site EST la base des annonces :
 `annonces.json` est ce que Bia Xarit lit, les pages `a/*.html` sont les annonces, `r/*.html` les six rubriques.
 
 - Rien n'est publié sans validation par KHALAM : le serveur de Bia (app.khalam.app) reçoit les dépôts
