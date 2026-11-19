@@ -38,7 +38,7 @@ jobs:
         run: python3 outils-generer.py
       - name: Publier
         run: |
-          git config user.name "Jaayal ma"
+          git config user.name "Jaayal Ma Lii"
           git config user.email "noreply@khalam.app"
           git add -A
           git diff --cached --quiet || git commit -m "Annonces expirées retirées ($(date -u +%F))"
