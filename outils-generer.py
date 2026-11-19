@@ -300,12 +300,15 @@ WA_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1
 
 def squelette(titre, desc, corps, prefix, canon, noindex=False):
     robots = '<meta name="robots" content="noindex,follow">' if (noindex or not INDEXABLE) else '<meta name="robots" content="index,follow,max-image-preview:large">'
+    schema_site = ('<script type="application/ld+json">'+json.dumps({'@context':'https://schema.org','@type':'WebSite','name':'Jaayal Ma','url':SITE+'/','inLanguage':'fr-SN','publisher':{'@type':'Organization','name':'KHALAM','url':'https://khalam.app/'}},ensure_ascii=False)+'</script>') if canon == '' else ''
     return f'''<!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">{robots}
 <title>{E(titre)}</title>
 <meta name="description" content="{E(desc)}">
 <link rel="canonical" href="{SITE}/{canon}">
+<meta property="og:type" content="website"><meta property="og:url" content="{SITE}/{canon}"><meta property="og:locale" content="fr_SN"><meta name="twitter:card" content="summary">
 <meta property="og:title" content="{E(titre)}"><meta property="og:description" content="{E(desc)}"><meta property="og:site_name" content="Jaayal ma">
+{schema_site}
 {HEAD}{CSS}
 </head><body>
 {corps}
@@ -410,7 +413,7 @@ index = f'''{entete('', 'accueil')}
 <div class="appel"><div><b>Quelque chose à vendre ?</b><span>Gratuit, 30 jours en ligne, vérifiée par KHALAM, lue par Bia.</span></div><a class="bdeposer" href="deposer.html">+ Déposer une annonce</a></div>
 </main>
 {pied('')}'''
-open('index.html', 'w', encoding='utf-8').write(squelette('Jaayal ma — les annonces de Dakar validées par KHALAM', 'Jaayal ma — les annonces de Dakar validées par KHALAM, rubrique par rubrique : immobilier, véhicules, électroménager, mode et bijoux, animaux, services. Dites « Bia, jaayal ma ».', index, '', ''))
+open('index.html', 'w', encoding='utf-8').write(squelette('Petites annonces gratuites à Dakar et au Sénégal | Jaayal Ma', 'Petites annonces gratuites à Dakar et au Sénégal | Jaayal Ma, rubrique par rubrique : immobilier, véhicules, électroménager, mode et bijoux, animaux, services. Dites « Bia, jaayal ma ».', index, '', ''))
 
 # ── Recherche (toutes les annonces, filtre par mots ?q=) ──────────────────────────────────────
 rech = f'''{entete('', None)}
