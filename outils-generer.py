@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-# Jaayal ma — générateur du site statique à partir d'annonces.json.
+# Jaayal Ma Lii — générateur du site statique à partir d'annonces.json.
 # Produit : index.html, recherche.html, r/<fenetre>.html (6 rubriques), a/<id>.html (une page par annonce).
 # Tout le style est ici : les six rubriques et toutes les annonces partagent exactement le même squelette.
 import json, html, re, datetime, os
 
 PREPARATION = True   # bandeau « exemples » tant qu'il reste des annonces d'exemple
 INDEXABLE = True     # décision du 18 nov. : le site est sur Google dès maintenant ; seules les annonces d'exemple restent en noindex   # True = noindex + bandeau « Site en préparation ». Passer à False quand les vraies annonces remplacent les exemples.
-SITE = "https://jaayalma.khalam.app"
+SITE = "https://jaayalmalii.khalam.app"
 
 D = json.load(open('annonces.json', encoding='utf-8')); A = D['annonces']
 E = html.escape
@@ -35,7 +35,7 @@ for a in A:
     a.setdefault('photos', []); a.setdefault('surface', ''); a.setdefault('titre_wo', ''); a.setdefault('pro', False); a.setdefault('unite', ''); a.setdefault('etat', ''); a.setdefault('details', {}); a.setdefault('urgent', False); a.setdefault('anonyme', False); a.setdefault('facture', ''); a.setdefault('urgent_jusqu', ''); a.setdefault('vendeur', '')
     a['page'] = f"{SITE}/a/{a['id']}.html"; a['image'] = f"{SITE}/img/{a['photos'][0]}" if a['photos'] else ''
 def classer(liste): return sorted(liste, key=lambda a: (RANG.get(a['niveau'], 2), a.get('depuis', '')), reverse=False) and sorted(liste, key=lambda a: (RANG.get(a['niveau'], 2), -int(a.get('depuis', '2000-01-01').replace('-', ''))))
-RELAIS = D.get('relais_whatsapp', '')   # numéro WhatsApp Jaayal ma de KHALAM (chiffres, ex. 2217XXXXXXX), posé par le serveur
+RELAIS = D.get('relais_whatsapp', '')   # numéro WhatsApp Jaayal Ma Lii de KHALAM (chiffres, ex. 2217XXXXXXX), posé par le serveur
 AUJ = datetime.date.today().isoformat()
 for a in A:
     a['urgent_actif'] = bool(a['urgent']) and (not a['urgent_jusqu'] or a['urgent_jusqu'] >= AUJ)
@@ -300,14 +300,14 @@ WA_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1
 
 def squelette(titre, desc, corps, prefix, canon, noindex=False):
     robots = '<meta name="robots" content="noindex,follow">' if (noindex or not INDEXABLE) else '<meta name="robots" content="index,follow,max-image-preview:large">'
-    schema_site = ('<script type="application/ld+json">'+json.dumps({'@context':'https://schema.org','@type':'WebSite','name':'Jaayal Ma','url':SITE+'/','inLanguage':'fr-SN','publisher':{'@type':'Organization','name':'KHALAM','url':'https://khalam.app/'}},ensure_ascii=False)+'</script>') if canon == '' else ''
+    schema_site = ('<script type="application/ld+json">'+json.dumps({'@context':'https://schema.org','@type':'WebSite','name':'Jaayal Ma Lii','url':SITE+'/','inLanguage':'fr-SN','publisher':{'@type':'Organization','name':'KHALAM','url':'https://khalam.app/'}},ensure_ascii=False)+'</script>') if canon == '' else ''
     return f'''<!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">{robots}
 <title>{E(titre)}</title>
 <meta name="description" content="{E(desc)}">
 <link rel="canonical" href="{SITE}/{canon}">
 <meta property="og:type" content="website"><meta property="og:url" content="{SITE}/{canon}"><meta property="og:locale" content="fr_SN"><meta name="twitter:card" content="summary">
-<meta property="og:title" content="{E(titre)}"><meta property="og:description" content="{E(desc)}"><meta property="og:site_name" content="Jaayal ma">
+<meta property="og:title" content="{E(titre)}"><meta property="og:description" content="{E(desc)}"><meta property="og:site_name" content="Jaayal Ma Lii">
 {schema_site}
 {HEAD}{CSS}
 </head><body>
@@ -319,14 +319,14 @@ def entete(prefix, actif=None, q=''):
     ruban = ''.join(f'<a href="{prefix}r/{k}.html"{" aria-current=page" if k==actif else ""}>{E(n)}</a>' for k, n, _, _ in FENETRES)
     return f'''{bandeau}
 <header class="bande"><div class="int">
-<a class="marque" href="{prefix}index.html"><b>Jaayal ma</b><span>par KHALAM</span></a>
+<a class="marque" href="{prefix}index.html"><b>Jaayal Ma Lii</b><span>par KHALAM</span></a>
 <form class="cherche" action="{prefix}recherche.html" method="get" role="search"><input type="search" name="q" value="{E(q)}" placeholder="Que cherchez-vous ? (ex. frigo, Pikine, Corolla)" aria-label="Rechercher une annonce"><button type="submit">Chercher</button></form>
 <a class="bdeposer" href="{prefix}deposer.html">+ Déposer une annonce</a>
 </div></header>
 <nav class="ruban" aria-label="Rubriques"><div class="int"><a href="{prefix}index.html"{" aria-current=page" if actif=="accueil" else ""}>Accueil</a>{ruban}</div></nav>'''
 
 def pied(prefix):
-    return f'''<footer><div class="int"><span>Jaayal ma est un service de <a href="https://khalam.app">KHALAM</a>, Dakar. Annonces publiées sous la responsabilité de leurs auteurs, après validation par KHALAM.</span><span><a href="{prefix}deposer.html">Déposer</a> · <a href="{prefix}index.html#tarifs">Tarifs</a> · <a href="https://khalam.app/bia">Bia Xarit</a> · <a href="{prefix}annonces.json">annonces.json</a></span></div></footer>'''
+    return f'''<footer><div class="int"><span>Jaayal Ma Lii est un service de <a href="https://khalam.app">KHALAM</a>, Dakar. Annonces publiées sous la responsabilité de leurs auteurs, après validation par KHALAM.</span><span><a href="{prefix}deposer.html">Déposer</a> · <a href="{prefix}index.html#tarifs">Tarifs</a> · <a href="https://khalam.app/bia">Bia Xarit</a> · <a href="{prefix}annonces.json">annonces.json</a></span></div></footer>'''
 
 def attrs(a):
     NUES = {'marque','année','annee','boîte','boite','carburant','kilométrage','kilometrage','taille','matière','matiere','modèle','modele'}
@@ -394,7 +394,7 @@ TARIFS = '''<section class="tarifs" id="tarifs"><h2>Tarifs</h2><p>Toutes les ann
 <tr class="premium"><td><b>Vente rapide + discrétion</b> — en tête 30 jours, votre nom et votre numéro restent cachés : les acheteurs écrivent à KHALAM, qui vous transmet</td><td>3 000 F</td></tr></tbody></table>
 <p class="note">Vente rapide : payée par Wave (ou code donné par KHALAM). Pour les bijoux, montres, téléphones et ordinateurs, une photo de la facture ou de la boîte est demandée ; sinon l’annonce porte la mention « sans facture ».</p></section>'''
 COMMENT = '''<section class="comment" id="comment"><h2>Comment ça marche</h2>
-<div><b>1. Vous décrivez</b><p>Rubrique, titre, prix, quartier, WhatsApp, 1 à 3 photos. Ou dites simplement « Bia, jaayal ma » : elle remplit tout avec vous, en wolof ou en français.</p></div>
+<div><b>1. Vous décrivez</b><p>Rubrique, titre, prix, quartier, WhatsApp, 1 à 3 photos. Ou dites simplement « Bia, Jaayal Ma Lii » : elle remplit tout avec vous, en wolof ou en français.</p></div>
 <div><b>2. Gratuit, ou plus vite</b><p>L’annonce simple est gratuite, sans code. Pour vendre plus vite, la Vente rapide (2 000 F) la garde en tête 30 jours ; avec la discrétion (3 000 F), personne ne sait que c’est vous.</p></div>
 <div><b>3. KHALAM valide</b><p>Rien n’est publié sans relecture : numéro connu, annonce vérifiée. C’est ce qui fait la différence avec un groupe WhatsApp.</p></div>
 <div><b>4. On vous contacte</b><p>Votre annonce a sa page, dans sa rubrique, partageable sur WhatsApp. Bia la propose à la voix à ceux qui cherchent dans votre quartier.</p></div></section>'''
@@ -403,7 +403,7 @@ urgentes = [a for a in A if a['urgent_actif']][:4]
 index = f'''{entete('', 'accueil')}
 <section class="hero int"><h1>Tout se vend à Dakar. Ici, <em>chaque chose a sa page</em>.</h1>
 <p>Six rubriques, des annonces relues par KHALAM avant publication, le vendeur joignable sur WhatsApp. Et Bia Xarit les propose à la voix à ceux qui cherchent.</p>
-<div class="dire"><i>B</i><span><b>Déposer est gratuit.</b> Dites <b>« Bia, jaayal ma »</b>, ou <a href="deposer.html" style="font-weight:600">déposez ici</a></span></div></section>
+<div class="dire"><i>B</i><span><b>Déposer est gratuit.</b> Dites <b>« Bia, Jaayal Ma Lii »</b>, ou <a href="deposer.html" style="font-weight:600">déposez ici</a></span></div></section>
 <main class="int" id="fenetres">
 <h2 class="sec">Rubriques</h2><div class="fenetres">{''.join(tuile(k) for k,_,_,_ in FENETRES)}</div>
 {f'<section class="urgences"><h2 class="sec">Ventes rapides <span style="font:500 0.8125rem var(--texte);color:var(--doux)">en tête pendant 30 jours</span></h2><div class="grille">{"".join(carte(a, "") for a in urgentes)}</div></section>' if urgentes else ''}
@@ -413,36 +413,36 @@ index = f'''{entete('', 'accueil')}
 <div class="appel"><div><b>Quelque chose à vendre ?</b><span>Gratuit, 30 jours en ligne, vérifiée par KHALAM, lue par Bia.</span></div><a class="bdeposer" href="deposer.html">+ Déposer une annonce</a></div>
 </main>
 {pied('')}'''
-open('index.html', 'w', encoding='utf-8').write(squelette('Petites annonces gratuites à Dakar et au Sénégal | Jaayal Ma', 'Achetez, vendez et déposez gratuitement vos annonces au Sénégal avec Jaayal Ma par KHALAM : immobilier, voitures, téléphones, électroménager et services à Dakar.', index, '', ''))
+open('index.html', 'w', encoding='utf-8').write(squelette('Petites annonces gratuites à Dakar et au Sénégal | Jaayal Ma Lii', 'Achetez, vendez et déposez gratuitement vos annonces au Sénégal avec Jaayal Ma Lii par KHALAM : immobilier, voitures, téléphones, électroménager et services à Dakar.', index, '', ''))
 
 # ── Recherche (toutes les annonces, filtre par mots ?q=) ──────────────────────────────────────
 rech = f'''{entete('', None)}
-<div class="int"><p class="fil"><a href="index.html">Jaayal ma</a> › Recherche</p><div class="tete"><h1>Toutes les annonces</h1></div><p class="sous-titre">Les mots cherchés s’appliquent au titre, à la description, au quartier et à la rubrique.</p></div>
+<div class="int"><p class="fil"><a href="index.html">Jaayal Ma Lii</a> › Recherche</p><div class="tete"><h1>Toutes les annonces</h1></div><p class="sous-titre">Les mots cherchés s’appliquent au titre, à la description, au quartier et à la rubrique.</p></div>
 {filtres(A, [], avec_rubrique=True)}
 <main class="int">{grille(A, '', '<div class="vide"><b>Pas encore d’annonce</b>Soyez le premier : déposer est gratuit.</div>')}</main>
 {pied('')}{SCRIPT_FILTRES}
 <script>(function(){{var q=new URLSearchParams(location.search).get('q');var i=document.querySelector('.cherche input');if(q&&i)i.value=q;}})();</script>'''
-open('recherche.html', 'w', encoding='utf-8').write(squelette('Recherche — Jaayal ma', 'Recherchez parmi toutes les annonces Jaayal ma.', rech, '', 'recherche.html'))
+open('recherche.html', 'w', encoding='utf-8').write(squelette('Recherche — Jaayal Ma Lii', 'Recherchez parmi toutes les annonces Jaayal Ma Lii.', rech, '', 'recherche.html'))
 
 # ── Les six rubriques : exactement la même page ───────────────────────────────────────────────
 os.makedirs('r', exist_ok=True); os.makedirs('a', exist_ok=True)
 for k, (n, d, s) in FEN.items():
     items = [a for a in A if a['fenetre'] == k]
-    vide = f'<div class="vide"><b>Pas encore d’annonce dans {E(n)}</b>Soyez le premier : <a href="../deposer.html">déposez ici</a> ou dites « Bia, jaayal ma ». C’est gratuit.</div>'
+    vide = f'<div class="vide"><b>Pas encore d’annonce dans {E(n)}</b>Soyez le premier : <a href="../deposer.html">déposez ici</a> ou dites « Bia, Jaayal Ma Lii ». C’est gratuit.</div>'
     corps = f'''{entete('../', k)}
-<div class="int"><p class="fil"><a href="../index.html">Jaayal ma</a> › <span>{E(n)}</span></p>
+<div class="int"><p class="fil"><a href="../index.html">Jaayal Ma Lii</a> › <span>{E(n)}</span></p>
 <div class="tete"><h1>{E(n)}</h1></div><p class="sous-titre">{E(d)} Classement : Ventes rapides en tête, puis par date.</p></div>
 {filtres(items, s)}
 <main class="int">{grille(items, '../', vide)}
 <div class="appel"><div><b>Vous vendez dans {E(n)} ?</b><span>Gratuit, 30 jours en ligne, vérifiée par KHALAM, lue par Bia.</span></div><a class="bdeposer" href="../deposer.html">+ Déposer une annonce</a></div></main>
 {pied('../')}{SCRIPT_FILTRES}'''
-    open(f'r/{k}.html', 'w', encoding='utf-8').write(squelette(f'{n} — Jaayal ma', f'{n} à Dakar : {d} Annonces validées par KHALAM.', corps, '../', f'r/{k}.html'))
+    open(f'r/{k}.html', 'w', encoding='utf-8').write(squelette(f'{n} — Jaayal Ma Lii', f'{n} à Dakar : {d} Annonces validées par KHALAM.', corps, '../', f'r/{k}.html'))
 
 # ── Pages annonces ────────────────────────────────────────────────────────────────────────────
 SECURITE = '''<div class="securite"><b>Conseils de sécurité</b><ul><li>Rencontrez le vendeur en personne, dans un lieu public, avant tout paiement.</li><li>Vérifiez le bien (papiers, état, fonctionnement) avant de payer.</li><li>Ne versez jamais d’acompte à distance ; un paiement Wave se vérifie dans l’application, pas par SMS.</li><li>Bijoux, montres, téléphones : demandez la facture ou la boîte ; une vente sans facture se paie en main propre, après vérification.</li><li>Un doute ? Écrivez à KHALAM depuis Bia Xarit.</li></ul></div>'''
 def bloc_vendeur(a):
     if a['anonyme']:
-        msg = f"Bonjour KHALAM, je suis intéressé par l'annonce {a['id']} ({a['titre']}) sur Jaayal ma."
+        msg = f"Bonjour KHALAM, je suis intéressé par l'annonce {a['id']} ({a['titre']}) sur Jaayal Ma Lii."
         lien = f"https://wa.me/{RELAIS}?text={html.escape(msg).replace(' ', '%20')}" if RELAIS else "https://khalam.app/bia"
         return f'''<div class="vendeur"><div class="qui"><div class="av">K</div><div><b>Vendeur discret</b><span>Identité connue de KHALAM · {E(a['quartier'])}</span></div></div>
 <a class="bwa" href="{lien}">{WA_SVG} Contacter via KHALAM</a>
@@ -468,7 +468,7 @@ for a in A:
     if len(similaires) < 3: similaires += [b for b in A if b['id'] != a['id'] and b['fenetre'] == a['fenetre'] and b not in similaires][:3-len(similaires)]
     partage = f"https://wa.me/?text={html.escape(a['titre'])}%20-%20{F(a['prix']).replace(' ','%20')}%20-%20{a['page']}"
     corps = f'''{entete('../', a['fenetre'])}
-<div class="int"><p class="fil"><a href="../index.html">Jaayal ma</a> › <a href="../r/{a['fenetre']}.html">{E(fn)}</a>{(' › <a href="../r/'+a['fenetre']+'.html#'+slug(a['sous'])+'">'+E(a['sous'])+'</a>') if a['sous'] else ''}</p></div>
+<div class="int"><p class="fil"><a href="../index.html">Jaayal Ma Lii</a> › <a href="../r/{a['fenetre']}.html">{E(fn)}</a>{(' › <a href="../r/'+a['fenetre']+'.html#'+slug(a['sous'])+'">'+E(a['sous'])+'</a>') if a['sous'] else ''}</p></div>
 <main class="int fiche">
 <article>
 <div class="galerie">{galerie}</div>{vign}
@@ -492,7 +492,7 @@ for a in A:
 var c=document.getElementById('copier');if(c)c.addEventListener('click',function(){{var u=c.dataset.url;function ok(){{c.textContent='Lien copié ✓';setTimeout(function(){{c.textContent='Copier le lien'}},1800)}}
 if(navigator.clipboard&&navigator.clipboard.writeText){{navigator.clipboard.writeText(u).then(ok,function(){{prompt('Copiez le lien :',u)}})}}else{{prompt('Copiez le lien :',u)}}}});}})();</script>'''
     desc = f"{a['titre']} — {F(a['prix'])}{a['unite']}, {a['quartier']}. {a['desc'][:120]}"
-    open(f"a/{a['id']}.html", 'w', encoding='utf-8').write(squelette(f"{a['titre']} — {F(a['prix'])}{a['unite']} à {a['quartier']} | Jaayal ma", desc, corps, '../', f"a/{a['id']}.html", noindex=a['id'] in MAP))
+    open(f"a/{a['id']}.html", 'w', encoding='utf-8').write(squelette(f"{a['titre']} — {F(a['prix'])}{a['unite']} à {a['quartier']} | Jaayal Ma Lii", desc, corps, '../', f"a/{a['id']}.html", noindex=a['id'] in MAP))
 
 # Retirer les anciennes pages d'annonces qui ne figurent plus dans la source.
 pages_attendues = {f"{a['id']}.html" for a in A}
