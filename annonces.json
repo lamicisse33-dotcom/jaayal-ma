@@ -5,45 +5,6 @@
  "classement": "premium, prioritaire, normale, puis la plus récente",
  "annonces": [
   {
-   "id": "tucson-2021-dakar",
-   "niveau": "premium",
-   "type": "vente",
-   "cat": "vehicule",
-   "titre": "Hyundai Tucson 2021, 48 000 km",
-   "titre_wo": "Hyundai Tucson 2021, 48 000 km",
-   "quartier": "Sacré-Cœur",
-   "prix": 14500000,
-   "unite": "",
-   "surface": "",
-   "desc": "Tucson essence 2021, première main, 48 000 km, carnet d'entretien complet, caméra de recul, 4 pneus neufs. Carte grise à jour, dédouanée. Visible à Sacré-Cœur 3.",
-   "photos": [
-    "hyundai-tucson.jpg"
-   ],
-   "tel": "+221 77 000 00 02",
-   "vendeur": "Mamadou L.",
-   "pro": false,
-   "jours": 14,
-   "depuis": "2026-11-16",
-   "expire": "2026-11-30",
-   "page": "https://jaayalmalii.khalam.app/a/tucson-2021-dakar.html",
-   "image": "https://jaayalmalii.khalam.app/img/hyundai-tucson.jpg",
-   "whatsapp": "https://wa.me/221770000002?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20Ma%20Lii%20:%20Hyundai%20Tucson%202021,%2048%20000%20km",
-   "sous": "Voitures",
-   "fenetre": "vehicules",
-   "etat": "Venant",
-   "details": {
-    "Marque": "Hyundai",
-    "Année": "2021",
-    "Boîte": "Automatique",
-    "Carburant": "Essence",
-    "Kilométrage": "48 000 km"
-   },
-   "urgent": false,
-   "anonyme": false,
-   "facture": "",
-   "urgent_jusqu": ""
-  },
-  {
    "id": "villa-almadies-4ch",
    "niveau": "premium",
    "type": "vente",
