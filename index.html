@@ -255,6 +255,19 @@ h2.sec{flex-wrap:wrap}
 }
 @media (max-width:359px){.fenetres{grid-template-columns:minmax(0,1fr)}.marque b{font-size:1.375rem}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+#khalam-demo-rubriques{margin-block:26px 44px;padding-block:27px;background:linear-gradient(130deg,#f4f8ff,#fff)}
+#khalam-demo-rubriques h2{font-size:clamp(22px,3vw,31px);margin:0 0 8px;color:#182d4c}
+#khalam-demo-rubriques .demo-intro{font-size:14px;line-height:1.65;margin:0 0 21px;color:#445b76;max-width:920px}
+#khalam-demo-rubriques .demo-categories{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+#khalam-demo-rubriques .demo-categories a{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:20px;min-width:0;border:1px solid #cedff1;border-radius:16px;background:#fff;text-decoration:none;box-shadow:0 8px 20px #0c32610a}
+#khalam-demo-rubriques .demo-categories a span{font-size:30px}
+#khalam-demo-rubriques .demo-categories a b{font-size:15px;color:#172a46}
+#khalam-demo-rubriques .demo-categories a small{font-size:12px;color:#55708e}
+#khalam-demo-rubriques .demo-foot{font-size:13px;margin:18px 0 0}
+#khalam-demo-rubriques .demo-foot a{color:#0a559c;font-weight:750;text-decoration:underline}
+@media(max-width:760px){#khalam-demo-rubriques .demo-categories{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:430px){#khalam-demo-rubriques .demo-categories a{padding:14px}#khalam-demo-rubriques .demo-categories a b{font-size:13px}}
 </style>
 </head><body>
 <div class="maquette">Site en préparation — les annonces affichées sont des exemples, avec des noms et des numéros fictifs.</div>
@@ -315,6 +328,18 @@ h2.sec{flex-wrap:wrap}
 <div><b>3. KHALAM valide</b><p>Rien n’est publié sans relecture : numéro connu, annonce vérifiée. C’est ce qui fait la différence avec un groupe WhatsApp.</p></div>
 <div><b>4. On vous contacte</b><p>Votre annonce a sa page, dans sa rubrique, partageable sur WhatsApp. Bia la propose à la voix à ceux qui cherchent dans votre quartier.</p></div></section>
 <div class="appel"><div><b>Quelque chose à vendre ?</b><span>Gratuit, 30 jours en ligne, vérifiée par KHALAM, lue par Bia.</span></div><a class="bdeposer" href="deposer.html">+ Déposer une annonce</a></div>
+<section id="khalam-demo-rubriques" class="int" aria-labelledby="demo-rubriques-title">
+<h2 id="demo-rubriques-title">Découvrez les six rubriques</h2>
+<p class="demo-intro"><strong>36 exemples de démonstration</strong> pour découvrir le futur catalogue de Jaayal Ma Lii. Ces fiches ne sont pas des offres commerciales : aucun produit n’est à vendre, aucun vendeur ni prix n’est associé à ces exemples.</p>
+<div class="demo-categories">
+<a href="r/immobilier.html"><span aria-hidden="true">🏡</span><b>Immobilier</b><small>6 exemples de fiches</small></a>
+<a href="r/vehicules.html"><span aria-hidden="true">🚗</span><b>Véhicules</b><small>6 exemples de fiches</small></a>
+<a href="r/electromenager.html"><span aria-hidden="true">📺</span><b>Électroménager &amp; maison</b><small>6 exemples de fiches</small></a>
+<a href="r/mode.html"><span aria-hidden="true">👘</span><b>Mode &amp; bijoux</b><small>6 exemples de fiches</small></a>
+<a href="r/animaux.html"><span aria-hidden="true">🐐</span><b>Animaux</b><small>6 exemples de fiches</small></a>
+<a href="r/services.html"><span aria-hidden="true">🧰</span><b>Services &amp; divers</b><small>6 exemples de fiches</small></a>
+</div><p class="demo-foot"><a href="recherche.html">Voir l'ensemble des exemples dans la recherche</a> · <a href="deposer.html">Publier une vraie annonce gratuitement</a></p>
+</section>
 </main>
 <footer><div class="int"><span>Jaayal Ma Lii est un service de <a href="https://khalam.app">KHALAM</a>, Dakar. Annonces publiées sous la responsabilité de leurs auteurs, après validation par KHALAM.</span><span><a href="deposer.html">Déposer</a> · <a href="index.html#tarifs">Tarifs</a> · <a href="https://khalam.app/bia">Bia Xarit</a> · <a href="annonces.json">annonces.json</a></span></div></footer>
 </body></html>
