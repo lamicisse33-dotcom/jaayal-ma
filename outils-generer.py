@@ -8,6 +8,36 @@ PREPARATION = True   # bandeau « exemples » tant qu'il reste des annonces d'ex
 INDEXABLE = True     # décision du 18 nov. : le site est sur Google dès maintenant ; seules les annonces d'exemple restent en noindex   # True = noindex + bandeau « Site en préparation ». Passer à False quand les vraies annonces remplacent les exemples.
 SITE = "https://jaayalmalii.khalam.app"
 
+# ── AJOUTS FAITS À LA MAIN : ils survivent à chaque régénération (22 nov. 2026) ──
+# Le retrait nocturne des annonces expirées relance ce générateur, qui réécrit index.html,
+# recherche.html et r/*.html. Ce qui a été ajouté à la main dans ces pages doit rester :
+#  - tout bloc <section id="khalam-…"> de l'accueil, et ses règles CSS (#khalam-…) ;
+#  - le script catalogue-demonstration.js après le pied de page (rubriques et recherche).
+# On les lit AVANT de réécrire, puis on les remet au même endroit.
+def _lire(p):
+    try: return open(p, encoding='utf-8').read()
+    except OSError: return ''
+_AVANT = {p: _lire(p) for p in ['index.html', 'recherche.html'] + [os.path.join('r', f) for f in (os.listdir('r') if os.path.isdir('r') else []) if f.endswith('.html')]}
+def _conserver():
+    acc = _AVANT.get('index.html', '')
+    sections = re.findall(r'<section id="khalam-[^"]*".*?</section>\n?', acc, re.S)
+    styles = re.findall(r'^(?:@media[^\n]*#khalam-[^\n]*|#khalam-[^\n]*)$', acc, re.M)
+    if sections or styles:
+        h = _lire('index.html')
+        for st in styles:
+            if st not in h: h = h.replace('</style>', st + '\n</style>', 1)
+        for sec in sections:
+            if sec.strip() not in h: h = h.replace('</main>', sec + ('' if sec.endswith('\n') else '\n') + '</main>', 1)
+        open('index.html', 'w', encoding='utf-8').write(h)
+    for p, avant in _AVANT.items():
+        if p == 'index.html': continue
+        m = re.search(r'</footer>(<script src="[^"]*catalogue-demonstration\.js"></script>)', avant)
+        if not m: continue
+        h = _lire(p)
+        if m.group(1) not in h:
+            h = h.replace('</footer>', '</footer>' + m.group(1), 1)
+            open(p, 'w', encoding='utf-8').write(h)
+
 D = json.load(open('annonces.json', encoding='utf-8')); A = D['annonces']
 E = html.escape
 def F(n): return f"{n:,}".replace(",", " ") + " F"
@@ -518,3 +548,5 @@ open('robots.txt', 'w', encoding='utf-8').write(f"User-agent: *\nAllow: /\n\nSit
 urls = [('', '1.0'), ('recherche.html', '0.6'), ('deposer.html', '0.8')] + [(f'r/{k}.html', '0.8') for k, _, _, _ in FENETRES] + [(f"a/{a['id']}.html", '0.6') for a in A if a['id'] not in MAP]
 auj = datetime.date.today().isoformat()
 open('sitemap.xml', 'w', encoding='utf-8').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'<url><loc>{SITE}/{u}</loc><lastmod>{auj}</lastmod><priority>{pr}</priority></url>\n' for u, pr in urls) + '</urlset>\n')
+
+_conserver()   # remet les ajouts faits à la main (voir en haut)
