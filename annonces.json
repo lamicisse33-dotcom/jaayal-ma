@@ -675,41 +675,6 @@
    "anonyme": false,
    "facture": "",
    "urgent_jusqu": ""
-  },
-  {
-   "id": "terrain-rufisque-300",
-   "niveau": "normale",
-   "type": "vente",
-   "cat": "immobilier",
-   "titre": "Terrain 300 m² viabilisé — Rufisque",
-   "titre_wo": "Suuf 300 m² bu am ndox ak kuraŋ — Rufisque",
-   "quartier": "Rufisque",
-   "prix": 9000000,
-   "unite": "",
-   "surface": "300 m²",
-   "desc": "Terrain de 300 m², clôturé, eau et électricité à proximité, bail en cours. Zone Rufisque Ouest, accès par route bitumée.",
-   "photos": [
-    "terrain-rufisque.jpg"
-   ],
-   "tel": "+221 77 000 00 08",
-   "vendeur": "Cheikh B.",
-   "pro": false,
-   "jours": 30,
-   "depuis": "2026-11-10",
-   "expire": "2026-12-10",
-   "page": "https://jaayalmalii.khalam.app/a/terrain-rufisque-300.html",
-   "image": "https://jaayalmalii.khalam.app/img/terrain-rufisque.jpg",
-   "whatsapp": "https://wa.me/221770000008?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20Ma%20Lii%20:%20Terrain%20300%20m²%20viabilisé%20—%20Rufisque",
-   "sous": "Vente",
-   "fenetre": "immobilier",
-   "etat": "",
-   "details": {
-    "Papiers": "Délibération"
-   },
-   "urgent": false,
-   "anonyme": false,
-   "facture": "",
-   "urgent_jusqu": ""
   }
  ],
  "rubriques": {
