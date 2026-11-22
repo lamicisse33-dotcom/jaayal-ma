@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jaayalma.khalam.app/sitemap.xml
+Sitemap: https://jaayalmalii.khalam.app/sitemap.xml
