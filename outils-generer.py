@@ -6,7 +6,7 @@ import json, html, re, datetime, os
 
 PREPARATION = True   # bandeau « exemples » tant qu'il reste des annonces d'exemple
 INDEXABLE = True     # décision du 18 nov. : le site est sur Google dès maintenant ; seules les annonces d'exemple restent en noindex   # True = noindex + bandeau « Site en préparation ». Passer à False quand les vraies annonces remplacent les exemples.
-SITE = "https://jaayalma.khalam.app"
+SITE = "https://jaayalmalii.khalam.app"
 
 D = json.load(open('annonces.json', encoding='utf-8')); A = D['annonces']
 E = html.escape
