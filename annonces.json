@@ -78,42 +78,6 @@
    "urgent_jusqu": ""
   },
   {
-   "id": "grand-boubou-bazin",
-   "niveau": "prioritaire",
-   "type": "vente",
-   "cat": "dressing",
-   "sous": "Vide-dressing",
-   "titre": "Grand boubou bazin riche brodé, taille L, porté une fois",
-   "titre_wo": "Mbubb bazin bu rafet, taille L, sol ko benn yoon",
-   "quartier": "Médina",
-   "prix": 45000,
-   "unite": "",
-   "surface": "",
-   "desc": "Bazin riche bleu nuit, broderie dorée, trois pièces, porté une seule fois pour une Korité. Nettoyé, comme neuf.",
-   "photos": [
-    "grand-boubou.jpg"
-   ],
-   "tel": "+221 77 000 00 14",
-   "vendeur": "Khadim D.",
-   "pro": false,
-   "jours": 7,
-   "depuis": "2026-11-17",
-   "expire": "2026-11-24",
-   "page": "https://jaayalmalii.khalam.app/a/grand-boubou-bazin.html",
-   "image": "https://jaayalmalii.khalam.app/img/grand-boubou.jpg",
-   "whatsapp": "https://wa.me/221770000014?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20Ma%20Lii%20:%20Grand%20boubou%20bazin%20riche%20brodé,%20taille%20L,%20porté%20une%20fois",
-   "fenetre": "mode",
-   "etat": "Neuf",
-   "details": {
-    "Taille": "XL",
-    "Matière": "Bazin riche"
-   },
-   "urgent": false,
-   "anonyme": false,
-   "facture": "",
-   "urgent_jusqu": ""
-  },
-  {
    "id": "corolla-2018-pikine",
    "niveau": "prioritaire",
    "type": "vente",
