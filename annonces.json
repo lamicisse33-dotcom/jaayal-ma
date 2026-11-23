@@ -1,7 +1,7 @@
 {
  "site": "Jaayal Ma Lii",
  "source": "https://jaayalmalii.khalam.app/annonces.json",
- "genere": "2026-11-22",
+ "genere": "2026-11-23",
  "classement": "premium, prioritaire, normale, puis la plus récente",
  "annonces": [
   {
@@ -359,41 +359,6 @@
    "anonyme": false,
    "facture": "",
    "urgent_jusqu": ""
-  },
-  {
-   "id": "montre-homme-cuir",
-   "niveau": "normale",
-   "type": "vente",
-   "cat": "dressing",
-   "sous": "Bijoux & montres",
-   "titre": "Montre homme bracelet cuir, cadran doré",
-   "titre_wo": "Montar góor, bracelet cuir, kadran or",
-   "quartier": "Plateau",
-   "prix": 25000,
-   "unite": "",
-   "surface": "",
-   "desc": "Montre à quartz, bracelet cuir marron, cadran doré, pile neuve. Boîte d'origine.",
-   "photos": [
-    "montre.jpg"
-   ],
-   "tel": "",
-   "vendeur": "",
-   "pro": false,
-   "jours": 7,
-   "depuis": "2026-11-15",
-   "expire": "2026-11-22",
-   "page": "https://jaayalmalii.khalam.app/a/montre-homme-cuir.html",
-   "image": "https://jaayalmalii.khalam.app/img/montre.jpg",
-   "whatsapp": "https://wa.me/221773728383",
-   "fenetre": "mode",
-   "etat": "Neuf",
-   "details": {
-    "Bracelet": "Cuir"
-   },
-   "urgent": true,
-   "anonyme": true,
-   "facture": "oui",
-   "urgent_jusqu": "2026-11-20"
   },
   {
    "id": "peugeot-308-ouakam",
