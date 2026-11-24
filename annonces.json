@@ -1,7 +1,7 @@
 {
  "site": "Jaayal Ma Lii",
  "source": "https://jaayalmalii.khalam.app/annonces.json",
- "genere": "2026-11-23",
+ "genere": "2026-11-24",
  "classement": "premium, prioritaire, normale, puis la plus récente",
  "annonces": [
   {
@@ -71,44 +71,6 @@
    "details": {
     "Marque": "Samsung",
     "Taille": "55 pouces"
-   },
-   "urgent": false,
-   "anonyme": false,
-   "facture": "",
-   "urgent_jusqu": ""
-  },
-  {
-   "id": "corolla-2018-pikine",
-   "niveau": "prioritaire",
-   "type": "vente",
-   "cat": "vehicule",
-   "titre": "Toyota Corolla 2018, boîte automatique",
-   "titre_wo": "Toyota Corolla 2018, boîte automatique",
-   "quartier": "Pikine",
-   "prix": 6800000,
-   "unite": "",
-   "surface": "",
-   "desc": "Corolla 2018 automatique, 112 000 km, climatisation froide, intérieur propre, moteur révisé en octobre. Prix légèrement négociable.",
-   "photos": [
-    "toyota-corolla.jpg"
-   ],
-   "tel": "+221 77 000 00 04",
-   "vendeur": "Ibrahima S.",
-   "pro": false,
-   "jours": 7,
-   "depuis": "2026-11-16",
-   "expire": "2026-11-23",
-   "page": "https://jaayalmalii.khalam.app/a/corolla-2018-pikine.html",
-   "image": "https://jaayalmalii.khalam.app/img/toyota-corolla.jpg",
-   "whatsapp": "https://wa.me/221770000004?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20Ma%20Lii%20:%20Toyota%20Corolla%202018,%20boîte%20automatique",
-   "sous": "Voitures",
-   "fenetre": "vehicules",
-   "etat": "D'occasion",
-   "details": {
-    "Marque": "Toyota",
-    "Année": "2018",
-    "Boîte": "Automatique",
-    "Carburant": "Essence"
    },
    "urgent": false,
    "anonyme": false,
@@ -282,42 +244,6 @@
    "details": {
     "Pièces": "1",
     "Meublé": "Non"
-   },
-   "urgent": false,
-   "anonyme": false,
-   "facture": "",
-   "urgent_jusqu": ""
-  },
-  {
-   "id": "frigo-hisense-2-portes",
-   "niveau": "normale",
-   "type": "vente",
-   "cat": "bazar",
-   "sous": "Électroménager",
-   "titre": "Réfrigérateur Hisense 2 portes, 260 L",
-   "titre_wo": "Frigo Hisense 2 bunt, 260 L",
-   "quartier": "Guédiawaye",
-   "prix": 95000,
-   "unite": "",
-   "surface": "",
-   "desc": "Frigo 2 portes 260 litres, congélateur en haut, bon état, fait bien le froid. À venir chercher à Guédiawaye.",
-   "photos": [
-    "frigo.jpg"
-   ],
-   "tel": "+221 77 000 00 13",
-   "vendeur": "Ndèye F.",
-   "pro": false,
-   "jours": 7,
-   "depuis": "2026-11-16",
-   "expire": "2026-11-23",
-   "page": "https://jaayalmalii.khalam.app/a/frigo-hisense-2-portes.html",
-   "image": "https://jaayalmalii.khalam.app/img/frigo.jpg",
-   "whatsapp": "https://wa.me/221770000013?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20Ma%20Lii%20:%20Réfrigérateur%20Hisense%202%20portes,%20260%20L",
-   "fenetre": "electromenager",
-   "etat": "Neuf",
-   "details": {
-    "Marque": "Hisense",
-    "Capacité": "2 portes"
    },
    "urgent": false,
    "anonyme": false,
