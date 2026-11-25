@@ -1,7 +1,7 @@
 {
  "site": "Jaayal Ma Lii",
  "source": "https://jaayalmalii.khalam.app/annonces.json",
- "genere": "2026-11-24",
+ "genere": "2026-11-25",
  "classement": "premium, prioritaire, normale, puis la plus récente",
  "annonces": [
   {
@@ -35,42 +35,6 @@
     "Chambres": "4",
     "Salles de bain": "3",
     "Titre foncier": "Oui"
-   },
-   "urgent": false,
-   "anonyme": false,
-   "facture": "",
-   "urgent_jusqu": ""
-  },
-  {
-   "id": "tv-samsung-55",
-   "niveau": "prioritaire",
-   "type": "vente",
-   "cat": "bazar",
-   "sous": "Télé, téléphones & ordinateurs",
-   "titre": "Télé Samsung 55 pouces, 4K, très bon état",
-   "titre_wo": "Tele Samsung 55 pouces, 4K, baax na lool",
-   "quartier": "Liberté 6",
-   "prix": 185000,
-   "unite": "",
-   "surface": "",
-   "desc": "Smart TV Samsung 55\" 4K achetée en 2024, jamais réparée, télécommande et support d'origine. Vendue parce que je déménage. Essai sur place.",
-   "photos": [
-    "tv-samsung.jpg"
-   ],
-   "tel": "+221 77 000 00 11",
-   "vendeur": "Aminata S.",
-   "pro": false,
-   "jours": 7,
-   "depuis": "2026-11-17",
-   "expire": "2026-11-24",
-   "page": "https://jaayalmalii.khalam.app/a/tv-samsung-55.html",
-   "image": "https://jaayalmalii.khalam.app/img/tv-samsung.jpg",
-   "whatsapp": "https://wa.me/221770000011?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20Ma%20Lii%20:%20Télé%20Samsung%2055%20pouces,%204K,%20très%20bon%20état",
-   "fenetre": "electromenager",
-   "etat": "Neuf",
-   "details": {
-    "Marque": "Samsung",
-    "Taille": "55 pouces"
    },
    "urgent": false,
    "anonyme": false,
@@ -242,42 +206,6 @@
    "fenetre": "electromenager",
    "etat": "",
    "details": {},
-   "urgent": false,
-   "anonyme": false,
-   "facture": "",
-   "urgent_jusqu": ""
-  },
-  {
-   "id": "chambre-pikine-rue10",
-   "niveau": "normale",
-   "type": "location",
-   "cat": "immobilier",
-   "titre": "Chambre avec douche — Pikine Rue 10",
-   "titre_wo": "Néeg ak duus — Pikine Rue 10",
-   "quartier": "Pikine",
-   "prix": 60000,
-   "unite": "/ mois",
-   "surface": "",
-   "desc": "Chambre indépendante avec douche intérieure, eau et électricité comprises, dans une maison calme. Pour une personne seule ou un couple. Disponible tout de suite.",
-   "photos": [
-    "chambre-pikine.jpg"
-   ],
-   "tel": "+221 77 000 00 06",
-   "vendeur": "Fatou N.",
-   "pro": false,
-   "jours": 7,
-   "depuis": "2026-11-17",
-   "expire": "2026-11-24",
-   "page": "https://jaayalmalii.khalam.app/a/chambre-pikine-rue10.html",
-   "image": "https://jaayalmalii.khalam.app/img/chambre-pikine.jpg",
-   "whatsapp": "https://wa.me/221770000006?text=Bonjour,%20je%20vous%20contacte%20pour%20votre%20annonce%20Jaayal%20Ma%20Lii%20:%20Chambre%20avec%20douche%20—%20Pikine%20Rue%2010",
-   "sous": "Location",
-   "fenetre": "immobilier",
-   "etat": "",
-   "details": {
-    "Pièces": "1",
-    "Meublé": "Non"
-   },
    "urgent": false,
    "anonyme": false,
    "facture": "",
